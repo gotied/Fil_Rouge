@@ -9,6 +9,8 @@ cd C:\wamp64\bin\mysql\mysql8.0.31\bin
 [sans mdp] -> 
 .\mysqldump -u root (nom base de donnée) > chemin\sauv_base_de_donnee.sql
 
+.\mysqldump -u root (nom base de donnée) -r chemin\sauv_base_de_donnee.sql
+
 [avec mdp] ->
 .\mysqldump -u root -p (mdp) (nom base de donnée) > chemin\sauv_base_de_donnee.sql
 
@@ -21,6 +23,8 @@ cd C:\wamp64\bin\mysql\mysql8.0.31\bin
 
 [sans mdp] -> 
 Get-Content chemin\sauv_base_de_donnee.sql | .\mysql -u root new_base_de_donnee
+
+cat chemin\sauv_base_de_donnee.sql | .\mysql -u root new_base_de_donnee
 
 [avec mdp] ->
 Get-Content chemin\sauv_base_de_donnee.sql | .\mysql -u root -p (mdp) new_base_de_donnee
