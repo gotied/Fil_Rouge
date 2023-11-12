@@ -1,0 +1,14 @@
+-- état livraison --
+0 enregistré
+1 en préparation
+2 en cours de livraison
+3 livrée
+4 annulée
+
+-- rôle --
+0 client particulier
+1 client professionnel
+2 commercial particulier
+3 commercial professionnel
+4 gérant 
+5 admin 

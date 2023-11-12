@@ -98,7 +98,7 @@ CREATE TABLE livraison(
    FOREIGN KEY(id_co) REFERENCES commande(id_co)
 );
 
-CREATE TABLE joue(
+CREATE TABLE r_film_perso(
    id_fil INT,
    id_per INT,
    PRIMARY KEY(id_fil, id_per),
@@ -106,7 +106,7 @@ CREATE TABLE joue(
    FOREIGN KEY(id_per) REFERENCES personne(id_per)
 );
 
-CREATE TABLE a_un(
+CREATE TABLE r_role_perso(
    id_per INT,
    id_ro INT,
    PRIMARY KEY(id_per, id_ro),
@@ -114,7 +114,7 @@ CREATE TABLE a_un(
    FOREIGN KEY(id_ro) REFERENCES role(id_ro)
 );
 
-CREATE TABLE appartient(
+CREATE TABLE r_genre_film(
    id_fil INT,
    id_gen INT,
    PRIMARY KEY(id_fil, id_gen),
@@ -122,7 +122,7 @@ CREATE TABLE appartient(
    FOREIGN KEY(id_gen) REFERENCES genre(id_gen)
 );
 
-CREATE TABLE fourni(
+CREATE TABLE r_fourni_film(
    id_fil INT,
    id_four INT,
    PRIMARY KEY(id_fil, id_four),

@@ -8,7 +8,13 @@ INSERT INTO personne (nm_per, pm_per) VALUES
 ('Smith', 'Bob'),
 ('Johnson', 'Alice'),
 ('Brown', 'Chris'),
-('White', 'Emma');
+('White', 'Emma'),
+('Harrison', 'Aria'),
+('Williams', 'Xander'),
+('Cruz', 'Luna'),
+('Bennett', 'Orion'),
+('Reyes', 'Zara'),
+('Knight', 'Nova');
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES ('Actor'), ('Director');
@@ -20,56 +26,69 @@ INSERT INTO fournisseur (nm_four, ad_four, tl_four, eml_four) VALUES
 
 -- Insertion des utilisateurs
 INSERT INTO utilisateur (eml_uti, pwd_uti, nm_uti, pm_uti, tl_uti, rl_uti, coef_uti, id_uti_1) VALUES
-('user1@example.com', 'password1', 'User1', 'Last1', '123456789', 2, 1.5, NULL),
-('user2@example.com', 'password2', 'User2', 'Last2', '987654321', 2, 1.2, NULL),
-('admin@example.com', 'adminpassword', 'Admin', 'AdminLast', '111222333', 1, 1.0, NULL);
+('user1@example.com', 'password1', 'User1', 'Last1', '123456789', 0, 1.5, NULL),
+('user2@example.com', 'password2', 'User2', 'Last2', '987654321', 0, 1.2, NULL),
+('admin@example.com', 'adminpassword', 'Admin', 'AdminLast', '111222333', 2, NULL, NULL),
+('user3@example.com', 'password3', 'User3', 'Last3', '555666777', 0, 1.2, NULL),
+('user4@example.com', 'password4', 'User4', 'Last4', '888999000', 0, 1.1, NULL);
 
 -- Attribution des utilisateurs gérés
-UPDATE utilisateur SET id_uti_1 = 3 WHERE id_uti IN (1, 2);
+UPDATE utilisateur SET id_uti_1 = 3 WHERE id_uti IN (1, 2, 4, 5);
 
 -- Insertion des films
 INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, sto_fil, act_fil) VALUES
 ('Film1', 'Description for Film1', '2022-01-01', '2h30m', 'film1.jpg', 9.99, 8.50, 100, true),
-('Film2', 'Description for Film2', '2022-02-15', '2h00m', 'film2.jpg', 7.99, 6.50, 150, true);
+('Film2', 'Description for Film2', '2022-02-15', '2h00m', 'film2.jpg', 7.99, 6.50, 150, true),
+('Film3', 'Description for Film3', '2022-04-01', '2h15m', 'film3.jpg', 12.99, 10.50, 120, true),
+('Film4', 'Description for Film4', '2022-05-15', '1h45m', 'film4.jpg', 8.99, 7.00, 180, true);
 
 -- Attribution des genres aux films
-INSERT INTO appartient (id_fil, id_gen) VALUES
-(1, 1), (1, 2), (1, 3), (2, 2), (2, 4), (2, 5);
+INSERT INTO r_genre_film (id_fil, id_gen) VALUES
+(1, 1), (1, 2), (1, 3), (2, 2), (2, 4), (2, 5), (3, 1), (3, 2), (4, 2), (4, 3);
 
 -- Attribution des personnes aux films avec leurs rôles
-INSERT INTO joue (id_fil, id_per) VALUES
-(1, 1), (1, 2), (1, 4), (2, 2), (2, 3), (2, 5), (2, 6);
+INSERT INTO r_film_perso (id_fil, id_per) VALUES
+(1, 1), (1, 2), (1, 4), (2, 2), (2, 3), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (4, 6), (4, 7), (4, 8);
 
-INSERT INTO a_un (id_per, id_ro) VALUES
-(1, 1), (2, 1), (4, 1), (2, 2), (3, 1), (5, 2), (6, 1);
+INSERT INTO r_role_perso (id_per, id_ro) VALUES
+(1, 1), (2, 1), (4, 1), (2, 2), (3, 1), (5, 2), (6, 1), (4, 2), (5, 1), (7, 2), (8, 1);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
 ('2022-03-01 12:00:00', 19.98, 1, 1),
 ('2022-03-02 15:30:00', 15.98, 2, 2),
-('2022-03-03 18:45:00', 29.97, 1, 1);
+('2022-03-03 18:45:00', 29.97, 1, 1),
+('2022-06-01 14:00:00', 25.98, 1, 4),
+('2022-06-02 16:45:00', 21,98, 2, 5);
 
 -- Insertion des adresses
 INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
 ('123 Shipping St, City', '456 Billing St, City', 1),
-('789 Delivery St, Town', '101 Invoicing St, Town', 2);
+('789 Delivery St, Town', '101 Invoicing St, Town', 2),
+('42 Starlight Lane, Celestia City', NULL, 3),
+('101 Galaxy View, Nebula Town', '456 Comet Boulevard, Nebula Town', 4),
+('12 Enchanted Avenue, Fairytale City', '345 Magic Street, Fairytale City', 5);
 
 -- Insertion des factures
 INSERT INTO facture (fac, mdp_fac, dt_fac, id_co) VALUES
-('INV001', 'CreditCard1', '2022-03-01', 1),
-('INV002', 'CreditCard2', '2022-03-02', 2),
-('INV003', 'CreditCard1', '2022-03-03', 3);
+('INV001', 'CreditCard', '2022-03-01', 1),
+('INV002', 'CreditCard', '2022-03-02', 2),
+('INV003', 'CreditCard', '2022-03-03', 3),
+('INV004', 'CreditCard', '2022-06-01', 4),
+('INV005', 'CreditCard', '2022-06-02', 5);
 
 -- Insertion des fournisseurs pour les films
-INSERT INTO fourni (id_fil, id_four) VALUES
-(1, 1), (1, 2), (2, 1), (2, 2);
+INSERT INTO r_fourni_film (id_fil, id_four) VALUES
+(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2), (4, 1), (4, 2);
 
 -- Insertion des livraisons
 INSERT INTO livraison (bn_livr, dt_lirv, id_co) VALUES
-('Delivery1', '2022-03-02', 1),
-('Delivery2', '2022-03-03', 2),
-('Delivery3', '2022-03-04', 3);
+('Delivery1', '2022-03-04', 1),
+('Delivery2', '2022-03-05', 2),
+('Delivery3', '2022-03-06', 3),
+('Delivery4', '2022-06-04', 4),
+('Delivery5', '2022-06-05', 5);
 
 -- Insertion des détails des commandes
 INSERT INTO details (id_fil, id_co, qte) VALUES
-(1, 1, 2), (2, 2, 1), (1, 3, 3), (2, 3, 2);
+(1, 1, 2), (2, 2, 2), (1, 3, 3), (2, 3, 2), (3, 4, 2), (4, 5, 1), (3, 5, 1);
