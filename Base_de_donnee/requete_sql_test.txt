@@ -5,6 +5,19 @@ JOIN personne p ON rf.id_per = p.id_per
 JOIN r_role_perso rp ON p.id_per = rp.id_per
 JOIN role r ON rp.id_ro = r.id_ro;
 
+SELECT concat(personne.nm_per, ' ', personne.pm_per) AS cast, film.nm_fil AS film, role.nm_ro AS role
+FROM r_film_perso
+JOIN personne ON r_film_perso.id_per = personne.id_per
+JOIN film ON r_film_perso.id_fil = film.id_fil
+JOIN r_role_perso ON personne.id_per = r_role_perso.id_per
+JOIN role ON r_role_perso.id_ro = role.id_ro  
+ORDER BY `film` ASC;
+
+SELECT film.nm_fil AS film, genre.nm_gen AS genre
+FROM r_genre_film
+JOIN film ON r_genre_film.id_fil = film.id_fil
+JOIN genre ON r_genre_film.id_gen = genre.id_gen;
+
 SELECT g.nm_gen AS genre, COUNT(rf.id_fil) AS nombre_films
 FROM genre g
 JOIN r_genre_film rf ON g.id_gen = rf.id_gen

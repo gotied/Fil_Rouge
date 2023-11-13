@@ -26,11 +26,11 @@ INSERT INTO fournisseur (nm_four, ad_four, tl_four, eml_four) VALUES
 
 -- Insertion des utilisateurs
 INSERT INTO utilisateur (eml_uti, pwd_uti, nm_uti, pm_uti, tl_uti, rl_uti, coef_uti, id_uti_1) VALUES
-('user1@example.com', 'password1', 'User1', 'Last1', '123456789', 0, 1.5, NULL),
-('user2@example.com', 'password2', 'User2', 'Last2', '987654321', 0, 1.2, NULL),
-('admin@example.com', 'adminpassword', 'Admin', 'AdminLast', '111222333', 2, NULL, NULL),
-('user3@example.com', 'password3', 'User3', 'Last3', '555666777', 0, 1.2, NULL),
-('user4@example.com', 'password4', 'User4', 'Last4', '888999000', 0, 1.1, NULL);
+('user1@example.com', 'password', 'User_name1', 'First_name1', '123456789', 0, 1.2, NULL),
+('user2@example.com', 'password', 'User_name2', 'First_name2', '987654321', 0, 1.2, NULL),
+('commercial@example.com', 'password', 'Commercial_name', 'First_name', '111222333', 2, NULL, NULL),
+('user3@example.com', 'password', 'User_name3', 'First_name3', '555666777', 0, 1.2, NULL),
+('user4@example.com', 'password', 'User_name4', 'First_name4', '888999000', 0, 1.2, NULL);
 
 -- Attribution des utilisateurs gérés
 UPDATE utilisateur SET id_uti_1 = 3 WHERE id_uti IN (1, 2, 4, 5);
@@ -48,10 +48,10 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
-(1, 1), (1, 2), (1, 4), (2, 2), (2, 3), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (4, 6), (4, 7), (4, 8);
+(1, 1), (1, 2), (1, 4), (2, 2), (2, 3), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (4, 7), (4, 8), (4, 9), (4, 10), (4, 11), (4, 12);
 
 INSERT INTO r_role_perso (id_per, id_ro) VALUES
-(1, 1), (2, 1), (4, 1), (2, 2), (3, 1), (5, 2), (6, 1), (4, 2), (5, 1), (7, 2), (8, 1);
+(1, 1), (2, 1), (4, 1), (2, 2), (3, 1), (6, 1), (5, 1), (7, 2), (8, 1), (9, 1), (10, 2), (11, 1), (12, 1);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
@@ -59,7 +59,7 @@ INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
 ('2022-03-02 15:30:00', 15.98, 2, 2),
 ('2022-03-03 18:45:00', 29.97, 1, 1),
 ('2022-06-01 14:00:00', 25.98, 1, 4),
-('2022-06-02 16:45:00', 21,98, 2, 5);
+('2022-06-02 16:45:00', 21.98, 2, 5);
 
 -- Insertion des adresses
 INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
