@@ -1,0 +1,73 @@
+-- Chiffre d'affaires mois par mois pour une année sélectionné --
+
+SELECT MONTH(dt_co) AS mois, YEAR(dt_co) AS annee, SUM(tt_co) AS chiffre_affaires
+FROM commande
+WHERE YEAR(dt_co) = 
+GROUP BY mois, annee
+ORDER BY annee, mois;
+
+-- Top 10 produits les plus commmandés pour une année sélectionné -- 
+
+SELECT film.nm_fil AS produit, film.id_fil AS reference_produit, SUM(details.qte) AS quantite_commandee, fournisseur.nm_four AS fournisseur
+FROM details
+JOIN film ON details.id_fil = film.id_fil
+JOIN r_fourni_film ON film.id_fil = r_fourni_film.id_fil
+JOIN fournisseur ON r_fourni_film.id_four = fournisseur.id_four
+JOIN commande ON details.id_co = commande.id_co
+WHERE YEAR(commande.dt_co) = 
+GROUP BY film.id_fil, fournisseur.id_four
+ORDER BY quantite_commandee DESC
+LIMIT 10;
+
+-- Top 10 produits les plus rémunérateurs pour une année sélectionné --
+
+SELECT film.nm_fil AS produit, film.id_fil AS reference_produit, SUM(details.qte * (film.pr_fil - film.pr_four)) AS marge, fournisseur.nm_four AS fournisseur
+FROM details
+JOIN film ON details.id_fil = film.id_fil
+JOIN r_fourni_film ON film.id_fil = r_fourni_film.id_fil
+JOIN fournisseur ON r_fourni_film.id_four = fournisseur.id_four
+JOIN commande ON details.id_co = commande.id_co
+WHERE YEAR(commande.dt_co) = 
+GROUP BY film.id_fil
+ORDER BY marge DESC
+LIMIT 10;
+
+-- Top 10 des clients en nombre de commande --
+
+SELECT
+    concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client,
+    COUNT(commande.id_co) AS nombre_commandes
+FROM commande
+JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
+GROUP BY utilisateur.id_uti
+ORDER BY nombre_commandes DESC
+LIMIT 10;
+
+-- Top 10 des clients en chiffre d'affaires --
+
+SELECT
+    concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client,
+    SUM(commande.tt_co) AS chiffre_affaires
+FROM commande
+JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
+GROUP BY utilisateur.id_uti
+ORDER BY chiffre_affaires DESC
+LIMIT 10;
+
+-- Chiffre d'affaires par type de client --
+
+SELECT
+	concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client,
+    utilisateur.rl_uti AS type_client,
+    SUM(commande.tt_co) AS chiffre_affaires
+FROM commande
+JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
+// WHERE utilisateur.rl_uti = //
+GROUP BY utilisateur.id_uti  
+ORDER BY chiffre_affaires  DESC;
+
+-- Nombre de commandes en cours de livraison --
+
+SELECT COUNT(id_co) AS nombre_commandes_en_cours
+FROM commande
+WHERE et_co = 2;

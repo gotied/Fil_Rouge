@@ -48,7 +48,7 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
-(1, 1), (1, 2), (1, 4), (2, 2), (2, 3), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (4, 7), (4, 8), (4, 9), (4, 10), (4, 11), (4, 12);
+(1, 1), (1, 2), (1, 4), (2, 2), (2, 3), (2, 5), (2, 6), (3, 3), (3, 2), (3, 4), (3, 5), (3, 6), (3, 7), (4, 7), (4, 8), (4, 9), (4, 10), (4, 11), (4, 12);
 
 INSERT INTO r_role_perso (id_per, id_ro) VALUES
 (1, 1), (2, 1), (4, 1), (2, 2), (3, 1), (6, 1), (5, 1), (7, 2), (8, 1), (9, 1), (10, 2), (11, 1), (12, 1);
@@ -56,10 +56,10 @@ INSERT INTO r_role_perso (id_per, id_ro) VALUES
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
 ('2022-03-01 12:00:00', 19.98, 1, 1),
-('2022-03-02 15:30:00', 15.98, 2, 2),
-('2022-03-03 18:45:00', 29.97, 1, 1),
+('2022-04-02 15:30:00', 15.98, 2, 2),
+('2022-05-03 18:45:00', 29.97, 1, 1),
 ('2022-06-01 14:00:00', 25.98, 1, 4),
-('2022-06-02 16:45:00', 21.98, 2, 5);
+('2022-07-02 16:45:00', 21.98, 2, 5);
 
 -- Insertion des adresses
 INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
@@ -79,7 +79,7 @@ INSERT INTO facture (fac, mdp_fac, dt_fac, id_co) VALUES
 
 -- Insertion des fournisseurs pour les films
 INSERT INTO r_fourni_film (id_fil, id_four) VALUES
-(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2), (4, 1), (4, 2);
+(1, 1), (2, 1), (3, 2), (4, 2);
 
 -- Insertion des livraisons
 INSERT INTO livraison (bn_livr, dt_lirv, id_co) VALUES
