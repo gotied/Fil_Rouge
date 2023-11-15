@@ -34,9 +34,7 @@ LIMIT 10;
 
 -- Top 10 des clients en nombre de commande --
 
-SELECT
-    concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client,
-    COUNT(commande.id_co) AS nombre_commandes
+SELECT concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client, COUNT(commande.id_co) AS nombre_commandes
 FROM commande
 JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
 GROUP BY utilisateur.id_uti
@@ -45,9 +43,7 @@ LIMIT 10;
 
 -- Top 10 des clients en chiffre d'affaires --
 
-SELECT
-    concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client,
-    SUM(commande.tt_co) AS chiffre_affaires
+SELECT concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client, SUM(commande.tt_co) AS chiffre_affaires
 FROM commande
 JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
 GROUP BY utilisateur.id_uti
@@ -56,10 +52,7 @@ LIMIT 10;
 
 -- Chiffre d'affaires par type de client --
 
-SELECT
-	concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client,
-    utilisateur.rl_uti AS type_client,
-    SUM(commande.tt_co) AS chiffre_affaires
+SELECT concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client, utilisateur.rl_uti AS type_client, SUM(commande.tt_co) AS chiffre_affaires
 FROM commande
 JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
 // WHERE utilisateur.rl_uti = //
@@ -68,6 +61,6 @@ ORDER BY chiffre_affaires  DESC;
 
 -- Nombre de commandes en cours de livraison --
 
-SELECT COUNT(id_co) AS nombre_commandes_en_cours
+SELECT COUNT(id_co) AS nombre_commandes_en_cours_de_livraison
 FROM commande
 WHERE et_co = 2;

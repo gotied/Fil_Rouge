@@ -116,10 +116,10 @@ INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
 -- Insertion des factures
 INSERT INTO facture (fac, mdp_fac, dt_fac, id_co) VALUES
 ('INV001', 'CreditCard', '2022-03-01', 1),
-('INV002', 'CreditCard', '2022-03-02', 2),
-('INV003', 'CreditCard', '2022-03-03', 3),
+('INV002', 'CreditCard', '2022-04-02', 2),
+('INV003', 'CreditCard', '2022-05-03', 3),
 ('INV004', 'CreditCard', '2022-06-01', 4),
-('INV005', 'CreditCard', '2022-06-02', 5);
+('INV005', 'CreditCard', '2022-07-02', 5);
 
 -- Insertion des fournisseurs pour les films
 INSERT INTO r_fourni_film (id_fil, id_four) VALUES
