@@ -8,7 +8,8 @@ INSERT INTO genre (nm_gen) VALUES
 ('Aventure'), -- 6
 ('Animation'), -- 7
 ('Fantastique'), -- 8
-('Guerre'); -- 9
+('Guerre'), -- 9
+('Policier'); -- 10
 
 -- Insertion des personnes
 INSERT INTO personne (pm_per, nm_per) VALUES
@@ -44,7 +45,14 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Yoshiko', 'Shinohara'), -- 30
 ('Ayano', 'Shiraishi'), -- 31
 ('Tsutomu', 'Tatsumi'), -- 32
-('Akemi', 'Yamaguchi'); -- 33
+('Akemi', 'Yamaguchi'), -- 33
+('David', 'Fincher'), -- 34
+('Andrew Kevin', 'Walker'), --35
+('Phyllis', 'Carlyle'), --36
+('Brad', 'Pitt'), --37
+('Morgan', 'Freeman'), -- 38
+('Gwyneth', 'Paltrow'), -- 39
+('Kevin', 'Spacey'); -- 40
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -75,7 +83,8 @@ INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, s
 ('Princesse Mononoké', "Japon, XVe siècle. Jadis protégée par des animaux géants, la forêt se dépeuple à cause de l'homme. Blessé par un sanglier rendu fou par les démons, le jeune guerrier Ashitaka quitte les siens et part à la recherche du dieu-cerf qui seul pourra défaire le sortilège qui lui gangrène le bras. Au cours de son voyage, Ashitaka rencontre Lady Eboshi, à la tête d’une communauté de forgerons, qui doit se défendre contre ceux qui lui reprochent de détruire la forêt pour alimenter ses forges. Parmi ses pires ennemis se trouve San, une jeune fille sauvage élevée par des loups, aussi appelée Princesse Mononoké, la princesse des spectres...", '1997-07-12', '2h23', 'princesse_mononoke.webp', 12.99, 8.99, 200, true),
 ('Le voyage de Chihiro', "Chihiro, une fillette de 10 ans, est en route vers sa nouvelle demeure en compagnie de ses parents. Au cours du voyage, la famille fait une halte dans un parc à thème qui leur paraît délabré. Lors de la visite, les parents s’arrêtent dans un des bâtiments pour déguster quelques mets très appétissants, apparus comme par enchantement. Hélas cette nourriture les transforme en porcs. Prise de panique, Chihiro s’enfuit et se retrouve seule dans cet univers fantasmagorique ; elle rencontre alors l’énigmatique Haku, son seul allié dans cette terrible épreuve...", '2001-07-20', '2h05', 'chihiro.webp', 13.99, 9.99, 300, true),
 ('Le Château ambulant', "La jeune Sophie, 18 ans, travaille inlassablement dans la chapellerie autrefois tenue par son père, malheureusement décédé. Résignée à son sort, c’est lors de l’une de ses rares sorties en ville qu’elle fait la connaissance du beau Hauru, un magicien. Mais la sorcière des Landes, jalouse de cette rencontre, jette un sort à Sophie, la transformant en vieille dame. Accablée par sa nouvelle apparence, Sophie s’enfuit dans les montagnes et tombe sur la demeure de Hauru : son Château Ambulant. Et si tout ceci n’était que le commencement d’une merveilleuse histoire ?", '2004-11-20', '1h59', 'le_chateau_ambulant.webp', 11.99, 6.99, 200, true),
-('Le Tombeau des lucioles', "Japon, été 1945. Après le bombardement de Kobé, Seita, un adolescent de quatorze ans et sa petite soeur de quatre ans, Setsuko, orphelins, vont s'installer chez leur tante à quelques dizaines de kilomètres de chez eux. Celle-ci leur fait comprendre qu'ils sont une gêne pour la famille et doivent mériter leur riz quotidien. Seita décide de partir avec sa petite soeur. Ils se réfugient dans un bunker désaffecté en pleine campagne et vivent des jours heureux illuminés par la présence de milliers de lucioles. Mais bientôt la nourriture commence cruellement à manquer.", '1988-04-16', '1h30', 'le_tombeau_des_lucioles.webp', 11.99, 6.99, 200, true);
+('Le Tombeau des lucioles', "Japon, été 1945. Après le bombardement de Kobé, Seita, un adolescent de quatorze ans et sa petite soeur de quatre ans, Setsuko, orphelins, vont s'installer chez leur tante à quelques dizaines de kilomètres de chez eux. Celle-ci leur fait comprendre qu'ils sont une gêne pour la famille et doivent mériter leur riz quotidien. Seita décide de partir avec sa petite soeur. Ils se réfugient dans un bunker désaffecté en pleine campagne et vivent des jours heureux illuminés par la présence de milliers de lucioles. Mais bientôt la nourriture commence cruellement à manquer.", '1988-04-16', '1h30', 'le_tombeau_des_lucioles.webp', 11.99, 6.99, 200, true),
+('Seven', "Pour conclure sa carrière, l'inspecteur Somerset, vieux flic blasé, tombe à sept jours de la retraite sur un criminel peu ordinaire. John Doe, c'est ainsi que se fait appeler l'assassin, a decidé de nettoyer la societé des maux qui la rongent en commettant sept meurtres basés sur les sept pechés capitaux: la gourmandise, l'avarice, la paresse, l'orgueil, la luxure, l'envie et la colère.", '1995-07-22', '2h10', 'seven.webp', 9.99, 5.99, 200, true)
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
@@ -91,7 +100,10 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 (3, 8),
 (4, 7),
 (4, 3),
-(4, 9);
+(4, 9),
+(5, 10),
+(5, 5),
+(5, 3);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
@@ -133,7 +145,14 @@ INSERT INTO r_film_perso (id_fil, id_per) VALUES
 (4, 30),
 (4, 31),
 (4, 32),
-(4, 33);
+(4, 33),
+(5, 34),
+(5, 35),
+(5, 36),
+(5, 37),
+(5, 38),
+(5, 39),
+(5, 40);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (1, 2, 1),
@@ -179,7 +198,14 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (30, 5, 4),
 (31, 5, 4),
 (32, 5, 4),
-(33, 5, 4);
+(33, 5, 4),
+(34, 2, 5),
+(35, 3, 5),
+(36, 4, 5),
+(37, 1, 5),
+(38, 1, 5),
+(39, 1, 5),
+(40, 1, 5);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
