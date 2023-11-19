@@ -18,8 +18,8 @@ CREATE TABLE film(
 
 CREATE TABLE personne(
    id_per INT AUTO_INCREMENT,
-   nm_per VARCHAR(50) ,
    pm_per VARCHAR(50) ,
+   nm_per VARCHAR(50) ,
    PRIMARY KEY(id_per)
 );
 

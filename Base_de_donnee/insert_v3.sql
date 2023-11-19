@@ -1,24 +1,58 @@
 -- Insertion des genres
-INSERT INTO genre (nm_gen) VALUES ('Action'), ('Comedy'), ('Drama'), ('Sci-Fi'), ('Thriller'), ('Aventure'), ('Animation');
+INSERT INTO genre (nm_gen) VALUES 
+('Action'), -- 1
+('Comédie'), -- 2
+('Drame'), -- 3
+('Sci-Fi'), -- 4
+('Thriller'), -- 5
+('Aventure'), -- 6
+('Animation'), -- 7
+('Fantastique'), -- 8
+('Guerre'); -- 9
 
 -- Insertion des personnes
-INSERT INTO personne (nm_per, pm_per) VALUES
-('Doe', 'John'),
-('Doe', 'Jane'),
-('Smith', 'Bob'),
-('Johnson', 'Alice'),
-('Brown', 'Chris'),
-('White', 'Emma'),
-('Harrison', 'Aria'),
-('Williams', 'Xander'),
-('Cruz', 'Luna'),
-('Bennett', 'Orion'),
-('Reyes', 'Zara'),
-('Knight', 'Nova'),
-('Hayo Miyazaki');
+INSERT INTO personne (pm_per, nm_per) VALUES
+('Hayao', 'Miyazaki'), -- 1
+('Toshio', 'Suzuki'), -- 2
+('Yōji', 'Matsuda'), -- 3
+('Yuriko', 'Ishida'), -- 4
+('Akihiro', 'Miwa'), -- 5
+('Yūko', 'Tanaka'), -- 6
+('Tsunehiko', 'Kamijō'), -- 7
+('Kaoru', 'Kobayashi'), -- 8
+('Sumi', 'Shimamoto'), -- 9
+('Hisaya', 'Morishige'), -- 10
+('Masahiko', 'Nishimura'), -- 11
+('Mitsuko', 'Mori'), -- 12
+('Rumi', 'Hiiragi'), -- 13
+('Miyu', 'Irino'), -- 14
+('Mari', 'Natsuki'), -- 15
+('Bunta', 'Sugawara'), -- 16
+('Yasuko', 'Sawaguchi'), -- 17
+('Takashi', 'Naitō'), -- 18
+('Yumi', 'Tamai'), -- 19
+('Ryūnosuke', 'Kamiki'), -- 20
+('Chieko', 'Baishō'), -- 21
+('Takuya', 'Kimura'), -- 22
+('Tatsuya', 'Gashuin'), -- 23
+('Yō', 'Ōizumi'), -- 24
+('Daijirō', 'Harada'), -- 25
+('Haruko', 'Katō'), -- 26
+('Yayoi', 'Kazuki'), -- 27
+('Isao', 'Takahata'), -- 28
+('Tōru', 'Hara'), -- 29
+('Yoshiko', 'Shinohara'), -- 30
+('Ayano', 'Shiraishi'), -- 31
+('Tsutomu', 'Tatsumi'), -- 32
+('Akemi', 'Yamaguchi'); -- 33
 
 -- Insertion des rôles
-INSERT INTO role (nm_ro) VALUES ('Acteur'), ('Réalisateur'), ('Scénariste'), ('Producteur');
+INSERT INTO role (nm_ro) VALUES 
+('Acteur'), -- 1
+('Réalisateur'), -- 2
+('Scénariste'), -- 3
+('Producteur'), -- 4
+('Doubleur'); -- 5
 
 -- Insertion des fournisseurs
 INSERT INTO fournisseur (nm_four, ad_four, tl_four, eml_four) VALUES
@@ -38,74 +72,122 @@ UPDATE utilisateur SET id_uti_1 = 3 WHERE id_uti IN (1, 2, 4, 5);
 
 -- Insertion des films
 INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, sto_fil, act_fil) VALUES
-('Film1', 'Description for Film1', '2022-01-01', '2h30m', 'film1.jpg', 9.99, 8.50, 100, true),
-('Film2', 'Description for Film2', '2022-02-15', '2h00m', 'film2.jpg', 7.99, 6.50, 150, true),
-('Film3', 'Description for Film3', '2022-04-01', '2h15m', 'film3.jpg', 12.99, 10.50, 120, true),
-('Film4', 'Description for Film4', '2022-05-15', '1h45m', 'film4.jpg', 8.99, 7.00, 180, true),
-('Princesse Mono');
+('Princesse Mononoké', "Japon, XVe siècle. Jadis protégée par des animaux géants, la forêt se dépeuple à cause de l'homme. Blessé par un sanglier rendu fou par les démons, le jeune guerrier Ashitaka quitte les siens et part à la recherche du dieu-cerf qui seul pourra défaire le sortilège qui lui gangrène le bras. Au cours de son voyage, Ashitaka rencontre Lady Eboshi, à la tête d’une communauté de forgerons, qui doit se défendre contre ceux qui lui reprochent de détruire la forêt pour alimenter ses forges. Parmi ses pires ennemis se trouve San, une jeune fille sauvage élevée par des loups, aussi appelée Princesse Mononoké, la princesse des spectres...", '1997-07-12', '2h23', 'princesse_mononoke.webp', 12.99, 8.99, 200, true),
+('Le voyage de Chihiro', "Chihiro, une fillette de 10 ans, est en route vers sa nouvelle demeure en compagnie de ses parents. Au cours du voyage, la famille fait une halte dans un parc à thème qui leur paraît délabré. Lors de la visite, les parents s’arrêtent dans un des bâtiments pour déguster quelques mets très appétissants, apparus comme par enchantement. Hélas cette nourriture les transforme en porcs. Prise de panique, Chihiro s’enfuit et se retrouve seule dans cet univers fantasmagorique ; elle rencontre alors l’énigmatique Haku, son seul allié dans cette terrible épreuve...", '2001-07-20', '2h05', 'chihiro.webp', 13.99, 9.99, 300, true),
+('Le Château ambulant', "La jeune Sophie, 18 ans, travaille inlassablement dans la chapellerie autrefois tenue par son père, malheureusement décédé. Résignée à son sort, c’est lors de l’une de ses rares sorties en ville qu’elle fait la connaissance du beau Hauru, un magicien. Mais la sorcière des Landes, jalouse de cette rencontre, jette un sort à Sophie, la transformant en vieille dame. Accablée par sa nouvelle apparence, Sophie s’enfuit dans les montagnes et tombe sur la demeure de Hauru : son Château Ambulant. Et si tout ceci n’était que le commencement d’une merveilleuse histoire ?", '2004-11-20', '1h59', 'le_chateau_ambulant.webp', 11.99, 6.99, 200, true),
+('Le Tombeau des lucioles', "Japon, été 1945. Après le bombardement de Kobé, Seita, un adolescent de quatorze ans et sa petite soeur de quatre ans, Setsuko, orphelins, vont s'installer chez leur tante à quelques dizaines de kilomètres de chez eux. Celle-ci leur fait comprendre qu'ils sont une gêne pour la famille et doivent mériter leur riz quotidien. Seita décide de partir avec sa petite soeur. Ils se réfugient dans un bunker désaffecté en pleine campagne et vivent des jours heureux illuminés par la présence de milliers de lucioles. Mais bientôt la nourriture commence cruellement à manquer.", '1988-04-16', '1h30', 'le_tombeau_des_lucioles.webp', 11.99, 6.99, 200, true);
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
-(1, 1), 
-(1, 2), 
-(1, 3), 
-(2, 2), 
-(2, 4), 
-(2, 5), 
-(3, 1), 
-(3, 2), 
-(4, 2), 
-(4, 3);
+(1, 7),
+(1, 6),
+(1, 3),
+(1, 8),
+(2, 7),
+(2, 6),
+(2, 8),
+(3, 7),
+(3, 6),
+(3, 8),
+(4, 7),
+(4, 3),
+(4, 9);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
-(1, 1), 
-(1, 2), 
-(1, 4), 
-(2, 2), 
-(2, 3), 
-(2, 5), 
-(2, 6), 
-(3, 3), 
-(3, 4), 
-(3, 5), 
-(3, 6), 
-(3, 7), 
-(4, 7), 
-(4, 8), 
-(4, 9), 
-(4, 10), 
-(4, 11), 
-(4, 12);
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(2, 1),
+(2, 2),
+(2, 13),
+(2, 14),
+(2, 15),
+(2, 16),
+(2, 17),
+(2, 18),
+(2, 19),
+(2, 20),
+(3, 1),
+(3, 2), 
+(3, 21),
+(3, 22),
+(3, 5),
+(3, 23),
+(3, 20),
+(3, 24),
+(3, 25),
+(3, 26),
+(3, 27),
+(4, 28),
+(4, 29),
+(4, 30),
+(4, 31),
+(4, 32),
+(4, 33);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
-(1, 1, 1), 
-(2, 1, 1),
-(2, 1, 2),
-(2, 2, 2),
-(3, 1, 2),
-(3, 1, 3), 
-(4, 1, 1),
-(4, 1, 3),
-(5, 1, 2),
-(5, 1, 3),
-(6, 1, 2),
-(6, 1, 3), 
-(7, 2, 3),
-(7, 2, 4),
-(8, 1, 4), 
-(9, 1, 4), 
-(10, 2, 4), 
-(11, 1, 4), 
-(12, 1, 4);
+(1, 2, 1),
+(1, 3, 1),
+(2, 4, 1),
+(3, 5, 1),
+(4, 5, 1),
+(5, 5, 1),
+(6, 5, 1),
+(7, 5, 1),
+(8, 5, 1),
+(9, 5, 1),
+(10, 5, 1),
+(11, 5, 1),
+(12, 5, 1),
+(1, 2, 2),
+(1, 3, 2),
+(2, 4, 2),
+(13, 5, 2),
+(14, 5, 2),
+(15, 5, 2),
+(16, 5, 2),
+(17, 5, 2),
+(18, 5, 2),
+(19, 5, 2),
+(20, 5, 2),
+(1, 2, 3),
+(1, 3, 3),
+(1, 4, 3),
+(2, 4, 3),
+(21, 5, 3),
+(22, 5, 3),
+(5, 5, 3),
+(23, 5, 3),
+(20, 5, 3),
+(24, 5, 3),
+(25, 5, 3),
+(26, 5, 3),
+(27, 5, 3),
+(28, 2, 4),
+(28, 3, 4),
+(29, 4, 4),
+(30, 5, 4),
+(31, 5, 4),
+(32, 5, 4),
+(33, 5, 4);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
-('2022-03-01 12:00:00', 19.98, 1, 1),
-('2022-04-02 15:30:00', 15.98, 2, 2),
-('2022-05-03 18:45:00', 29.97, 1, 1),
-('2022-06-01 14:00:00', 25.98, 1, 4),
-('2022-07-02 16:45:00', 21.98, 2, 5);
+('2022-03-01 12:00:00', 25.98, 1, 1),
+('2022-04-02 15:30:00', 27.98, 2, 2),
+('2022-05-03 18:45:00', 66.95, 1, 1),
+('2022-06-01 14:00:00', 23.98, 1, 4),
+('2022-07-02 16:45:00', 23.98, 2, 5);
 
 -- Insertion des adresses
 INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES

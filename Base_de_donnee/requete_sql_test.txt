@@ -13,7 +13,8 @@ ORDER BY film ASC;
 SELECT film.nm_fil AS film, genre.nm_gen AS genre
 FROM r_genre_film
 JOIN film ON r_genre_film.id_fil = film.id_fil
-JOIN genre ON r_genre_film.id_gen = genre.id_gen;
+JOIN genre ON r_genre_film.id_gen = genre.id_gen
+ORDER BY genre.nm_gen;
 
 -- nombre de film par genre --
 
