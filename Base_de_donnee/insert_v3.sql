@@ -47,12 +47,29 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Tsutomu', 'Tatsumi'), -- 32
 ('Akemi', 'Yamaguchi'), -- 33
 ('David', 'Fincher'), -- 34
-('Andrew Kevin', 'Walker'), --35
-('Phyllis', 'Carlyle'), --36
-('Brad', 'Pitt'), --37
+('Andrew Kevin', 'Walker'), -- 35
+('Phyllis', 'Carlyle'), -- 36
+('Brad', 'Pitt'), -- 37
 ('Morgan', 'Freeman'), -- 38
 ('Gwyneth', 'Paltrow'), -- 39
-('Kevin', 'Spacey'); -- 40
+('Kevin', 'Spacey'), -- 40
+('Jim', 'Uhls'), -- 41
+('Ross Grayson', 'Bell'), -- 42
+('Edward', 'Norton'), -- 43
+('Helena', 'Bonham Carter'), -- 44
+('Darren', 'Aronofsky'), -- 45
+('Hubert', 'Selby Jr.'), -- 46
+('Eric', 'Watson'), -- 47
+('Jared', 'Leto'), -- 48
+('Jennifer', 'Connelly'), -- 49
+('Marlon', 'Wayans'), -- 50
+('Ellen', 'Burstyn'), -- 51
+('Martin', 'Scorsese'), -- 52
+('Laeta', 'Kalogridis'), -- 53
+('Mike', 'Medavoy'), -- 54
+('Leonardo', 'DiCaprio'), -- 55
+('Mark', 'Ruffalo'), -- 56
+('Ben', 'Kingsley'); -- 57
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -84,7 +101,10 @@ INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, s
 ('Le voyage de Chihiro', "Chihiro, une fillette de 10 ans, est en route vers sa nouvelle demeure en compagnie de ses parents. Au cours du voyage, la famille fait une halte dans un parc à thème qui leur paraît délabré. Lors de la visite, les parents s’arrêtent dans un des bâtiments pour déguster quelques mets très appétissants, apparus comme par enchantement. Hélas cette nourriture les transforme en porcs. Prise de panique, Chihiro s’enfuit et se retrouve seule dans cet univers fantasmagorique ; elle rencontre alors l’énigmatique Haku, son seul allié dans cette terrible épreuve...", '2001-07-20', '2h05', 'chihiro.webp', 13.99, 9.99, 300, true),
 ('Le Château ambulant', "La jeune Sophie, 18 ans, travaille inlassablement dans la chapellerie autrefois tenue par son père, malheureusement décédé. Résignée à son sort, c’est lors de l’une de ses rares sorties en ville qu’elle fait la connaissance du beau Hauru, un magicien. Mais la sorcière des Landes, jalouse de cette rencontre, jette un sort à Sophie, la transformant en vieille dame. Accablée par sa nouvelle apparence, Sophie s’enfuit dans les montagnes et tombe sur la demeure de Hauru : son Château Ambulant. Et si tout ceci n’était que le commencement d’une merveilleuse histoire ?", '2004-11-20', '1h59', 'le_chateau_ambulant.webp', 11.99, 6.99, 200, true),
 ('Le Tombeau des lucioles', "Japon, été 1945. Après le bombardement de Kobé, Seita, un adolescent de quatorze ans et sa petite soeur de quatre ans, Setsuko, orphelins, vont s'installer chez leur tante à quelques dizaines de kilomètres de chez eux. Celle-ci leur fait comprendre qu'ils sont une gêne pour la famille et doivent mériter leur riz quotidien. Seita décide de partir avec sa petite soeur. Ils se réfugient dans un bunker désaffecté en pleine campagne et vivent des jours heureux illuminés par la présence de milliers de lucioles. Mais bientôt la nourriture commence cruellement à manquer.", '1988-04-16', '1h30', 'le_tombeau_des_lucioles.webp', 11.99, 6.99, 200, true),
-('Seven', "Pour conclure sa carrière, l'inspecteur Somerset, vieux flic blasé, tombe à sept jours de la retraite sur un criminel peu ordinaire. John Doe, c'est ainsi que se fait appeler l'assassin, a decidé de nettoyer la societé des maux qui la rongent en commettant sept meurtres basés sur les sept pechés capitaux: la gourmandise, l'avarice, la paresse, l'orgueil, la luxure, l'envie et la colère.", '1995-07-22', '2h10', 'seven.webp', 9.99, 5.99, 200, true)
+('Seven', "Pour conclure sa carrière, l'inspecteur Somerset, vieux flic blasé, tombe à sept jours de la retraite sur un criminel peu ordinaire. John Doe, c'est ainsi que se fait appeler l'assassin, a decidé de nettoyer la societé des maux qui la rongent en commettant sept meurtres basés sur les sept pechés capitaux: la gourmandise, l'avarice, la paresse, l'orgueil, la luxure, l'envie et la colère.", '1995-07-22', '2h10', 'seven.webp', 9.99, 5.99, 200, true),
+('Fight Club', "Le narrateur, sans identité précise, vit seul, travaille seul, dort seul, mange seul ses plateaux-repas pour une personne comme beaucoup d'autres personnes seules qui connaissent la misère humaine, morale et sexuelle. C'est pourquoi il va devenir membre du Fight club, un lieu clandestin ou il va pouvoir retrouver sa virilité, l'échange et la communication. Ce club est dirigé par Tyler Durden, une sorte d'anarchiste entre gourou et philosophe qui prêche l'amour de son prochain.", '1999-10-15', '2h19', 'fight_club.webp', 9.99, 4.99, 250, true),
+('Requiem for a Dream', "Harry Goldfarb est un junkie. Il passe ses journées en compagnie de sa petite amie Marion et son copain Tyrone. Ensemble, ils s'inventent un paradis artificiel. En quête d'une vie meilleure, le trio est entraîné dans une spirale infernale qui les enfonce toujours un peu plus dans l'angoisse et le désespoir. La mère d'Harry, Sara, souffre d'une autre forme d'addiction, la télévision. Juive, fantasque et veuve depuis des années, elle vit seule à Coney Island et nourrit dans le secret l'espoir de participer un jour à son émission préférée. Afin de satisfaire aux canons esthétiques de la télévision, elle s'astreint à un régime draconien. Un jour, elle le sait, elle passera de l'autre côté de l'écran.", '2000-10-27', '1h42', 'requiem_for_a_dream.webp', 14.99, 9.99, 150, true),
+('Shutter Island', "En 1954, le marshal Teddy Daniels et son coéquipier Chuck Aule sont envoyés enquêter sur l'île de Shutter Island, dans un hôpital psychiatrique où sont internés de dangereux criminels. L'une des patientes, Rachel Solando, a inexplicablement disparu. Comment la meurtrière a-t-elle pu sortir d'une cellule fermée de l'extérieur ? Le seul indice retrouvé dans la pièce est une feuille de papier sur laquelle on peut lire une suite de chiffres et de lettres sans signification apparente. Oeuvre cohérente d'une malade, ou cryptogramme ?", '2010-02-19', '2h17', 'shutter_island.webp', 9.99, 4.99, 250, true);
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
@@ -103,7 +123,12 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 (4, 9),
 (5, 10),
 (5, 5),
-(5, 3);
+(5, 3),
+(6, 5),
+(6, 3),
+(7, 3),
+(8, 5),
+(8, 3);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
@@ -152,7 +177,26 @@ INSERT INTO r_film_perso (id_fil, id_per) VALUES
 (5, 37),
 (5, 38),
 (5, 39),
-(5, 40);
+(5, 40),
+(6, 34),
+(6, 41),
+(6, 42),
+(6, 37),
+(6, 43),
+(6, 44),
+(7, 45),
+(7, 46),
+(7, 47),
+(7, 48),
+(7, 49),
+(7, 50),
+(7, 51),
+(8, 52),
+(8, 53),
+(8, 54),
+(8, 55),
+(8, 56),
+(8, 57);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (1, 2, 1),
@@ -205,7 +249,28 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (37, 1, 5),
 (38, 1, 5),
 (39, 1, 5),
-(40, 1, 5);
+(40, 1, 5),
+(34, 2, 6),
+(41, 3, 6),
+(42, 4, 6),
+(37, 1, 6),
+(43, 1, 6),
+(44, 1, 6),
+(45, 2, 7),
+(45, 3, 7),
+(46, 3, 7),
+(47, 4, 7),
+(48, 1, 7),
+(49, 1, 7),
+(50, 1, 7),
+(51, 1, 7),
+(52, 2, 8),
+(52, 4, 8),
+(53, 3, 8),
+(54, 4, 8),
+(55, 1, 8),
+(56, 1, 8),
+(57, 1, 8);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
