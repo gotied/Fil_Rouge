@@ -1,0 +1,16 @@
+@startuml test
+
+:client particulier: --> (consulte le catalogue)
+(consulte le catalogue) --> (ajoute un produit au panier)
+(ajoute un produit au panier) --> (connexion)
+(connexion) --> (passe une commande)
+
+' :client professionnel:
+
+' :commercial particulier:
+
+' :commercial professionnel:
+
+
+
+@enduml
