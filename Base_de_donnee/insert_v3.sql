@@ -153,7 +153,19 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Bruce', 'Willis'), -- 134
 ('Haley', 'Joel Osment'), -- 135
 ('Olivia', 'Williams'), -- 136
-('Toni', 'Collette'); -- 137
+('Toni', 'Collette'), -- 137
+(Ridley Scott),
+(David Franzoni),
+(John Logan),
+(William Nicholson),
+(Douglas Wick),
+(Branko Lustig),
+(Russell Crowe),
+(Joaquin Phoenix),
+(Connie Nielsen),
+(Oliver Reed),
+(Djimon Hounsou),
+(Richard Harris);
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -200,7 +212,8 @@ INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, s
 ('Collatéral', "Max est taxi de nuit à Los Angeles.\nUn soir, il se lie d'amitié avec une dénommée Annie Farrell, une belle femme procureur montée à l'arrière de son véhicule.\nQuelques minutes plus tard, c'est au tour d'un homme prénommé Vincent de monter dans le taxi. Un businessman, selon toute apparence, avec un emploi du temps chargé : pas moins de cinq rendez-vous à tenir dans la nuit.\nMax accepte de lui louer ses services jusqu'au petit matin, en échange de 600 dollars.\nPremier arrêt. Vincent entre dans un immeuble. Un coup de feu éclate aussitôt, un corps plonge dans le vide, s'écrasant sur le toit du taxi.\nVincent redescend et, sous la menace de son arme, oblige Max à dissimuler le cadavre dans le coffre et à reprendre son mortel périple.\nUn chauffeur de taxi, un tueur implacable, cinq cibles à éliminer, des agents des stups et une équipe du FBI... Leurs destins se joueront cette nuit...", '2004-08-06', '2h00', 'collateral.webp', 5.99, 1.99, 300, true),
 ('Public Enemies', "Basé sur l'histoire vraie de John Dillinger, un braqueur de banque hors pair qui a sévi à de nombreuses reprises dans l'Amérique des années 30.\nAvancé comme l'ennemi public numéro 1 par le patron du FBI, John Edgar Hoover, Dillinger sera traqué sans relâche par Melvin Purvis, l'un des agents fédéraux des plus efficaces.", '2009-07-1', '2h20', 'public_enemies.webp', 7.99, 3.99, 200, true),
 ('Signes', "A Bucks County, en Pennsylvanie.\nAprès la perte de sa femme, Graham Hess a rendu sa charge de pasteur.\nTout en s'occupant de sa ferme, il tente d'élever de son mieux ses deux enfants, Morgan et Bo.\nSon jeune frère Merrill, une ancienne gloire du base-ball, est revenu vivre avec lui pour l'aider.\nUn matin, la petite famille découvre l'apparition dans ses champs de gigantesques signes et cercles étranges.\nDes extra-terrestres seraient-ils à l'origine de tels phénomènes surnaturels ?\nGraham et Merrill vont s'efforcer de percer le mystère qui entoure ces dessins.", '2002-08-02', '1h45', 'signes.webp', 7.99, 3.99, 150, true),
-('Sixième Sens', "Cole Sear, garçonnet de huit ans, est hanté par un terrible secret.\nSon imaginaire est visité par des esprits menaçants.\nTrop jeune pour comprendre le pourquoi de ces apparitions et traumatisé par ces pouvoirs paranormaux, Cole s'enferme dans une peur maladive et ne veut révéler à personne la cause de son enfermement, à l'exception d'un psychologue pour enfants.\nLa recherche d'une explication rationnelle guidera l'enfant et le thérapeute vers une vérité foudroyante et inexplicable.", '1999-08-02', '1h47', 'sixieme_sens.webp', 6.99, 1.99, 150, true);
+('Sixième Sens', "Cole Sear, garçonnet de huit ans, est hanté par un terrible secret.\nSon imaginaire est visité par des esprits menaçants.\nTrop jeune pour comprendre le pourquoi de ces apparitions et traumatisé par ces pouvoirs paranormaux, Cole s'enferme dans une peur maladive et ne veut révéler à personne la cause de son enfermement, à l'exception d'un psychologue pour enfants.\nLa recherche d'une explication rationnelle guidera l'enfant et le thérapeute vers une vérité foudroyante et inexplicable.", '1999-08-02', '1h47', 'sixieme_sens.webp', 6.99, 1.99, 150, true),
+('Gladiator', "Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires.\nJaloux du prestige de Maximus, et plus encore de l'amour que lui voue l'empereur, le fils de MarcAurèle, Commode, s'arroge brutalement le pouvoir, puis ordonne l'arrestation du général et son exécution.\nMaximus échappe à ses assassins mais ne peut empêcher le massacre de sa famille. Capturé par un marchand d'esclaves, il devient gladiateur et prépare sa vengeance.", '2000-05-1', '2h35', 'gladiator.webp', 9.99, 4.99, 200, true);
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
