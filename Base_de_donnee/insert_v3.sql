@@ -13,7 +13,8 @@ INSERT INTO genre (nm_gen) VALUES
 ('Guerre'), -- 9
 ('Policier'), -- 10
 ('Western'), -- 11
-('Biopic'); -- 12
+('Biopic'), -- 12
+('Historique'); -- 13
 
 -- Insertion des personnes
 INSERT INTO personne (pm_per, nm_per) VALUES
@@ -154,18 +155,17 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Haley', 'Joel Osment'), -- 135
 ('Olivia', 'Williams'), -- 136
 ('Toni', 'Collette'), -- 137
-(Ridley Scott),
-(David Franzoni),
-(John Logan),
-(William Nicholson),
-(Douglas Wick),
-(Branko Lustig),
-(Russell Crowe),
-(Joaquin Phoenix),
-(Connie Nielsen),
-(Oliver Reed),
-(Djimon Hounsou),
-(Richard Harris);
+('Ridley', 'Scott'), -- 138
+('David', 'Franzoni'), -- 139
+('John', 'Logan'), -- 140
+('William', 'Nicholson'), -- 141
+('Douglas', 'Wick'), -- 142
+('Branko', 'Lustig'), -- 143
+('Russell', 'Crowe'), -- 144
+('Connie', 'Nielsen'), -- 145
+('Oliver', 'Reed'), -- 146
+('Djimon', 'Hounsou'), -- 147
+('Richard', 'Harris'); -- 148
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -265,7 +265,10 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 (19, 3),
 (19, 4),
 (20, 5),
-(20, 3);
+(20, 3),
+(21, 1),
+(21, 6),
+(21, 13);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
@@ -430,7 +433,19 @@ INSERT INTO r_film_perso (id_fil, id_per) VALUES
 (20, 134),
 (20, 135),
 (20, 136),
-(20, 137);
+(20, 137),
+(21, 138),
+(21, 139),
+(21, 140),
+(21, 141),
+(21, 142),
+(21, 143),
+(21, 144),
+(21, 128),
+(21, 145),
+(21, 146),
+(21, 147),
+(21, 148);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (1, 2, 1),
@@ -619,7 +634,18 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (134, 1, 20),
 (135, 1, 20),
 (136, 1, 20),
-(137, 1, 20);
+(137, 1, 20),
+(138, 2, 21),
+(139, 3, 21),
+(140, 3, 21),
+(141, 3, 21),
+(142, 4, 21),
+(143, 4, 21),
+(145, 1, 21),
+(128, 1, 21),
+(146, 1, 21),
+(147, 1, 21),
+(148, 1, 21);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
