@@ -177,7 +177,39 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Diane', 'Johnson'), -- 156
 ('Jack', 'Nicholson'), -- 157
 ('Shelley', 'Duvall'), -- 158
-('Danny', 'Lloyd'); -- 159
+('Danny', 'Lloyd'), -- 159
+('Denis', 'Villeneuve'), -- 160
+('Aaron', 'Guzikowski'), -- 161
+('Kira', 'Davis'), -- 162
+('Broderick', 'Johnson'), -- 163
+('Adam', 'Kolbrenner'), -- 164
+('Andrew', 'Kosove'), -- 165
+('Mark', 'Wahlberg'), -- 166
+('Robyn', 'Meisinger'), -- 167
+('Hugh', 'Jackman'), -- 168
+('Jake', 'Gyllenhaal'), -- 169
+('Viola', 'Davis'), -- 170
+('Maria', 'Bello'), -- 171
+('Terrence', 'Howard'), -- 172
+('Paul', 'Dano'), -- 173
+('Matthew', 'Vaughn'), -- 174
+('Jane', 'Goldman'), -- 175
+('Adam', 'Bohling'), -- 176
+('Tarquin', 'Pack'), -- 177
+('David', 'Reid'), -- 178
+('Kris', 'Thykier'), -- 179
+('Aaron Taylor-', 'Johnson'), -- 180
+('Chloë Grace', 'Moretz'), -- 181
+('Nicolas', 'Cage'), -- 182
+('Christopher', 'Mintz-Plasse'), -- 183
+('Mark', 'Strong'), -- 184
+('James', 'Cameron'), -- 185
+('William', 'Wisher Jr'), -- 186
+('Arnold', 'Schwarzenegger'), -- 187
+('Edward', 'Furlong'), -- 188
+('Linda', 'Hamilton'), -- 189
+('Robert', 'Patrick'), -- 190
+('Joe', 'Morton'); -- 191
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -227,7 +259,10 @@ INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, s
 ('Sixième Sens', "Cole Sear, garçonnet de huit ans, est hanté par un terrible secret.\nSon imaginaire est visité par des esprits menaçants.\nTrop jeune pour comprendre le pourquoi de ces apparitions et traumatisé par ces pouvoirs paranormaux, Cole s'enferme dans une peur maladive et ne veut révéler à personne la cause de son enfermement, à l'exception d'un psychologue pour enfants.\nLa recherche d'une explication rationnelle guidera l'enfant et le thérapeute vers une vérité foudroyante et inexplicable.", '1999-08-02', '1h47', 'sixieme_sens.webp', 6.99, 1.99, 150, true),
 ('Gladiator', "Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires.\nJaloux du prestige de Maximus, et plus encore de l'amour que lui voue l'empereur, le fils de MarcAurèle, Commode, s'arroge brutalement le pouvoir, puis ordonne l'arrestation du général et son exécution.\nMaximus échappe à ses assassins mais ne peut empêcher le massacre de sa famille. Capturé par un marchand d'esclaves, il devient gladiateur et prépare sa vengeance.", '2000-05-1', '2h35', 'gladiator.webp', 9.99, 4.99, 200, true),
 ('Kingdom of Heaven', "L'aventure extraordinaire d'un homme ordinaire, précipité dans un conflit qui va durer des décennies : les croisades.\nEtranger sur une terre qui lui est étrangère, il va servir un roi condamné, s'éprendre d'une troublante et inaccessible reine avant d'être fait chevalier.\nIl lui faudra protéger les habitants de Jérusalem, dont une immense armée a entrepris le siège, sans jamais cesser de lutter pour maintenir une paix fragile...", '2005-05-6', '2h25', 'kingdom_of_heaven.webp', 10.99, 4.99, 250, true),
-('Shining', "Écrivain, Jack Torrance est engagé comme gardien, pendant tout l’hiver, d’un grand hôtel isolé du Colorado – l’Overlook – où il espère surmonter enfin sa panne d’inspiration.\nIl s’y installe avec sa femme Wendy et son fils Danny, doté d’un don de médium.\nTandis que Jack n’avance pas dans son livre et que son fils est de plus en plus hanté par des visions terrifiantes, il découvre les terribles secrets de l’hôtel et bascule peu à peu dans une forme de folie meurtrière où il s’en prend à sa propre famille…", '1980-05-23', '2h23', 'shining.webp', 8.99, 3.99, 100, true);
+('Shining', "Écrivain, Jack Torrance est engagé comme gardien, pendant tout l’hiver, d’un grand hôtel isolé du Colorado – l’Overlook – où il espère surmonter enfin sa panne d’inspiration.\nIl s’y installe avec sa femme Wendy et son fils Danny, doté d’un don de médium.\nTandis que Jack n’avance pas dans son livre et que son fils est de plus en plus hanté par des visions terrifiantes, il découvre les terribles secrets de l’hôtel et bascule peu à peu dans une forme de folie meurtrière où il s’en prend à sa propre famille…", '1980-05-23', '2h23', 'shining.webp', 8.99, 3.99, 100, true),
+('Prisoners', "Dans la banlieue de Boston, deux fillettes de 6 ans, Anna et Joy, ont disparu.\nLe détective Loki privilégie la thèse du kidnapping suite au témoignage de Keller, le père d’Anna.\nLe suspect numéro 1 est rapidement arrêté mais est relâché quelques jours plus tard faute de preuve, entraînant la fureur de Keller.\nAveuglé par sa douleur, le père dévasté se lance alors dans une course contre la montre pour retrouver les enfants disparus.\nDe son côté, Loki essaie de trouver des indices pour arrêter le coupable avant que Keller ne commette l’irréparable…\nLes jours passent et les chances de retrouver les fillettes s’amenuisent…", '2013-09-20', '2h33', 'prisoners.webp', 7.99, 3.99, 200, true),
+('Kick-Ass', "Dave Lizewski est un adolescent gavé de comics qui ne vit que pour ce monde de super-héros et d'incroyables aventures.\nDécidé à vivre son obsession jusque dans la réalité, il se choisit un nom – Kick-Ass – se fabrique lui-même un costume, et se lance dans une bataille effrénée contre le crime.\nDans son délire, il n'a qu'un seul problème : Kick-Ass n'a pas le moindre superpouvoir... Le voilà pourchassé par toutes les brutes de la ville.\nMais Kick-Ass s'associe bientôt à d'autres délirants copycats décidés eux aussi à faire régner la justice.\nParmi eux, une enfant de 11 ans, Hit Girl et son père Big Daddy, mais aussi Red Mist.\nLe parrain de la mafia locale, Frank D'Amico, va leur donner l'occasion de montrer ce dont ils sont capables...", '2010-03-26', '1h57', 'kick_ass.webp', 10.99, 3.99, 300, true),
+('Terminator 2 : Le Jugement dernier', "En 1997, les survivants de l'apocalypse nucléaire poursuivent une guerre sans merci contre les robots et machines qu'ils ont eux-même créés.\nPour en finir avec John Connor qui dirige la résistance des hommes, deux "cyborgs" sont envoyés dans le passé.\nLeur mission : abattre Connor enfant. Le premier modèle de la série "Terminator" a échoué en 1984.\nLe second, modèle plus performant en liquide métamorphosable, se lance à la poursuite de l'enfant et de sa mère, Sarah, dans les années quatre-vingt-dix.\nDe leur côté, les hommes du futur ont envoyé dans le passé un Terminator chargé de protéger le jeune Connor.\nLe duel des robots va prendre alors des allures titanesques. Et, tandis que l'enfant enseignera à ce Terminator des rudiments d'humanité, sa mère tentera par tous les moyens d'empêcher la création des premières machines intelligentes.\nAvec l'aide du Terminator qu'ils ont éduqué, ils combattront pour influencer le futur...", '1991-07-03', '2h17', 'terminator_2.webp', 9.99, 2.99, 300, true);
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
@@ -286,7 +321,10 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 (22, 1),
 (22, 13),
 (23, 14),
-(23, 5);
+(23, 5),
+(24, 5),
+(25, 1),
+(25, 3);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
@@ -475,7 +513,40 @@ INSERT INTO r_film_perso (id_fil, id_per) VALUES
 (23, 156),
 (23, 157),
 (23, 158),
-(23, 159);
+(23, 159),
+(24, 160),
+(24, 161),
+(24, 162),
+(24, 163),
+(24, 164),
+(24, 165),
+(24, 166),
+(24, 167),
+(24, 168),
+(24, 169),
+(24, 170),
+(24, 171),
+(24, 172),
+(24, 173),
+(25, 174),
+(25, 175),
+(25, 37),
+(25, 176),
+(25, 177),
+(25, 178),
+(25, 179),
+(25, 180),
+(25, 181),
+(25, 182),
+(25, 183),
+(25, 184),
+(26, 185),
+(26, 186),
+(26, 187),
+(26, 188),
+(26, 189),
+(26, 190),
+(26, 191);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (1, 2, 1),
@@ -689,7 +760,44 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (156, 3, 23),
 (157, 1, 23),
 (158, 1, 23),
-(159, 1, 23);
+(159, 1, 23),
+(160, 2, 24),
+(161, 3, 24),
+(162, 4, 24),
+(163, 4, 24),
+(164, 4, 24),
+(165, 4, 24),
+(166, 4, 24),
+(167, 4, 24),
+(168, 1, 24),
+(169, 1, 24),
+(170, 1, 24),
+(171, 1, 24),
+(172, 1, 24),
+(173, 1, 24),
+(174, 2, 25),
+(174, 3, 25),
+(174, 4, 25),
+(175, 3, 25),
+(37, 4, 25),
+(176, 4, 25),
+(177, 4, 25),
+(178, 4, 25),
+(179, 4, 25),
+(180, 1, 25),
+(181, 1, 25),
+(182, 1, 25),
+(183, 1, 25),
+(184, 1, 25),
+(185, 2, 26),
+(185, 3, 26),
+(185, 4, 26),
+(186, 3, 26),
+(187, 1, 26),
+(188, 1, 26),
+(189, 1, 26),
+(190, 1, 26),
+(191, 1, 26);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
