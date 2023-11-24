@@ -14,7 +14,8 @@ INSERT INTO genre (nm_gen) VALUES
 ('Policier'), -- 10
 ('Western'), -- 11
 ('Biopic'), -- 12
-('Historique'); -- 13
+('Historique'), -- 13
+('Epouvante-horreur'); -- 14
 
 -- Insertion des personnes
 INSERT INTO personne (pm_per, nm_per) VALUES
@@ -165,7 +166,18 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Connie', 'Nielsen'), -- 145
 ('Oliver', 'Reed'), -- 146
 ('Djimon', 'Hounsou'), -- 147
-('Richard', 'Harris'); -- 148
+('Richard', 'Harris'), -- 148
+('William', 'Monahan'), -- 149
+('Orlando', 'Bloom'), -- 150
+('Eva', 'Green'), -- 151
+('Jeremy', 'Irons'), -- 152
+('David', 'Thewlis'), -- 153
+('Stanley', 'Kubrick'), -- 154
+('Brian W.', 'Cook'), -- 155
+('Diane', 'Johnson'), -- 156
+('Jack', 'Nicholson'), -- 157
+('Shelley', 'Duvall'), -- 158
+('Danny', 'Lloyd'); -- 159
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -213,7 +225,9 @@ INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, s
 ('Public Enemies', "Basé sur l'histoire vraie de John Dillinger, un braqueur de banque hors pair qui a sévi à de nombreuses reprises dans l'Amérique des années 30.\nAvancé comme l'ennemi public numéro 1 par le patron du FBI, John Edgar Hoover, Dillinger sera traqué sans relâche par Melvin Purvis, l'un des agents fédéraux des plus efficaces.", '2009-07-1', '2h20', 'public_enemies.webp', 7.99, 3.99, 200, true),
 ('Signes', "A Bucks County, en Pennsylvanie.\nAprès la perte de sa femme, Graham Hess a rendu sa charge de pasteur.\nTout en s'occupant de sa ferme, il tente d'élever de son mieux ses deux enfants, Morgan et Bo.\nSon jeune frère Merrill, une ancienne gloire du base-ball, est revenu vivre avec lui pour l'aider.\nUn matin, la petite famille découvre l'apparition dans ses champs de gigantesques signes et cercles étranges.\nDes extra-terrestres seraient-ils à l'origine de tels phénomènes surnaturels ?\nGraham et Merrill vont s'efforcer de percer le mystère qui entoure ces dessins.", '2002-08-02', '1h45', 'signes.webp', 7.99, 3.99, 150, true),
 ('Sixième Sens', "Cole Sear, garçonnet de huit ans, est hanté par un terrible secret.\nSon imaginaire est visité par des esprits menaçants.\nTrop jeune pour comprendre le pourquoi de ces apparitions et traumatisé par ces pouvoirs paranormaux, Cole s'enferme dans une peur maladive et ne veut révéler à personne la cause de son enfermement, à l'exception d'un psychologue pour enfants.\nLa recherche d'une explication rationnelle guidera l'enfant et le thérapeute vers une vérité foudroyante et inexplicable.", '1999-08-02', '1h47', 'sixieme_sens.webp', 6.99, 1.99, 150, true),
-('Gladiator', "Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires.\nJaloux du prestige de Maximus, et plus encore de l'amour que lui voue l'empereur, le fils de MarcAurèle, Commode, s'arroge brutalement le pouvoir, puis ordonne l'arrestation du général et son exécution.\nMaximus échappe à ses assassins mais ne peut empêcher le massacre de sa famille. Capturé par un marchand d'esclaves, il devient gladiateur et prépare sa vengeance.", '2000-05-1', '2h35', 'gladiator.webp', 9.99, 4.99, 200, true);
+('Gladiator', "Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires.\nJaloux du prestige de Maximus, et plus encore de l'amour que lui voue l'empereur, le fils de MarcAurèle, Commode, s'arroge brutalement le pouvoir, puis ordonne l'arrestation du général et son exécution.\nMaximus échappe à ses assassins mais ne peut empêcher le massacre de sa famille. Capturé par un marchand d'esclaves, il devient gladiateur et prépare sa vengeance.", '2000-05-1', '2h35', 'gladiator.webp', 9.99, 4.99, 200, true),
+('Kingdom of Heaven', "L'aventure extraordinaire d'un homme ordinaire, précipité dans un conflit qui va durer des décennies : les croisades.\nEtranger sur une terre qui lui est étrangère, il va servir un roi condamné, s'éprendre d'une troublante et inaccessible reine avant d'être fait chevalier.\nIl lui faudra protéger les habitants de Jérusalem, dont une immense armée a entrepris le siège, sans jamais cesser de lutter pour maintenir une paix fragile...", '2005-05-6', '2h25', 'kingdom_of_heaven.webp', 10.99, 4.99, 250, true),
+('Shining', "Écrivain, Jack Torrance est engagé comme gardien, pendant tout l’hiver, d’un grand hôtel isolé du Colorado – l’Overlook – où il espère surmonter enfin sa panne d’inspiration.\nIl s’y installe avec sa femme Wendy et son fils Danny, doté d’un don de médium.\nTandis que Jack n’avance pas dans son livre et que son fils est de plus en plus hanté par des visions terrifiantes, il découvre les terribles secrets de l’hôtel et bascule peu à peu dans une forme de folie meurtrière où il s’en prend à sa propre famille…", '1980-05-23', '2h23', 'shining.webp', 8.99, 3.99, 100, true);
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
@@ -268,7 +282,11 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 (20, 3),
 (21, 1),
 (21, 6),
-(21, 13);
+(21, 13),
+(22, 1),
+(22, 13),
+(23, 14),
+(23, 5);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
@@ -445,7 +463,19 @@ INSERT INTO r_film_perso (id_fil, id_per) VALUES
 (21, 145),
 (21, 146),
 (21, 147),
-(21, 148);
+(21, 148),
+(22, 138),
+(22, 149),
+(22, 150),
+(22, 151),
+(22, 152),
+(22, 153),
+(23, 154),
+(23, 155),
+(23, 156),
+(23, 157),
+(23, 158),
+(23, 159);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (1, 2, 1),
@@ -645,7 +675,21 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (128, 1, 21),
 (146, 1, 21),
 (147, 1, 21),
-(148, 1, 21);
+(148, 1, 21),
+(138, 2, 22),
+(149, 3, 22),
+(150, 1, 22),
+(151, 1, 22),
+(152, 1, 22),
+(153, 1, 22),
+(154, 2, 23),
+(154, 3, 23),
+(154, 4, 23),
+(155, 2, 23),
+(156, 3, 23),
+(157, 1, 23),
+(158, 1, 23),
+(159, 1, 23);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
