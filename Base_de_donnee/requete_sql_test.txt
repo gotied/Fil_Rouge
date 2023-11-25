@@ -1,13 +1,13 @@
 -- casting / film / rôle --
 
-SELECT DISTINCT concat(personne.pm_per, ' ', personne.nm_per) AS cast, film.nm_fil AS film, role.nm_ro AS role
-FROM r_film_perso
-JOIN personne ON r_film_perso.id_per = personne.id_per
-JOIN film ON r_film_perso.id_fil = film.id_fil
-JOIN r_role_perso ON personne.id_per = r_role_perso.id_per
-JOIN role ON r_role_perso.id_ro = role.id_ro  
-ORDER BY film ASC;
+SELECT f.nm_fil AS film, concat(p.pm_per, ' ', p.nm_per) AS cast, r.nm_ro AS role
+FROM film f
+JOIN r_film_perso fp ON f.id_fil = fp.id_fil
+JOIN personne p ON fp.id_per = p.id_per
+JOIN r_role_perso rp ON p.id_per = rp.id_per AND f.id_fil = rp.id_fil
+JOIN role r ON rp.id_ro = r.id_ro;
 
+! a modifier !
 -- film / genre --
 
 SELECT film.nm_fil AS film, genre.nm_gen AS genre

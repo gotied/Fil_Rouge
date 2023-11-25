@@ -209,7 +209,36 @@ INSERT INTO personne (pm_per, nm_per) VALUES
 ('Edward', 'Furlong'), -- 188
 ('Linda', 'Hamilton'), -- 189
 ('Robert', 'Patrick'), -- 190
-('Joe', 'Morton'); -- 191
+('Joe', 'Morton'), -- 191
+('Luc', 'Besson'), -- 192
+('Robert Mark', 'Kamen'), -- 193
+('Patrice', 'Ledoux'), -- 194
+('Bruce', 'Willis'), -- 195
+('Milla', 'Jovovich'), -- 196
+('Ian', 'Holm'), -- 197
+('Chris', 'Tucker'), -- 198
+('James', 'Mangold'), -- 199
+('Halsted', 'Welles'), -- 200
+('Michael', 'Brandt'), -- 201
+('Derek', 'Haas'), -- 202
+('Cathy', 'Konrad'), -- 203
+('Ben', 'Foster'), -- 204
+('Logan', 'Lerman'), -- 205
+('George', 'Miller'), -- 206
+('Brendan', 'McCarthy'), -- 207
+('Nick', 'Lathouris'), -- 208
+('Doug', 'Mitchell'), -- 209
+('P. J.', 'Voeten'), -- 210
+('Tom', 'Hardy'), -- 211
+('Charlize', 'Theron'), -- 212
+('Hugh', 'Keays-Byrne'), -- 213
+('Nicholas', 'Hoult'), -- 214
+('Scott', 'Derrickson'), -- 215
+('C. Robert', 'Cargill'), -- 216
+('Jason', 'Blum'), -- 217
+('Brian', 'Kavanaugh-Jones'), -- 218
+('Ethan', 'Hawke'), -- 219
+('Juliet', 'Rylance'); -- 220
 
 -- Insertion des rôles
 INSERT INTO role (nm_ro) VALUES 
@@ -262,7 +291,11 @@ INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, s
 ('Shining', "Écrivain, Jack Torrance est engagé comme gardien, pendant tout l’hiver, d’un grand hôtel isolé du Colorado – l’Overlook – où il espère surmonter enfin sa panne d’inspiration.\nIl s’y installe avec sa femme Wendy et son fils Danny, doté d’un don de médium.\nTandis que Jack n’avance pas dans son livre et que son fils est de plus en plus hanté par des visions terrifiantes, il découvre les terribles secrets de l’hôtel et bascule peu à peu dans une forme de folie meurtrière où il s’en prend à sa propre famille…", '1980-05-23', '2h23', 'shining.webp', 8.99, 3.99, 100, true),
 ('Prisoners', "Dans la banlieue de Boston, deux fillettes de 6 ans, Anna et Joy, ont disparu.\nLe détective Loki privilégie la thèse du kidnapping suite au témoignage de Keller, le père d’Anna.\nLe suspect numéro 1 est rapidement arrêté mais est relâché quelques jours plus tard faute de preuve, entraînant la fureur de Keller.\nAveuglé par sa douleur, le père dévasté se lance alors dans une course contre la montre pour retrouver les enfants disparus.\nDe son côté, Loki essaie de trouver des indices pour arrêter le coupable avant que Keller ne commette l’irréparable…\nLes jours passent et les chances de retrouver les fillettes s’amenuisent…", '2013-09-20', '2h33', 'prisoners.webp', 7.99, 3.99, 200, true),
 ('Kick-Ass', "Dave Lizewski est un adolescent gavé de comics qui ne vit que pour ce monde de super-héros et d'incroyables aventures.\nDécidé à vivre son obsession jusque dans la réalité, il se choisit un nom – Kick-Ass – se fabrique lui-même un costume, et se lance dans une bataille effrénée contre le crime.\nDans son délire, il n'a qu'un seul problème : Kick-Ass n'a pas le moindre superpouvoir... Le voilà pourchassé par toutes les brutes de la ville.\nMais Kick-Ass s'associe bientôt à d'autres délirants copycats décidés eux aussi à faire régner la justice.\nParmi eux, une enfant de 11 ans, Hit Girl et son père Big Daddy, mais aussi Red Mist.\nLe parrain de la mafia locale, Frank D'Amico, va leur donner l'occasion de montrer ce dont ils sont capables...", '2010-03-26', '1h57', 'kick_ass.webp', 10.99, 3.99, 300, true),
-('Terminator 2 : Le Jugement dernier', "En 1997, les survivants de l'apocalypse nucléaire poursuivent une guerre sans merci contre les robots et machines qu'ils ont eux-même créés.\nPour en finir avec John Connor qui dirige la résistance des hommes, deux "cyborgs" sont envoyés dans le passé.\nLeur mission : abattre Connor enfant. Le premier modèle de la série "Terminator" a échoué en 1984.\nLe second, modèle plus performant en liquide métamorphosable, se lance à la poursuite de l'enfant et de sa mère, Sarah, dans les années quatre-vingt-dix.\nDe leur côté, les hommes du futur ont envoyé dans le passé un Terminator chargé de protéger le jeune Connor.\nLe duel des robots va prendre alors des allures titanesques. Et, tandis que l'enfant enseignera à ce Terminator des rudiments d'humanité, sa mère tentera par tous les moyens d'empêcher la création des premières machines intelligentes.\nAvec l'aide du Terminator qu'ils ont éduqué, ils combattront pour influencer le futur...", '1991-07-03', '2h17', 'terminator_2.webp', 9.99, 2.99, 300, true);
+('Terminator 2 : Le Jugement dernier', "En 1997, les survivants de l'apocalypse nucléaire poursuivent une guerre sans merci contre les robots et machines qu'ils ont eux-même créés.\nPour en finir avec John Connor qui dirige la résistance des hommes, deux cyborgs sont envoyés dans le passé.\nLeur mission : abattre Connor enfant. Le premier modèle de la série Terminator a échoué en 1984.\nLe second, modèle plus performant en liquide métamorphosable, se lance à la poursuite de l'enfant et de sa mère, Sarah, dans les années quatre-vingt-dix.\nDe leur côté, les hommes du futur ont envoyé dans le passé un Terminator chargé de protéger le jeune Connor.\nLe duel des robots va prendre alors des allures titanesques. Et, tandis que l'enfant enseignera à ce Terminator des rudiments d'humanité, sa mère tentera par tous les moyens d'empêcher la création des premières machines intelligentes.\nAvec l'aide du Terminator qu'ils ont éduqué, ils combattront pour influencer le futur...", '1991-07-03', '2h17', 'terminator_2.webp', 9.99, 2.99, 300, true),
+('Le Cinquième Élément', "Au XXIII siècle, dans un univers étrange et coloré, où tout espoir de survie est impossible sans la découverte du cinquième élément, un héros affronte le mal pour sauver l'humanité.", '1997-05-07', '2h06', 'cinquieme_element.webp', 9.99, 3.99, 200, true),
+('3h10 pour Yuma', "Revenu blessé de la guerre de Sécession, Dan Evans a établi sa famille dans un ranch.\nLa sécheresse a ravagé ses terres, décimé son troupeau et miné la considération que lui portent sa femme et ses enfants, en particulier son aîné Will, âgé de 14 ans.\nA la suite d'une attaque de diligence, le célèbre bandit Ben Wade passe par la ville de Bisbee où il est arrêté avec le concours fortuit de Evans.\nRecherché pour ses hold-up et ses meurtres répétés, Wade doit être convoyé vers Contention, à trois jours de cheval, pour embarquer sur un train à destination de Yuma, où se trouve le tribunal fédéral.\nContre une prime qui peut sauver son ranch, Dan Evans s'engage dans l'escorte qui doit accompagner le dangereux criminel.\nIl est bientôt rejoint par son fils Will, fasciné par l'aura du tueur.\nTandis que son gang organise son évasion, Wade engage sur le chemin de Contention un bras de fer psychologique avec ses gardiens, usant à la fois de la peur qu'il leur inspire et de la séduction qu'il exerce sur eux...", '2007-09-07', '2h02', '3h10_pour_yuma.webp', 12.99, 4.99, 200, true),
+('Mad Max: Fury Road', "Hanté par un lourd passé, Mad Max estime que le meilleur moyen de survivre est de rester seul.\nCependant, il se retrouve embarqué par une bande qui parcourt la Désolation à bord d'un véhicule militaire piloté par l'Imperator Furiosa.\nIls fuient la Citadelle où sévit le terrible Immortan Joe qui s'est fait voler un objet irremplaçable.\nEnragé, ce Seigneur de guerre envoie ses hommes pour traquer les rebelles impitoyablement…", '2015-05-15', '2h00', 'madmax_fury_road.webp', 9.99, 2.99, 250, true),
+('Sinister', "Ellison est un auteur de romans policiers inspirés de faits réels.\nDans l’espoir d’écrire un nouveau livre à succès, il emménage avec sa famille dans une maison où les anciens propriétaires ont été retrouvés inexplicablement pendus.\nEllison y découvre dans le grenier des bobines 8mm contenant les images de meurtres d’autres familles.\nQui a filmé ces tueries et pour quelle raison ?\nEllison va tenter de répondre à ces questions tandis que le tueur présumé, une entité surnaturelle présente sur les films, menace de plus en plus sa famille.", '2012-10-5', '1h50', 'sinister.webp', 7.99, 1.99, 150, true);
 
 -- Attribution des genres aux films
 INSERT INTO r_genre_film (id_fil, id_gen) VALUES
@@ -324,7 +357,17 @@ INSERT INTO r_genre_film (id_fil, id_gen) VALUES
 (23, 5),
 (24, 5),
 (25, 1),
-(25, 3);
+(25, 3),
+(26, 4),
+(26, 1),
+(27, 1),
+(27, 4),
+(28, 11),
+(28, 3),
+(29, 1),
+(29, 4),
+(30, 14),
+(30, 5);
 
 -- Attribution des personnes aux films avec leurs rôles
 INSERT INTO r_film_perso (id_fil, id_per) VALUES
@@ -546,7 +589,39 @@ INSERT INTO r_film_perso (id_fil, id_per) VALUES
 (26, 188),
 (26, 189),
 (26, 190),
-(26, 191);
+(26, 191),
+(27, 192),
+(27, 193),
+(27, 194),
+(27, 195),
+(27, 196),
+(27, 86),
+(27, 197),
+(27, 198),
+(28, 199),
+(28, 200),
+(28, 201),
+(28, 202),
+(28, 203),
+(28, 144),
+(28, 83),
+(28, 204),
+(28, 205),
+(29, 206),
+(29, 207),
+(29, 208),
+(29, 209),
+(29, 210),
+(29, 211),
+(29, 212),
+(29, 213),
+(29, 214),
+(30, 215),
+(30, 216),
+(30, 217),
+(30, 218),
+(30, 219),
+(30, 220);
 
 INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (1, 2, 1),
@@ -797,7 +872,43 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (188, 1, 26),
 (189, 1, 26),
 (190, 1, 26),
-(191, 1, 26);
+(191, 1, 26),
+(192, 2, 27),
+(192, 3, 27),
+(193, 3, 27),
+(194, 4, 27),
+(195, 1, 27),
+(196, 1, 27),
+(86, 1, 27),
+(197, 1, 27),
+(198, 1, 27),
+(199, 2, 28),
+(200, 3, 28),
+(201, 3, 28),
+(202, 3, 28),
+(203, 4, 28),
+(144, 1, 28),
+(83, 1, 28),
+(204, 1, 28),
+(205, 1, 28),
+(206, 2, 29),
+(206, 3, 29),
+(206, 4, 29),
+(207, 3, 29),
+(208, 3, 29),
+(209, 4, 29),
+(210, 4, 29),
+(211, 1, 29),
+(212, 1, 29),
+(213, 1, 29),
+(214, 1, 29),
+(215, 2, 30),
+(215, 3, 30),
+(216, 3, 30),
+(217, 4, 30),
+(218, 4, 30),
+(219, 1, 30),
+(220, 1, 30);
 
 -- Insertion des commandes
 INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
