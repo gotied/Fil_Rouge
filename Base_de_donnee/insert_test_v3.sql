@@ -250,19 +250,59 @@ INSERT INTO role (nm_ro) VALUES
 
 -- Insertion des fournisseurs
 INSERT INTO fournisseur (nm_four, ad_four, tl_four, eml_four) VALUES
-('MovieSupplier1', '123 Main St, City', '1234567890', 'supplier1@example.com'),
-('MovieSupplier2', '456 Oak St, Town', '9876543210', 'supplier2@example.com');
+('MovieSupplier1', '123 Main St, City', '0234567890', 'supplier@test.com'),
+('MovieSupplier2', '456 Oak St, Town', '0876543210', 'supplier@test.com');
 
 -- Insertion des utilisateurs
 INSERT INTO utilisateur (eml_uti, pwd_uti, nm_uti, pm_uti, tl_uti, rl_uti, coef_uti, id_uti_1) VALUES
-('user1@example.com', 'password', 'User_name1', 'First_name1', '123456789', 0, 1.2, NULL),
-('user2@example.com', 'password', 'User_name2', 'First_name2', '987654321', 0, 1.2, NULL),
-('commercial@example.com', 'password', 'Commercial_name', 'First_name', '111222333', 2, NULL, NULL),
-('user3@example.com', 'password', 'User_name3', 'First_name3', '555666777', 0, 1.2, NULL),
-('user4@example.com', 'password', 'User_name4', 'First_name4', '888999000', 0, 1.2, NULL);
+-- client particulier
+('john@test.com', 'test', 'Smith', 'John', '0612345678', 0, 1.2, NULL), -- 1
+('jane@test.com', 'test', 'Johnson', 'Jane', '0623456789', 0, 1.2, NULL), -- 2
+('bob@test.com', 'test', 'Doe', 'Bob', '0634567890', 0, 1.2, NULL), -- 3
+('alice@test.com', 'test', 'Miller', 'Alice', '0645678901', 0, 1.2, NULL), -- 4
+('sophie@test.com', 'test', 'Lefèvre', 'Sophie', '0601122334', 0, 1.2, NULL), -- 5
+('adam@test.com', 'test', 'Moreau', 'Adam', '0678765432', 0, 1.2, NULL), -- 6
+('clara@test.com', 'test', 'Dubois', 'Clara', '0654345678', 0, 1.2, NULL), -- 7
+('mohamed@test.com', 'test', 'Bouvier', 'Mohamed', '0687654321', 0, 1.2, NULL), -- 8
+('zoé@test.com', 'test', 'Bonnet', 'Zoé', '0654321098', 0, 1.2, NULL), -- 9
+-- client pro
+('lucie@test.com', 'test', 'Leroux', 'Lucie', '0679911234', 1, 2.2, NULL), -- 10
+('nathan@test.com', 'test', 'Roux', 'Nathan', '0615365678', 1, 3.2, NULL), -- 11
+('léa@test.com', 'test', 'Fournier', 'Léa', '0690123456', 1, 2.5, NULL), -- 12
+-- commercial particulier
+('commercial@test.com', 'test', 'Harris', 'William', '0612345879', 2, NULL, NULL), -- 13
+-- commercial pro
+('commercial@test.com', 'test', 'Girard', 'Hugo', '0678901234', 3, NULL, NULL), -- 14
+-- gérant 
+('jean@test.com', 'test', 'Garnier', 'Jean', '0609876543', 4, NULL, NULL); -- 15
 
 -- Attribution des utilisateurs gérés
-UPDATE utilisateur SET id_uti_1 = 3 WHERE id_uti IN (1, 2, 4, 5);
+UPDATE utilisateur SET id_uti_1 = 13 WHERE id_uti IN (1, 2, 3, 4, 5, 6, 7, 8, 9);
+UPDATE utilisateur SET id_uti_1 = 14 WHERE id_uti IN (10, 11, 12);
+-- UPDATE utilisateur SET id_uti_1 = 15 WHERE id_uti IN (13, 14);
+
+-- Insertion des commandes
+INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
+('2022-03-01 12:00:00', 25.98, 3, 1), -- 1
+('2022-04-02 15:30:00', 27.98, 2, 2), -- 2
+('2022-05-03 18:45:00', 66.95, 3, 1), -- 3
+('2022-06-01 14:00:00', 23.98, 1, 4), -- 4
+('2022-07-02 16:45:00', 23.98, 2, 5), -- 5
+('2023-01-10 08:15:00', 32.97, 3, 7), -- 6
+('2023-02-15 17:30:00', 24.97, 0, 9), -- 7
+('2023-03-20 13:45:00', 59.90, 2, 11), -- 8
+('2023-04-25 09:30:00', 24.98, 1, 3), -- 9
+('2023-05-30 14:45:00', 33.96, 3, 6), -- 10
+('2023-07-05 11:00:00', 7.99, 4, 8), -- 11
+('2023-08-10 16:15:00', 269.70, 2, 10), -- 12
+('2023-09-15 12:30:00', 17.98, 1, 4), -- 13
+('2023-10-20 14:45:00', 199.80, 3, 12), -- 14
+('2023-11-25 10:00:00', 20.98, 2, 5), -- 15
+('2023-12-25 18:15:00', 47.96, 1, 1), -- 16
+('2024-01-05 14:30:00', 30.97, 3, 9), -- 17
+('2024-02-10 09:45:00', 33.96, 2, 2), -- 18
+('2024-03-15 16:00:00', 20.98, 1, 4), -- 19
+('2024-04-20 12:15:00', 23.97, 3, 6); -- 20
 
 -- Insertion des films
 INSERT INTO film (nm_fil, res_fil, sor_fil, dur_fil, img_fil, pr_fil, pr_four, sto_fil, act_fil) VALUES
@@ -910,45 +950,6 @@ INSERT INTO r_role_perso (id_per, id_ro, id_fil) VALUES
 (219, 1, 30),
 (220, 1, 30);
 
--- Insertion des commandes
-INSERT INTO commande (dt_co, tt_co, et_co, id_uti) VALUES
-('2022-03-01 12:00:00', 25.98, 1, 1),
-('2022-04-02 15:30:00', 27.98, 2, 2),
-('2022-05-03 18:45:00', 66.95, 1, 1),
-('2022-06-01 14:00:00', 23.98, 1, 4),
-('2022-07-02 16:45:00', 23.98, 2, 5);
-
--- Insertion des adresses
-INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
-('123 Shipping St, City', '456 Billing St, City', 1),
-('789 Delivery St, Town', '101 Invoicing St, Town', 2),
-('42 Starlight Lane, Celestia City', NULL, 3),
-('101 Galaxy View, Nebula Town', '456 Comet Boulevard, Nebula Town', 4),
-('12 Enchanted Avenue, Fairytale City', '345 Magic Street, Fairytale City', 5);
-
--- Insertion des factures
-INSERT INTO facture (fac, mdp_fac, dt_fac, id_co) VALUES
-('INV001', 'CreditCard', '2022-03-01', 1),
-('INV002', 'CreditCard', '2022-04-02', 2),
-('INV003', 'CreditCard', '2022-05-03', 3),
-('INV004', 'CreditCard', '2022-06-01', 4),
-('INV005', 'CreditCard', '2022-07-02', 5);
-
--- Insertion des fournisseurs pour les films
-INSERT INTO r_fourni_film (id_fil, id_four) VALUES
-(1, 1), 
-(2, 1), 
-(3, 2), 
-(4, 2);
-
--- Insertion des livraisons
-INSERT INTO livraison (bn_livr, dt_lirv, id_co) VALUES
-('Delivery1', '2022-03-04', 1),
-('Delivery2', '2022-03-05', 2),
-('Delivery3', '2022-03-06', 3),
-('Delivery4', '2022-06-04', 4),
-('Delivery5', '2022-06-05', 5);
-
 -- Insertion des détails des commandes
 INSERT INTO details (id_fil, id_co, qte) VALUES
 (1, 1, 2), 
@@ -957,4 +958,133 @@ INSERT INTO details (id_fil, id_co, qte) VALUES
 (2, 3, 2), 
 (3, 4, 2), 
 (4, 5, 1), 
-(3, 5, 1);
+(3, 5, 1),
+(10, 6, 1),
+(4, 6, 1),
+(13, 6, 1),
+(14, 7, 1),
+(15, 7, 1),
+(16, 7, 1),
+(17, 8, 10), 
+(7, 9, 1),
+(6, 9, 1),
+(30, 10, 2),
+(23, 10, 2),
+(20, 11, 1),
+(9, 12, 15),
+(8, 12, 15),
+(25, 13, 1),
+(13, 13, 1),
+(26, 14, 20),
+(28, 15, 1),
+(15, 15, 1),
+(12, 16, 1),
+(11, 16, 1),
+(1, 16, 1),
+(3, 16, 1),
+(27, 17, 1),
+(29, 17, 1),
+(22, 17, 1),
+(5, 18, 1),
+(8, 18, 1),
+(9, 18, 1),
+(17, 18, 1),
+(21, 19, 1),
+(22, 19, 1),
+(24, 20, 1),
+(15, 20, 1),
+(19, 20, 1);
+
+-- Insertion des adresses
+INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
+('123 Shipping St, City', '456 Billing St, City', 1),
+('789 Delivery St, Town', '101 Invoicing St, Town', 2),
+('42 Starlight Lane, Celestia City', '42 Starlight Lane, Celestia City', 3),
+('101 Galaxy View, Nebula Town', '456 Comet Boulevard, Nebula Town', 4),
+('12 Enchanted Avenue, Fairytale City', '345 Magic Street, Fairytale City', 5),
+('1 Sunshine Road, Sunnyville', '1 Sunshine Road, Sunnyville', 6),
+('22 Riverbank Drive, Riverside', '22 Riverbank Drive, Riverside', 7),
+('5 Mountain Top, Peaksville', '5 Mountain Top, Peaksville', 8),
+('8 Meadow Lane, Meadowville', '8 Meadow Lane, Meadowville', 9),
+('456 Business Park, Commercial City', '789 Corporate Avenue, Commercial City', 10),
+('101 Industrial Zone, Industrial Town', '222 Factory Street, Industrial Town', 11),
+('25 Office Plaza, Officeville', '333 Executive Street, Officeville', 12);
+
+-- Insertion des factures
+INSERT INTO facture (fac, mdp_fac, dt_fac, id_co) VALUES
+('INV001', 'Carte Bancaire', '2022-03-01', 1),
+('INV002', 'Carte Bancaire', '2022-04-02', 2),
+('INV003', 'Carte Bancaire', '2022-05-03', 3),
+('INV004', 'Carte Bancaire', '2022-06-01', 4),
+('INV005', 'Carte Bancaire', '2022-07-02', 5),
+('INV006', 'Carte Bancaire', '2023-01-10', 6),
+('INV007', 'Carte Bancaire', '2023-02-15', 7),
+('INV008', 'Cheque', NULL, 8),
+('INV009', 'Carte Bancaire', '2023-04-25', 9),
+('INV010', 'Carte Bancaire', '2023-05-30', 10),
+('INV011', 'Carte Bancaire', '2023-07-05', 11),
+('INV012', 'Cheque', '2023-08-20', 12),
+('INV013', 'Carte Bancaire', '2023-09-15', 13),
+('INV014', 'Cheque', '2023-11-01', 14),
+('INV015', 'Carte Bancaire', '2023-11-25', 15),
+('INV016', 'Carte Bancaire', '2023-12-25', 16),
+('INV017', 'Carte Bancaire', '2024-01-05', 17),
+('INV018', 'Carte Bancaire', '2024-02-10', 18),
+('INV019', 'Carte Bancaire', '2024-03-15', 19),
+('INV020', 'Carte Bancaire', '2024-04-20', 20);
+
+-- Insertion des fournisseurs pour les films
+INSERT INTO r_fourni_film (id_fil, id_four) VALUES
+(1, 1), 
+(2, 1), 
+(3, 2), 
+(4, 2),
+(5, 1),
+(6, 1),
+(7, 2),
+(8, 2),
+(9, 1),
+(10, 2),
+(11, 1),
+(12, 1),
+(13, 2),
+(14, 2),
+(15, 1),
+(16, 2),
+(17, 1),
+(18, 2),
+(19, 1),
+(20, 1),
+(21, 2),
+(22, 2),
+(23, 1),
+(24, 2),
+(25, 1),
+(26, 1),
+(27, 2),
+(28, 2),
+(29, 1),
+(30, 2);
+
+-- Insertion des livraisons
+INSERT INTO livraison (bn_livr, dt_lirv, id_co) VALUES
+('Delivery1', '2022-03-04', 1),
+('Delivery2', '2022-03-05', 2),
+('Delivery3', '2022-03-06', 3),
+('Delivery4', '2022-06-04', 4),
+('Delivery5', '2022-06-05', 5),
+('Delivery6', '2023-01-13', 6),
+('Delivery7', '2023-02-18', 7),
+('Delivery8', '2023-03-25', 8),
+('Delivery9', '2023-04-28', 9),
+('Delivery10', '2023-06-03', 10),
+('Delivery11', '2023-07-08', 11),
+('Delivery12', '2023-08-15', 12),
+('Delivery13', '2023-09-18', 13),
+('Delivery14', '2023-10-25', 14),
+('Delivery15', '2023-11-28', 15),
+('Delivery16', '2023-12-28', 16),
+('Delivery17', '2024-01-08', 17),
+('Delivery18', '2024-02-13', 18),
+('Delivery19', '2024-03-18', 19),
+('Delivery20', '2024-04-23', 20);
