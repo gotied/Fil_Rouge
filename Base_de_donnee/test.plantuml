@@ -1,16 +1,42 @@
-@startuml test
+@startuml cas d'utilisation
+left to right direction
+actor client
+actor commercial
+actor gérant 
+note "professionnel" as n
+note "négociation réduction\npro" as n1
 
-:client particulier: --> (consulte le catalogue)
-(consulte le catalogue) --> (ajoute un produit au panier)
-(ajoute un produit au panier) --> (connexion)
-(connexion) --> (passe une commande)
+rectangle système {
+client --> (consulte le catalogue)
 
-' :client professionnel:
+client --> (passe une commande)
+(passe une commande) ..> (ajoute un produit au panier) : extends
+(passe une commande) ..> (connexion) : include
 
-' :commercial particulier:
+client --> (consulte ces commandes)
+(consulte ces commandes) ..> (connexion) : include
+(inscription) <.. (connexion)
 
-' :commercial professionnel:
 
+commercial .. n
+n ..> (passe une commande)
 
+commercial --> (gestion des clients)
+client - n1
+n1 -> commercial
 
+commercial --> (gestion des commandes)
+
+gérant --> (gestion des clients)
+gérant --> (gestion du catalogue)
+gérant --> (gestion des commandes)
+(gestion des clients) ..> (connexion) : include
+(gestion du catalogue) ..> (connexion) : include
+(gestion des commandes) ..> (connexion) : include
+
+' (gestion du catalogue) ..> (maj du stock) : extends
+' (gestion du catalogue) ..> (ajout nv produit) : extends
+' (gestion du catalogue) ..> (désac ancien produit) : extends
+' (gestion du catalogue) ..> (gérer catégorie\n/sous-catégorie) : extends
+}
 @enduml
