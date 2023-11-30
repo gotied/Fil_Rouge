@@ -1,0 +1,25 @@
+@startuml séquence client
+actor client as c
+participant système as s
+
+c -> s : connexion 
+s -> s : vérifie les identifiants 
+c -> s : consulte les produits
+s --> c : affiche les produits 
+c -> s : ajoute des produits au panier 
+s --> c : confirme l'ajout des produits au panier
+c -> s : consulte son panier 
+s -> s : contrôle les stocks
+s --> c : affiche le panier 
+c -> s : confirme le panier
+s --> c : affiche la page de commande
+c -> s : choisie le mode de paiement 
+s -> s : vérifie le mode de paiement 
+s --> c : valide le mode de paiement 
+c -> s : choisie une adresse de livraison / facturation 
+s -> s : vérifie les adresses 
+s --> c : valide les adresses 
+c -> s : valide la commande 
+s -> s : enregistrement de la commande 
+@enduml
+

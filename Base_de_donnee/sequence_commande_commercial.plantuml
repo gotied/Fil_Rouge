@@ -1,0 +1,23 @@
+@startuml séquence commercial
+actor commercial as c
+participant système as s 
+
+c -> s : connexion 
+s -> s : vérifie les identifiants
+s --> c : affiche la page commercial
+c -> s : nouvelle commande
+s --> c : affiche liste clients
+c -> s : selection client 
+s --> c : affiche coordonnées client
+c -> s : valide coordonnées client
+s -> s : vérifie coordonnées client
+s --> c : affiche liste produits 
+c -> s : selection produits 
+s -> s : vérifie le stock 
+s --> c : confirme le stock
+c -> s : selection du mode de paiement 
+s -> s : vérifie le mode de paiement 
+s --> c : valide le mode de paiement  
+c -> s : valide la commande 
+s -> s : enregistrement de la commande 
+@enduml

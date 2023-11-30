@@ -13,9 +13,9 @@ client --> (passe une commande)
 (passe une commande) ..> (ajoute un produit au panier) : extends
 (passe une commande) ..> (connexion) : include
 
-client --> (consulte ces commandes)
+client --> (consulte ses commandes)
 (consulte ces commandes) ..> (connexion) : include
-(inscription) <.. (connexion)
+(inscription) <.. (connexion) : extends
 
 
 commercial .. n
