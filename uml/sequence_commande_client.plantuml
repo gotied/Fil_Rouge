@@ -15,9 +15,9 @@ end
 c -> s : consulte les produits
 s --> c : affiche les produits 
 c -> s : ajoute des produits au panier 
+s -> s : contrôle les stocks
 s --> c : confirme l'ajout des produits au panier
 c -> s : consulte son panier 
-s -> s : contrôle les stocks
 s --> c : affiche le panier 
 c -> s : confirme le panier
 s --> c : affiche la page de commande
@@ -27,7 +27,7 @@ alt mode de paiement non valide
 s --> c : erreur mode de paiement invalide
 c -> s : changement de mode de paiement 
 s -> s : vérifie le mode de paiement 
-s --> c : valide le mode de paiement 
+s --> c : valide le mode de paiement
 end
 s --> c : valide le mode de paiement 
 c -> s : choisie une adresse de livraison / facturation 

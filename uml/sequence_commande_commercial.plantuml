@@ -1,6 +1,9 @@
 @startuml séquence commercial
+'Flot nominal
+
 actor commercial as c
 participant système as s 
+autonumber
 
 c -> s : connexion 
 s -> s : vérifie les identifiants
