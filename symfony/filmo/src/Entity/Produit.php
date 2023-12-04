@@ -46,9 +46,13 @@ class Produit
     #[ORM\ManyToMany(targetEntity: Personne::class, inversedBy: 'produits')]
     private Collection $personne;
 
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: RolePersonneProduit::class)]
+    private Collection $rolePersonneProduits;
+
     public function __construct()
     {
         $this->personne = new ArrayCollection();
+        $this->rolePersonneProduits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,6 +188,36 @@ class Produit
     public function removePersonne(Personne $personne): static
     {
         $this->personne->removeElement($personne);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RolePersonneProduit>
+     */
+    public function getRolePersonneProduits(): Collection
+    {
+        return $this->rolePersonneProduits;
+    }
+
+    public function addRolePersonneProduit(RolePersonneProduit $rolePersonneProduit): static
+    {
+        if (!$this->rolePersonneProduits->contains($rolePersonneProduit)) {
+            $this->rolePersonneProduits->add($rolePersonneProduit);
+            $rolePersonneProduit->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRolePersonneProduit(RolePersonneProduit $rolePersonneProduit): static
+    {
+        if ($this->rolePersonneProduits->removeElement($rolePersonneProduit)) {
+            // set the owning side to null (unless already changed)
+            if ($rolePersonneProduit->getProduit() === $this) {
+                $rolePersonneProduit->setProduit(null);
+            }
+        }
 
         return $this;
     }
