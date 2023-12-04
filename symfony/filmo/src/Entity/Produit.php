@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,14 @@ class Produit
 
     #[ORM\Column(nullable: true)]
     private ?bool $actif = null;
+
+    #[ORM\ManyToMany(targetEntity: Personne::class, inversedBy: 'produits')]
+    private Collection $personne;
+
+    public function __construct()
+    {
+        $this->personne = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +160,30 @@ class Produit
     public function setActif(?bool $actif): static
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personne>
+     */
+    public function getPersonne(): Collection
+    {
+        return $this->personne;
+    }
+
+    public function addPersonne(Personne $personne): static
+    {
+        if (!$this->personne->contains($personne)) {
+            $this->personne->add($personne);
+        }
+
+        return $this;
+    }
+
+    public function removePersonne(Personne $personne): static
+    {
+        $this->personne->removeElement($personne);
 
         return $this;
     }
