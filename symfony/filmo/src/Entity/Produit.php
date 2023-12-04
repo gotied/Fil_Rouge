@@ -49,10 +49,22 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: RolePersonneProduit::class)]
     private Collection $rolePersonneProduits;
 
+    #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'produit')]
+    private Collection $genres;
+
+    #[ORM\ManyToMany(targetEntity: Fournisseur::class, mappedBy: 'produit')]
+    private Collection $fournisseurs;
+
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: DetailsCommande::class)]
+    private Collection $detailsCommandes;
+
     public function __construct()
     {
         $this->personne = new ArrayCollection();
         $this->rolePersonneProduits = new ArrayCollection();
+        $this->genres = new ArrayCollection();
+        $this->fournisseurs = new ArrayCollection();
+        $this->detailsCommandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -216,6 +228,90 @@ class Produit
             // set the owning side to null (unless already changed)
             if ($rolePersonneProduit->getProduit() === $this) {
                 $rolePersonneProduit->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): static
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+            $genre->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): static
+    {
+        if ($this->genres->removeElement($genre)) {
+            $genre->removeProduit($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fournisseur>
+     */
+    public function getFournisseurs(): Collection
+    {
+        return $this->fournisseurs;
+    }
+
+    public function addFournisseur(Fournisseur $fournisseur): static
+    {
+        if (!$this->fournisseurs->contains($fournisseur)) {
+            $this->fournisseurs->add($fournisseur);
+            $fournisseur->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFournisseur(Fournisseur $fournisseur): static
+    {
+        if ($this->fournisseurs->removeElement($fournisseur)) {
+            $fournisseur->removeProduit($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailsCommande>
+     */
+    public function getDetailsCommandes(): Collection
+    {
+        return $this->detailsCommandes;
+    }
+
+    public function addDetailsCommande(DetailsCommande $detailsCommande): static
+    {
+        if (!$this->detailsCommandes->contains($detailsCommande)) {
+            $this->detailsCommandes->add($detailsCommande);
+            $detailsCommande->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailsCommande(DetailsCommande $detailsCommande): static
+    {
+        if ($this->detailsCommandes->removeElement($detailsCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($detailsCommande->getProduit() === $this) {
+                $detailsCommande->setProduit(null);
             }
         }
 
