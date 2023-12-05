@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -48,10 +49,15 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Commande::class)]
     private Collection $commandes;
 
+    #[ORM\ManyToOne(targetEntity: Utilisateur::class)]
+    #[JoinColumn(name: 'responsable_id', referencedColumnName: 'id')]
+    private ?self $responsable = null;
+
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+      
     }
 
     public function getId(): ?int
@@ -231,4 +237,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getResponsable(): ?self
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(?self $responsable): static
+    {
+        $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    
 }

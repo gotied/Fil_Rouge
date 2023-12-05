@@ -17,7 +17,7 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    private ?\DateTimeInterface $date_commande = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $total = null;
@@ -43,12 +43,12 @@ class Commande
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->date_commande;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setDate(\DateTimeInterface $date_commande): static
     {
-        $this->date = $date;
+        $this->date_commande = $date_commande;
 
         return $this;
     }

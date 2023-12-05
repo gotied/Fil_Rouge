@@ -118,5 +118,4 @@ class Personne
 
         return $this;
     }
-
 }
