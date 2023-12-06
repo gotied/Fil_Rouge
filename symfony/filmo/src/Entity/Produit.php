@@ -71,6 +71,18 @@ class Produit
     {
         return $this->id;
     }
+    
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getTitre(): ?string
     {
@@ -101,9 +113,9 @@ class Produit
         return $this->date_sortie;
     }
 
-    public function setDateSortie(?\DateTimeInterface $date_sortie): static
+    public function setDateSortie(?string $date_sortie): static
     {
-        $this->date_sortie = $date_sortie;
+        $this->date_sortie = $date_sortie ? new \DateTime($date_sortie) : null;
 
         return $this;
     }

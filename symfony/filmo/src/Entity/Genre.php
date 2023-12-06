@@ -31,6 +31,18 @@ class Genre
         return $this->id;
     }
 
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    
     public function getNom(): ?string
     {
         return $this->nom;

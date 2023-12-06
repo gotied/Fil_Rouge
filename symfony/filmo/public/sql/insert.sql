@@ -1,4 +1,4 @@
-USE filmo;
+USE filmo2;
 
 -- Insertion des genres
 INSERT INTO genre (nom) VALUES 
@@ -305,7 +305,7 @@ INSERT INTO commande (date_commande, total, etat, id_uti) VALUES
 ('2024-04-20 12:15:00', 23.97, 3, 6); -- 20
 
 -- Insertion des films
-INSERT INTO produit (titre, sypnopsis, date_sortie, duree, image, prix_ht, prix_four, stock, actif) VALUES
+INSERT INTO produit (titre, synopsis, date_sortie, duree, image, prix_ht, prix_four, stock, actif) VALUES
 ('Princesse Mononoké', "Japon, XVe siècle. Jadis protégée par des animaux géants, la forêt se dépeuple à cause de l'homme.\nBlessé par un sanglier rendu fou par les démons, le jeune guerrier Ashitaka quitte les siens et part à la recherche du dieu-cerf qui seul pourra défaire le sortilège qui lui gangrène le bras.\nAu cours de son voyage, Ashitaka rencontre Lady Eboshi, à la tête d’une communauté de forgerons, qui doit se défendre contre ceux qui lui reprochent de détruire la forêt pour alimenter ses forges.\nParmi ses pires ennemis se trouve San, une jeune fille sauvage élevée par des loups, aussi appelée Princesse Mononoké, la princesse des spectres...", '1997-07-12', '2h23', 'princesse_mononoke.webp', 12.99, 8.99, 200, true),
 ('Le voyage de Chihiro', "Chihiro, une fillette de 10 ans, est en route vers sa nouvelle demeure en compagnie de ses parents.\nAu cours du voyage, la famille fait une halte dans un parc à thème qui leur paraît délabré.\nLors de la visite, les parents s’arrêtent dans un des bâtiments pour déguster quelques mets très appétissants, apparus comme par enchantement.\nHélas cette nourriture les transforme en porcs.\nPrise de panique, Chihiro s’enfuit et se retrouve seule dans cet univers fantasmagorique ; elle rencontre alors l’énigmatique Haku, son seul allié dans cette terrible épreuve...", '2001-07-20', '2h05', 'chihiro.webp', 13.99, 9.99, 300, true),
 ('Le Château ambulant', "La jeune Sophie, 18 ans, travaille inlassablement dans la chapellerie autrefois tenue par son père, malheureusement décédé.\nRésignée à son sort, c’est lors de l’une de ses rares sorties en ville qu’elle fait la connaissance du beau Hauru, un magicien.\nMais la sorcière des Landes, jalouse de cette rencontre, jette un sort à Sophie, la transformant en vieille dame.\nAccablée par sa nouvelle apparence, Sophie s’enfuit dans les montagnes et tombe sur la demeure de Hauru : son Château Ambulant.\nEt si tout ceci n’était que le commencement d’une merveilleuse histoire ?", '2004-11-20', '1h59', 'le_chateau_ambulant.webp', 11.99, 6.99, 200, true),
@@ -951,7 +951,7 @@ INSERT INTO r_role_perso (id_per, id_ro, id_pro) VALUES
 (220, 1, 30);
 
 -- Insertion des détails des commandes
-INSERT INTO details (id_pro, id_co, qte) VALUES
+INSERT INTO details_commande (id_pro, id_co, quantite) VALUES
 (1, 1, 2), 
 (2, 2, 2), 
 (1, 3, 3), 
@@ -996,7 +996,7 @@ INSERT INTO details (id_pro, id_co, qte) VALUES
 (19, 20, 1);
 
 -- Insertion des adresses
-INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
+INSERT INTO adresse (livraison, facturation, id_uti) VALUES
 ('123 Shipping St, City', '456 Billing St, City', 1),
 ('789 Delivery St, Town', '101 Invoicing St, Town', 2),
 ('42 Starlight Lane, Celestia City', '42 Starlight Lane, Celestia City', 3),
@@ -1011,27 +1011,27 @@ INSERT INTO adresse (livr_ad, fac_ad, id_uti) VALUES
 ('25 Office Plaza, Officeville', '333 Executive Street, Officeville', 12);
 
 -- Insertion des factures
-INSERT INTO facture (fac, mdp_fac, dt_fac, id_co) VALUES
-('INV001', 'Carte Bancaire', '2022-03-01', 1),
-('INV002', 'Carte Bancaire', '2022-04-02', 2),
-('INV003', 'Carte Bancaire', '2022-05-03', 3),
-('INV004', 'Carte Bancaire', '2022-06-01', 4),
-('INV005', 'Carte Bancaire', '2022-07-02', 5),
-('INV006', 'Carte Bancaire', '2023-01-10', 6),
-('INV007', 'Carte Bancaire', '2023-02-15', 7),
-('INV008', 'Cheque', NULL, 8),
-('INV009', 'Carte Bancaire', '2023-04-25', 9),
-('INV010', 'Carte Bancaire', '2023-05-30', 10),
-('INV011', 'Carte Bancaire', '2023-07-05', 11),
-('INV012', 'Cheque', '2023-08-20', 12),
-('INV013', 'Carte Bancaire', '2023-09-15', 13),
-('INV014', 'Cheque', '2023-11-01', 14),
-('INV015', 'Carte Bancaire', '2023-11-25', 15),
-('INV016', 'Carte Bancaire', '2023-12-25', 16),
-('INV017', 'Carte Bancaire', '2024-01-05', 17),
-('INV018', 'Carte Bancaire', '2024-02-10', 18),
-('INV019', 'Carte Bancaire', '2024-03-15', 19),
-('INV020', 'Carte Bancaire', '2024-04-20', 20);
+INSERT INTO facture (mode_de_paiement, date_facture, date_paiement, payer, id_co) VALUES
+('Carte Bancaire', '2022-03-01', '2022-03-01', 1, 1),
+('Carte Bancaire', '2022-04-02', '2022-04-02', 1, 2),
+('Carte Bancaire', '2022-05-03', '2022-05-03', 1, 3),
+('Carte Bancaire', '2022-06-01', '2022-06-01', 1, 4),
+('Carte Bancaire', '2022-07-02', '2022-07-02', 1, 5),
+('Carte Bancaire', '2023-01-10', '2023-01-10', 1, 6),
+('Carte Bancaire', '2023-02-15', '2023-02-15', 1, 7),
+('Cheque', '2023-03-20', NULL, 0, 8),
+('Carte Bancaire', '2023-04-25', '2023-04-25', 1, 9),
+('Carte Bancaire', '2023-05-30', '2023-05-30', 1, 10),
+('Carte Bancaire', '2023-07-05', '2023-07-05', 1, 11),
+('Cheque', '2023-08-20', NULL, 0, 12),
+('Carte Bancaire', '2023-09-15', '2023-09-15', 1, 13),
+('Cheque', '2023-11-01', '2023-11-30', 1, 14),
+('Carte Bancaire', '2023-11-25', '2023-11-25', 1, 15),
+('Carte Bancaire', '2023-12-25', '2023-12-25', 1, 16),
+('Carte Bancaire', '2024-01-05', '2024-01-05', 1, 17),
+('Carte Bancaire', '2024-02-10', '2024-02-10', 1, 18),
+('Carte Bancaire', '2024-03-15', '2024-03-15', 1, 19),
+('Carte Bancaire', '2024-04-20', '2024-04-20', 1, 20);
 
 -- Insertion des fournisseurs pour les films
 INSERT INTO r_fourni_film (id_pro, id_four) VALUES
@@ -1067,24 +1067,24 @@ INSERT INTO r_fourni_film (id_pro, id_four) VALUES
 (30, 2);
 
 -- Insertion des livraisons
-INSERT INTO livraison (bn_livr, dt_lirv, id_co) VALUES
-('Delivery1', '2022-03-04', 1),
-('Delivery2', '2022-03-05', 2),
-('Delivery3', '2022-03-06', 3),
-('Delivery4', '2022-06-04', 4),
-('Delivery5', '2022-06-05', 5),
-('Delivery6', '2023-01-13', 6),
-('Delivery7', '2023-02-18', 7),
-('Delivery8', '2023-03-25', 8),
-('Delivery9', '2023-04-28', 9),
-('Delivery10', '2023-06-03', 10),
-('Delivery11', '2023-07-08', 11),
-('Delivery12', '2023-08-15', 12),
-('Delivery13', '2023-09-18', 13),
-('Delivery14', '2023-10-25', 14),
-('Delivery15', '2023-11-28', 15),
-('Delivery16', '2023-12-28', 16),
-('Delivery17', '2024-01-08', 17),
-('Delivery18', '2024-02-13', 18),
-('Delivery19', '2024-03-18', 19),
-('Delivery20', '2024-04-23', 20);
+INSERT INTO livraison (date_livraison, id_co) VALUES
+('2022-03-04', 1),
+('2022-03-05', 2),
+('2022-03-06', 3),
+('2022-06-04', 4),
+('2022-06-05', 5),
+('2023-01-13', 6),
+('2023-02-18', 7),
+('2023-03-25', 8),
+('2023-04-28', 9),
+('2023-06-03', 10),
+('2023-07-08', 11),
+('2023-08-15', 12),
+('2023-09-18', 13),
+('2023-10-25', 14),
+('2023-11-28', 15),
+('2023-12-28', 16),
+('2024-01-08', 17),
+('2024-02-13', 18),
+('2024-03-18', 19),
+('2024-04-23', 20);
