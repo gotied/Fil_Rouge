@@ -31,6 +31,12 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailsCommande::class)]
     private Collection $detailsCommandes;
 
+    #[ORM\OneToOne(inversedBy: 'commande', cascade: ['persist', 'remove'])]
+    private ?Facture $facture = null;
+
+    #[ORM\OneToOne(inversedBy: 'commande', cascade: ['persist', 'remove'])]
+    private ?Livraison $livraison = null;
+
     public function __construct()
     {
         $this->detailsCommandes = new ArrayCollection();
@@ -115,6 +121,30 @@ class Commande
                 $detailsCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFacture(): ?Facture
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(?Facture $facture): static
+    {
+        $this->facture = $facture;
+
+        return $this;
+    }
+
+    public function getLivraison(): ?Livraison
+    {
+        return $this->livraison;
+    }
+
+    public function setLivraison(?Livraison $livraison): static
+    {
+        $this->livraison = $livraison;
 
         return $this;
     }

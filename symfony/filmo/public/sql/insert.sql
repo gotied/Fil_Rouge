@@ -1012,26 +1012,26 @@ INSERT INTO adresse (livraison, facturation, id_uti) VALUES
 
 -- Insertion des factures
 INSERT INTO facture (mode_de_paiement, date_facture, date_paiement, payer, id_co) VALUES
-('Carte Bancaire', '2022-03-01', '2022-03-01', 1, 1),
-('Carte Bancaire', '2022-04-02', '2022-04-02', 1, 2),
-('Carte Bancaire', '2022-05-03', '2022-05-03', 1, 3),
-('Carte Bancaire', '2022-06-01', '2022-06-01', 1, 4),
-('Carte Bancaire', '2022-07-02', '2022-07-02', 1, 5),
-('Carte Bancaire', '2023-01-10', '2023-01-10', 1, 6),
-('Carte Bancaire', '2023-02-15', '2023-02-15', 1, 7),
-('Cheque', '2023-03-20', NULL, 0, 8),
-('Carte Bancaire', '2023-04-25', '2023-04-25', 1, 9),
-('Carte Bancaire', '2023-05-30', '2023-05-30', 1, 10),
-('Carte Bancaire', '2023-07-05', '2023-07-05', 1, 11),
-('Cheque', '2023-08-20', NULL, 0, 12),
-('Carte Bancaire', '2023-09-15', '2023-09-15', 1, 13),
-('Cheque', '2023-11-01', '2023-11-30', 1, 14),
-('Carte Bancaire', '2023-11-25', '2023-11-25', 1, 15),
-('Carte Bancaire', '2023-12-25', '2023-12-25', 1, 16),
-('Carte Bancaire', '2024-01-05', '2024-01-05', 1, 17),
-('Carte Bancaire', '2024-02-10', '2024-02-10', 1, 18),
-('Carte Bancaire', '2024-03-15', '2024-03-15', 1, 19),
-('Carte Bancaire', '2024-04-20', '2024-04-20', 1, 20);
+('Carte Bancaire', '2022-03-01', '2022-03-01', 1, NULL, 1),
+('Carte Bancaire', '2022-04-02', '2022-04-02', 1, NULL, 2),
+('Carte Bancaire', '2022-05-03', '2022-05-03', 1, NULL, 3),
+('Carte Bancaire', '2022-06-01', '2022-06-01', 1, NULL, 4),
+('Carte Bancaire', '2022-07-02', '2022-07-02', 1, NULL, 5),
+('Carte Bancaire', '2023-01-10', '2023-01-10', 1, NULL, 6),
+('Carte Bancaire', '2023-02-15', '2023-02-15', 1, NULL, 7),
+('Cheque', '2023-03-20', NULL, 0, '2023-04-30', 8),
+('Carte Bancaire', '2023-04-25', '2023-04-25', 1, NULL, 9),
+('Carte Bancaire', '2023-05-30', '2023-05-30', 1, NULL, 10),
+('Carte Bancaire', '2023-07-05', '2023-07-05', 1, NULL, 11),
+('Cheque', '2023-08-20', NULL, 0, '2023-09-30', 12),
+('Carte Bancaire', '2023-09-15', '2023-09-15', 1, NULL, 13),
+('Cheque', '2023-11-01', '2023-11-30', 1, '2023-12-30', 14),
+('Carte Bancaire', '2023-11-25', '2023-11-25', 1, NULL, 15),
+('Carte Bancaire', '2023-12-25', '2023-12-25', 1, NULL, 16),
+('Carte Bancaire', '2024-01-05', '2024-01-05', 1, NULL, 17),
+('Carte Bancaire', '2024-02-10', '2024-02-10', 1, NULL, 18),
+('Carte Bancaire', '2024-03-15', '2024-03-15', 1, NULL, 19),
+('Carte Bancaire', '2024-04-20', '2024-04-20', 1, NULL, 20);
 
 -- Insertion des fournisseurs pour les films
 INSERT INTO r_fourni_film (id_pro, id_four) VALUES

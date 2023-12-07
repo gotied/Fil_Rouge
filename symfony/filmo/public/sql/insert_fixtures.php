@@ -383,6 +383,31 @@ $role = array(
     array('id' => '5','nom' => 'Doubleur')
   );
 
+/* `filmo2`.`fournisseur` */
+$fournisseur = array(
+  array('id' => '1','nom' => 'MovieSupplier1','adresse' => '123 Main St, City','telephone' => '0234567890','email' => 'supplier@test.com'),
+  array('id' => '2','nom' => 'MovieSupplier2','adresse' => '456 Oak St, Town','telephone' => '0876543210','email' => 'supplier@test.com')
+);
+
+  /* `filmo2`.`utilisateur` */
+$utilisateur = array(
+  array('id' => '1','email' => 'john@test.com','password' => 'test','nom' => 'Smith','prenom' => 'John','telephone' => '0612345678','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '2','email' => 'jane@test.com','password' => 'test','nom' => 'Johnson','prenom' => 'Jane','telephone' => '0623456789','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '3','email' => 'bob@test.com','password' => 'test','nom' => 'Doe','prenom' => 'Bob','telephone' => '0634567890','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '4','email' => 'alice@test.com','password' => 'test','nom' => 'Miller','prenom' => 'Alice','telephone' => '0645678901','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '5','email' => 'sophie@test.com','password' => 'test','nom' => 'Lefèvre','prenom' => 'Sophie','telephone' => '0601122334','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '6','email' => 'adam@test.com','password' => 'test','nom' => 'Moreau','prenom' => 'Adam','telephone' => '0678765432','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '7','email' => 'clara@test.com','password' => 'test','nom' => 'Dubois','prenom' => 'Clara','telephone' => '0654345678','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '8','email' => 'mohamed@test.com','password' => 'test','nom' => 'Bouvier','prenom' => 'Mohamed','telephone' => '0687654321','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '9','email' => 'zoé@test.com','password' => 'test','nom' => 'Bonnet','prenom' => 'Zoé','telephone' => '0654321098','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '10','email' => 'lucie@test.com','password' => 'test','nom' => 'Leroux','prenom' => 'Lucie','telephone' => '0679911234','role' => '1','coefficient' => '2.20','responsable_id' => '14'),
+  array('id' => '11','email' => 'nathan@test.com','password' => 'test','nom' => 'Roux','prenom' => 'Nathan','telephone' => '0615365678','role' => '1','coefficient' => '3.20','responsable_id' => '14'),
+  array('id' => '12','email' => 'léa@test.com','password' => 'test','nom' => 'Fournier','prenom' => 'Léa','telephone' => '0690123456','role' => '1','coefficient' => '2.50','responsable_id' => '14'),
+  array('id' => '13','email' => 'commercial@test.com','password' => 'test','nom' => 'Harris','prenom' => 'William','telephone' => '0612345879','role' => '2','coefficient' => NULL,'responsable_id' => NULL),
+  array('id' => '14','email' => 'commercial@test.com','password' => 'test','nom' => 'Girard','prenom' => 'Hugo','telephone' => '0678901234','role' => '3','coefficient' => NULL,'responsable_id' => NULL),
+  array('id' => '15','email' => 'jean@test.com','password' => 'test','nom' => 'Garnier','prenom' => 'Jean','telephone' => '0609876543','role' => '4','coefficient' => NULL,'responsable_id' => NULL)
+);
+
   /* `filmo2`.`r_film_perso` */
 $r_film_perso = array(
     array('id_pro' => '1','id_per' => '1'),
@@ -999,3 +1024,37 @@ $r_role_perso = array(
     array('id_pro' => '30','id_per' => '219','id_ro' => '1'),
     array('id_pro' => '30','id_per' => '220','id_ro' => '1')
   );
+
+  /* `filmo2`.`r_fourni_film` */
+$r_fourni_film = array(
+  array('id_pro' => '1','id_four' => '1'),
+  array('id_pro' => '2','id_four' => '1'),
+  array('id_pro' => '3','id_four' => '2'),
+  array('id_pro' => '4','id_four' => '2'),
+  array('id_pro' => '5','id_four' => '1'),
+  array('id_pro' => '6','id_four' => '1'),
+  array('id_pro' => '7','id_four' => '2'),
+  array('id_pro' => '8','id_four' => '2'),
+  array('id_pro' => '9','id_four' => '1'),
+  array('id_pro' => '10','id_four' => '2'),
+  array('id_pro' => '11','id_four' => '1'),
+  array('id_pro' => '12','id_four' => '1'),
+  array('id_pro' => '13','id_four' => '2'),
+  array('id_pro' => '14','id_four' => '2'),
+  array('id_pro' => '15','id_four' => '1'),
+  array('id_pro' => '16','id_four' => '2'),
+  array('id_pro' => '17','id_four' => '1'),
+  array('id_pro' => '18','id_four' => '2'),
+  array('id_pro' => '19','id_four' => '1'),
+  array('id_pro' => '20','id_four' => '1'),
+  array('id_pro' => '21','id_four' => '2'),
+  array('id_pro' => '22','id_four' => '2'),
+  array('id_pro' => '23','id_four' => '1'),
+  array('id_pro' => '24','id_four' => '2'),
+  array('id_pro' => '25','id_four' => '1'),
+  array('id_pro' => '26','id_four' => '1'),
+  array('id_pro' => '27','id_four' => '2'),
+  array('id_pro' => '28','id_four' => '2'),
+  array('id_pro' => '29','id_four' => '1'),
+  array('id_pro' => '30','id_four' => '2')
+);
