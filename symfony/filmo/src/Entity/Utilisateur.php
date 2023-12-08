@@ -40,7 +40,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10)]
     private ?string $telephone = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2, nullable: true)]
     private ?string $coefficient = null;
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Adresse::class)]
@@ -183,7 +183,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->coefficient;
     }
 
-    public function setCoefficient(string $coefficient): static
+    public function setCoefficient(?string $coefficient): static
     {
         $this->coefficient = $coefficient;
 

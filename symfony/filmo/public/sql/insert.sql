@@ -1011,7 +1011,7 @@ INSERT INTO adresse (livraison, facturation, id_uti) VALUES
 ('25 Office Plaza, Officeville', '333 Executive Street, Officeville', 12);
 
 -- Insertion des factures
-INSERT INTO facture (mode_de_paiement, date_facture, date_paiement, payer, id_co) VALUES
+INSERT INTO facture (mode_de_paiement, date_facture, date_paiement, payer, date_limite, id_co) VALUES
 ('Carte Bancaire', '2022-03-01', '2022-03-01', 1, NULL, 1),
 ('Carte Bancaire', '2022-04-02', '2022-04-02', 1, NULL, 2),
 ('Carte Bancaire', '2022-05-03', '2022-05-03', 1, NULL, 3),

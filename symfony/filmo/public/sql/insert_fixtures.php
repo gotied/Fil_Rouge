@@ -403,9 +403,49 @@ $utilisateur = array(
   array('id' => '10','email' => 'lucie@test.com','password' => 'test','nom' => 'Leroux','prenom' => 'Lucie','telephone' => '0679911234','role' => '1','coefficient' => '2.20','responsable_id' => '14'),
   array('id' => '11','email' => 'nathan@test.com','password' => 'test','nom' => 'Roux','prenom' => 'Nathan','telephone' => '0615365678','role' => '1','coefficient' => '3.20','responsable_id' => '14'),
   array('id' => '12','email' => 'léa@test.com','password' => 'test','nom' => 'Fournier','prenom' => 'Léa','telephone' => '0690123456','role' => '1','coefficient' => '2.50','responsable_id' => '14'),
-  array('id' => '13','email' => 'commercial@test.com','password' => 'test','nom' => 'Harris','prenom' => 'William','telephone' => '0612345879','role' => '2','coefficient' => NULL,'responsable_id' => NULL),
-  array('id' => '14','email' => 'commercial@test.com','password' => 'test','nom' => 'Girard','prenom' => 'Hugo','telephone' => '0678901234','role' => '3','coefficient' => NULL,'responsable_id' => NULL),
-  array('id' => '15','email' => 'jean@test.com','password' => 'test','nom' => 'Garnier','prenom' => 'Jean','telephone' => '0609876543','role' => '4','coefficient' => NULL,'responsable_id' => NULL)
+  array('id' => '13','email' => 'commercial_harris@test.com','password' => 'test','nom' => 'Harris','prenom' => 'William','telephone' => '0612345879','role' => '2','coefficient' => NULL,'responsable_id' => NULL),
+  array('id' => '14','email' => 'commercial_girard@test.com','password' => 'test','nom' => 'Girard','prenom' => 'Hugo','telephone' => '0678901234','role' => '3','coefficient' => NULL,'responsable_id' => NULL),
+  array('id' => '15','email' => 'gerant_jean@test.com','password' => 'test','nom' => 'Garnier','prenom' => 'Jean','telephone' => '0609876543','role' => '4','coefficient' => NULL,'responsable_id' => NULL)
+);
+
+/* `filmo2`.`adresse` */
+$adresse = array(
+  array('id' => '1','livraison' => '123 Shipping St, City','facturation' => '456 Billing St, City','id_uti' => '1'),
+  array('id' => '2','livraison' => '789 Delivery St, Town','facturation' => '101 Invoicing St, Town','id_uti' => '2'),
+  array('id' => '3','livraison' => '42 Starlight Lane, Celestia City','facturation' => '42 Starlight Lane, Celestia City','id_uti' => '3'),
+  array('id' => '4','livraison' => '101 Galaxy View, Nebula Town','facturation' => '456 Comet Boulevard, Nebula Town','id_uti' => '4'),
+  array('id' => '5','livraison' => '12 Enchanted Avenue, Fairytale City','facturation' => '345 Magic Street, Fairytale City','id_uti' => '5'),
+  array('id' => '6','livraison' => '1 Sunshine Road, Sunnyville','facturation' => '1 Sunshine Road, Sunnyville','id_uti' => '6'),
+  array('id' => '7','livraison' => '22 Riverbank Drive, Riverside','facturation' => '22 Riverbank Drive, Riverside','id_uti' => '7'),
+  array('id' => '8','livraison' => '5 Mountain Top, Peaksville','facturation' => '5 Mountain Top, Peaksville','id_uti' => '8'),
+  array('id' => '9','livraison' => '8 Meadow Lane, Meadowville','facturation' => '8 Meadow Lane, Meadowville','id_uti' => '9'),
+  array('id' => '10','livraison' => '456 Business Park, Commercial City','facturation' => '789 Corporate Avenue, Commercial City','id_uti' => '10'),
+  array('id' => '11','livraison' => '101 Industrial Zone, Industrial Town','facturation' => '222 Factory Street, Industrial Town','id_uti' => '11'),
+  array('id' => '12','livraison' => '25 Office Plaza, Officeville','facturation' => '333 Executive Street, Officeville','id_uti' => '12')
+);
+
+/* `filmo2`.`commande` */
+$commande = array(
+  array('id' => '1','date_commande' => '2022-03-01 12:00:00','total' => '25.98','etat' => '3','id_uti' => '1'),
+  array('id' => '2','date_commande' => '2022-04-02 15:30:00','total' => '27.98','etat' => '2','id_uti' => '2'),
+  array('id' => '3','date_commande' => '2022-05-03 18:45:00','total' => '66.95','etat' => '3','id_uti' => '1'),
+  array('id' => '4','date_commande' => '2022-06-01 14:00:00','total' => '23.98','etat' => '1','id_uti' => '4'),
+  array('id' => '5','date_commande' => '2022-07-02 16:45:00','total' => '23.98','etat' => '2','id_uti' => '5'),
+  array('id' => '6','date_commande' => '2023-01-10 08:15:00','total' => '32.97','etat' => '3','id_uti' => '7'),
+  array('id' => '7','date_commande' => '2023-02-15 17:30:00','total' => '24.97','etat' => '0','id_uti' => '9'),
+  array('id' => '8','date_commande' => '2023-03-20 13:45:00','total' => '59.90','etat' => '2','id_uti' => '11'),
+  array('id' => '9','date_commande' => '2023-04-25 09:30:00','total' => '24.98','etat' => '1','id_uti' => '3'),
+  array('id' => '10','date_commande' => '2023-05-30 14:45:00','total' => '33.96','etat' => '3','id_uti' => '6'),
+  array('id' => '11','date_commande' => '2023-07-05 11:00:00','total' => '7.99','etat' => '4','id_uti' => '8'),
+  array('id' => '12','date_commande' => '2023-08-10 16:15:00','total' => '269.70','etat' => '2','id_uti' => '10'),
+  array('id' => '13','date_commande' => '2023-09-15 12:30:00','total' => '17.98','etat' => '1','id_uti' => '4'),
+  array('id' => '14','date_commande' => '2023-10-20 14:45:00','total' => '199.80','etat' => '3','id_uti' => '12'),
+  array('id' => '15','date_commande' => '2023-11-25 10:00:00','total' => '20.98','etat' => '2','id_uti' => '5'),
+  array('id' => '16','date_commande' => '2023-12-25 18:15:00','total' => '47.96','etat' => '1','id_uti' => '1'),
+  array('id' => '17','date_commande' => '2024-01-05 14:30:00','total' => '30.97','etat' => '3','id_uti' => '9'),
+  array('id' => '18','date_commande' => '2024-02-10 09:45:00','total' => '33.96','etat' => '2','id_uti' => '2'),
+  array('id' => '19','date_commande' => '2024-03-15 16:00:00','total' => '20.98','etat' => '1','id_uti' => '4'),
+  array('id' => '20','date_commande' => '2024-04-20 12:15:00','total' => '23.97','etat' => '3','id_uti' => '6')
 );
 
   /* `filmo2`.`r_film_perso` */

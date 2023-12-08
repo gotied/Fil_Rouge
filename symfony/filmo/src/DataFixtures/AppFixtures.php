@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Adresse;
+use App\Entity\Commande;
 use App\Entity\Fournisseur;
 use App\Entity\Genre;
 use App\Entity\Personne;
@@ -101,13 +103,62 @@ class AppFixtures extends Fixture
         ->setNom($uti['nom'])
         ->setPrenom($uti['prenom'])
         ->setTelephone($uti['telephone'])
-        ->setRoles()
-        ->setCoefficient($uti['coefficient'])
-        ->setResponsable($uti['responsable_id']);
+        ->setRoles(['ROLE_USER'])
+        ->setCoefficient($uti['coefficient']);
+
+        $manager->persist($new_uti);
+        $data = $manager->getClassMetadata(Utilisateur::class);
+        $data->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
        }
 
        $manager->flush();
 
+       foreach ($adresse as $ad){
+        $new_ad = new Adresse();
+        $new_ad
+        ->setId($ad['id'])
+        ->setLivraison($ad['livraison'])
+        ->setFacturation($ad['facturation']);
+
+        $user = $uti_repo->find((int)$ad['id_uti']);
+        $new_ad->setUtilisateur($user);
+
+        $manager->persist($new_ad);
+        $data = $manager->getClassMetadata(Adresse::class);
+        $data->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+       }
+
+       foreach ($commande as $co){
+        $new_co = new Commande();
+        $new_co
+        ->setId($co['id'])
+        ->setDateCommande($co['date_commande'])
+        ->setTotal($co['total'])
+        ->setEtat($co['etat']);
+
+        $user = $uti_repo->find((int)$co['id_uti']);
+        $new_co->setUtilisateur($user);
+
+        $manager->persist($new_co);
+        $data = $manager->getClassMetadata(Commande::class);
+        $data->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+       }
+
+       $manager->flush();
+
+        $user = $uti_repo->findAll();
+        $com_par = $uti_repo->findOneBy(['id' => 13]);
+        $com_pro = $uti_repo->findOneBy(['id' => 14]);
+        foreach ($user as $cli){
+            $client = $cli->getId();
+            if ($client >= 1 && $client <= 9) {
+                $cli->setResponsable($com_par);
+            }
+            if ($client >= 10 && $client <= 12) {
+                $cli->setResponsable($com_pro);
+            }
+        }
+        
        foreach ($r_film_perso as $asso_pp){
         $id_pro = (int)$asso_pp['id_pro'];
         $id_per = (int)$asso_pp['id_per'];
