@@ -4,8 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Adresse;
 use App\Entity\Commande;
+use App\Entity\DetailsCommande;
+use App\Entity\Facture;
 use App\Entity\Fournisseur;
 use App\Entity\Genre;
+use App\Entity\Livraison;
 use App\Entity\Personne;
 use App\Entity\Produit;
 use App\Entity\Role;
@@ -26,6 +29,7 @@ class AppFixtures extends Fixture
        $ro_repo = $manager->getRepository(Role::class);
        $four_repo = $manager->getRepository(Fournisseur::class);
        $uti_repo = $manager->getRepository(Utilisateur::class);
+       $co_repo = $manager->getRepository(Commande::class);
 
        foreach ($produit as $pro){
         $new_pro = new Produit();
@@ -100,6 +104,7 @@ class AppFixtures extends Fixture
         ->setId($uti['id'])
         ->setEmail($uti['email'])
         ->setPassword($uti['password'])
+        // TODO: hash password
         ->setNom($uti['nom'])
         ->setPrenom($uti['prenom'])
         ->setTelephone($uti['telephone'])
@@ -146,49 +151,95 @@ class AppFixtures extends Fixture
 
        $manager->flush();
 
+       foreach ($details_commande as $dc){
+        $pro = $pro_repo->find((int)$dc['id_pro']);
+        $co = $co_repo->find((int)$dc['id_co']);
+
+        $new_dc = new DetailsCommande();
+        $new_dc
+        ->setQuantite($dc['quantite'])
+        ->setProduit($pro)
+        ->setCommande($co);
+
+        $manager->persist($new_dc);
+       }
+
+       foreach ($facture as $fac){
+        $co = $co_repo->find((int)$fac['id_co']);
+
+        $new_fac = new Facture();
+        $new_fac
+        ->setId($fac['id'])
+        ->setModeDePaiement($fac['mode_de_paiement'])
+        ->setDateFacture($fac['date_facture'])
+        ->setDatePaiement($fac['date_paiement'])
+        ->setDateLimite($fac['date_limite'])
+        ->setPayer($fac['payer'])
+        ->setCommande($co);
+
+        $manager->persist($new_fac);
+        $data = $manager->getClassMetadata(Facture::class);
+        $data->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+       }
+
+       foreach ($livraison as $li){
+        $co = $co_repo->find((int)$li['id_co']);
+
+        $new_li = new Livraison();
+        $new_li
+        ->setId($li['id'])
+        ->setDateLivraison($li['date_livraison'])
+        ->setCommande($co);
+
+        $manager->persist($new_li);
+        $data = $manager->getClassMetadata(Livraison::class);
+        $data->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+       }
+
         $user = $uti_repo->findAll();
         $com_par = $uti_repo->findOneBy(['id' => 13]);
         $com_pro = $uti_repo->findOneBy(['id' => 14]);
-        foreach ($user as $cli){
-            $client = $cli->getId();
-            if ($client >= 1 && $client <= 9) {
-                $cli->setResponsable($com_par);
+        foreach ($user as $u){
+            $user_id = $u->getId();
+            if ($user_id >= 1 && $user_id <= 9){
+                $u->setResponsable($com_par);
+                $u->setRoles(['ROLE_CLIENT']);
             }
-            if ($client >= 10 && $client <= 12) {
-                $cli->setResponsable($com_pro);
+            if ($user_id >= 10 && $user_id <= 12){
+                $u->setResponsable($com_pro);
+                $u->setRoles(['ROLE_CLIENT_PRO']);
+            }
+            if ($user_id === 13){
+               $u->setRoles(['ROLE_COMMERCIAL']);
+            }
+            if ($user_id === 14){
+                $u->setRoles(['ROLE_COMMERCIAL_PRO']);
+            }
+            if ($user_id === 15){
+                $u->setRoles(['ROLE_GERANT']);
             }
         }
         
        foreach ($r_film_perso as $asso_pp){
-        $id_pro = (int)$asso_pp['id_pro'];
-        $id_per = (int)$asso_pp['id_per'];
-
-        $pro = $pro_repo->find($id_pro);
-        $per = $per_repo->find($id_per);
+        $pro = $pro_repo->find((int)$asso_pp['id_pro']);
+        $per = $per_repo->find((int)$asso_pp['id_per']);
 
         $pro->addPersonne($per);
         $manager->flush();
        }
 
        foreach ($r_genre_film as $asso_pg){
-        $id_pro = (int)$asso_pg['id_pro'];
-        $id_gen = (int)$asso_pg['id_gen'];
-
-        $pro = $pro_repo->find($id_pro);
-        $gen = $gen_repo->find($id_gen);
+        $pro = $pro_repo->find((int)$asso_pg['id_pro']);
+        $gen = $gen_repo->find((int)$asso_pg['id_gen']);
 
         $pro->addGenre($gen);
         $manager->flush();
        }
 
        foreach ($r_role_perso as $asso_ppr){
-        $id_pro = (int)$asso_ppr['id_pro'];
-        $id_per = (int)$asso_ppr['id_per'];
-        $id_ro = (int)$asso_ppr['id_ro'];
-
-        $pro = $pro_repo->find($id_pro);
-        $per = $per_repo->find($id_per);
-        $ro = $ro_repo->find($id_ro);
+        $pro = $pro_repo->find((int)$asso_ppr['id_pro']);
+        $per = $per_repo->find((int)$asso_ppr['id_per']);
+        $ro = $ro_repo->find((int)$asso_ppr['id_ro']);
 
         $asso = new RolePersonneProduit();
         $asso
@@ -201,11 +252,8 @@ class AppFixtures extends Fixture
        }
 
        foreach ($r_fourni_film as $asso_pf){
-        $id_pro = (int)$asso_pf['id_pro'];
-        $id_four = (int)$asso_pf['id_four'];
-
-        $pro = $pro_repo->find($id_pro);
-        $four = $four_repo->find($id_four);
+        $pro = $pro_repo->find((int)$asso_pf['id_pro']);
+        $four = $four_repo->find((int)$asso_pf['id_four']);
 
         $pro->addFournisseur($four);
         $manager->flush();        

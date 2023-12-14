@@ -23,18 +23,30 @@ class Facture
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_paiement = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $payer = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_limite = null;
 
-    #[ORM\OneToOne(mappedBy: 'facture', cascade: ['persist', 'remove'])]
+    #[ORM\Column(nullable: true)]
+    private ?bool $payer = null;
+
+    #[ORM\OneToOne(inversedBy: 'facture')]
     private ?Commande $commande = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+     /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getModeDePaiement(): ?string
@@ -54,9 +66,9 @@ class Facture
         return $this->date_facture;
     }
 
-    public function setDateFacture(?\DateTimeInterface $date_facture): static
+    public function setDateFacture(?string $date_facture): static
     {
-        $this->date_facture = $date_facture;
+        $this->date_facture = $date_facture ? new \DateTime($date_facture) : null;
 
         return $this;
     }
@@ -66,9 +78,9 @@ class Facture
         return $this->date_paiement;
     }
 
-    public function setDatePaiement(?\DateTimeInterface $date_paiement): static
+    public function setDatePaiement(?string $date_paiement): static
     {
-        $this->date_paiement = $date_paiement;
+        $this->date_paiement = $date_paiement ? new \DateTime($date_paiement) : null;
 
         return $this;
     }
@@ -90,9 +102,9 @@ class Facture
         return $this->date_limite;
     }
 
-    public function setDateLimite(?\DateTimeInterface $date_limite): static
+    public function setDateLimite(?string $date_limite): static
     {
-        $this->date_limite = $date_limite;
+        $this->date_limite = $date_limite ? new \DateTime($date_limite) : null;
 
         return $this;
     }

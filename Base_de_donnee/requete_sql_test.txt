@@ -1,84 +1,118 @@
 -- casting / film / rôle --
 
-SELECT f.nm_fil AS film, concat(p.pm_per, ' ', p.nm_per) AS cast, r.nm_ro AS role
-FROM film f
-JOIN r_film_perso fp ON f.id_fil = fp.id_fil
-JOIN personne p ON fp.id_per = p.id_per
-JOIN r_role_perso rp ON p.id_per = rp.id_per AND f.id_fil = rp.id_fil
-JOIN role r ON rp.id_ro = r.id_ro;
+SELECT p.titre AS film, concat(per.prenom, ' ', per.nom) AS cast, r.nom AS role
+FROM produit p
+JOIN produit_personne pp ON p.id = pp.produit_id
+JOIN personne per ON pp.personne_id = per.id
+JOIN role_personne_produit rpp ON p.id = rpp.produit_id AND per.id = rpp.personne_id
+JOIN role r ON rpp.role_id = r.id  
+ORDER BY `film` ASC;
 
 -- film / genre --
 
-SELECT film.nm_fil AS film, genre.nm_gen AS genre
-FROM r_genre_film
-JOIN film ON r_genre_film.id_fil = film.id_fil
-JOIN genre ON r_genre_film.id_gen = genre.id_gen
-ORDER BY film.nm_fil;
+SELECT p.titre AS film, g.nom AS genre
+FROM produit p
+JOIN genre_produit gp ON p.id = gp.produit_id
+JOIN genre g ON gp.genre_id = g.id  
+ORDER BY `film` ASC;
 
 -- nombre de film par genre --
 
-SELECT g.nm_gen AS genre, COUNT(rf.id_fil) AS nombre_films
+SELECT g.nom AS genre, COUNT(p.id) AS nombre_de_films
 FROM genre g
-JOIN r_genre_film rf ON g.id_gen = rf.id_gen
-GROUP BY g.id_gen, g.nm_gen;
-
--- total vente par film --
-
-SELECT f.nm_fil AS film, SUM(d.qte * f.pr_fil) AS total_ventes
-FROM film f
-JOIN details d ON f.id_fil = d.id_fil
-GROUP BY f.id_fil, f.nm_fil;
-
--- film / fournisseur --
-
-SELECT f.nm_fil AS film, fr.nm_four AS fournisseur
-FROM film f
-JOIN r_fourni_film rf ON f.id_fil = rf.id_fil
-JOIN fournisseur fr ON rf.id_four = fr.id_four;
-
--- info commande --
-
-SELECT c.id_co AS numero_commande, c.dt_co AS date_commande, c.tt_co AS total, c.et_co AS etat_commande, l.bn_livr AS numero_bon_livraison, l.dt_lirv AS date_livraison, concat(u.nm_uti, ' ', u.pm_uti) AS client
-FROM commande c
-JOIN livraison l ON c.id_co = l.id_co
-JOIN utilisateur u ON c.id_uti = u.id_uti;
-
--- commande par utilisateur --
-
-SELECT concat(u.nm_uti, ' ', u.pm_uti) AS client, f.nm_fil AS film, c.id_co AS numero_commande
-FROM utilisateur u
-JOIN commande c ON u.id_uti = c.id_uti
-JOIN details d ON c.id_co = d.id_co
-JOIN film f ON d.id_fil = f.id_fil
-WHERE u.nm_uti = ""  
-ORDER BY `client`, `numero_commande` ASC;
-
--- moyenne date commande / facture --
-
-SELECT AVG(DATEDIFF(dt_fac, dt_co)) AS delai_moyen
-FROM facture
-JOIN commande ON facture.id_co = commande.id_co;
-
--- commande en cours de livraison --
-
-SELECT commande.id_co AS commande_id, commande.dt_co AS date_commande, commande.tt_co AS total_commande, commande.et_co AS état_commande, concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client
-FROM commande
-JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
-WHERE et_co = 2;
-
--- personne / film par role --
-
-SELECT DISTINCT CONCAT(personne.pm_per, ' ', personne.nm_per) AS casting, film.nm_fil AS film
-FROM personne
-JOIN r_role_perso ON personne.id_per = r_role_perso.id_per
-JOIN role ON r_role_perso.id_ro = role.id_ro
-JOIN film ON r_role_perso.id_fil = film.id_fil
-WHERE role.nm_ro = '';
+JOIN genre_produit gp ON g.id = gp.genre_id
+JOIN produit p ON gp.produit_id = p.id
+GROUP BY g.nom;
 
 -- film par genre --
 
-SELECT film.nm_fil AS film
-FROM film
-JOIN r_genre_film ON film.id_fil = r_genre_film.id_fil
-JOIN genre ON r_genre_film.id_gen = genre.id_gen
-WHERE genre.nm_gen = 'Action';
+SELECT p.titre AS film
+FROM produit p
+JOIN genre_produit gp ON p.id = gp.produit_id
+JOIN genre g ON gp.genre_id = g.id
+WHERE g.nom = '';
+
+-- personne / film par role --
+
+SELECT concat(per.prenom, ' ', per.nom) AS cast, p.titre AS film, r.nom AS role
+FROM personne per
+JOIN produit_personne pp ON per.id = pp.personne_id
+JOIN produit p ON pp.produit_id = p.id
+JOIN role_personne_produit rpp ON per.id = rpp.personne_id AND p.id = rpp.produit_id
+JOIN role r ON rpp.role_id = r.id
+WHERE r.nom = '';
+
+-- film par personne -- 
+
+SELECT concat(per.prenom, ' ', per.nom) AS cast, p.titre AS film, r.nom AS role
+FROM personne per
+JOIN produit_personne pp ON per.id = pp.personne_id
+JOIN produit p ON pp.produit_id = p.id
+JOIN role_personne_produit rpp ON per.id = rpp.personne_id AND p.id = rpp.produit_id
+JOIN role r ON rpp.role_id = r.id
+WHERE per.prenom = '' AND per.nom = '';
+
+-- film par personne et par role -- 
+
+SELECT concat(per.prenom, ' ', per.nom) AS cast, p.titre AS film, r.nom AS role
+FROM personne per
+JOIN produit_personne pp ON per.id = pp.personne_id
+JOIN produit p ON pp.produit_id = p.id
+JOIN role_personne_produit rpp ON per.id = rpp.personne_id AND p.id = rpp.produit_id
+JOIN role r ON rpp.role_id = r.id
+WHERE per.prenom = '' AND per.nom = '' AND r.nom = '';
+
+-- total vente par film --
+
+SELECT p.titre AS film, SUM(dc.quantite * p.prix_ht) AS total_ventes
+FROM produit p
+JOIN details_commande dc ON p.id = dc.produit_id
+GROUP BY p.titre;
+
+-- film / fournisseur --
+
+SELECT p.titre AS film, f.nom AS fournisseur
+FROM produit p
+JOIN fournisseur_produit fp ON p.id = fp.produit_id
+JOIN fournisseur f ON fp.fournisseur_id = f.id;
+
+-- info commande --
+
+SELECT
+    c.date_commande AS date_commande,
+    c.total AS total_commande,
+    c.etat AS etat_commande,
+    f.mode_de_paiement AS mode_de_paiement,
+    f.date_facture AS date_facture,
+    f.date_paiement AS date_paiement,
+    f.payer AS commande_payer,
+    l.date_livraison AS date_livraison,
+    concat(u.nom, ' ', u.prenom) AS client
+FROM commande c
+JOIN facture f ON c.id = f.commande_id
+JOIN livraison l ON c.id = l.commande_id
+JOIN utilisateur u ON c.utilisateur_id = u.id;
+
+-- film commande par utilisateur --
+
+SELECT concat(u.nom, ' ', u.prenom) AS client, p.titre AS film, c.id AS numero_commande, dc.quantite AS quantite_commandee
+FROM utilisateur u
+JOIN commande c ON u.id = c.utilisateur_id
+JOIN details_commande dc ON c.id = dc.commande_id
+JOIN produit p ON dc.produit_id = p.id
+ORDER BY u.id, c.id, p.id;
+
+-- commande en cours de livraison --
+
+SELECT
+    c.id AS commande_id,
+    c.date_commande,
+    c.total AS total_commande,
+    c.etat AS etat_commande,
+    l.id AS livraison_id,
+    l.date_livraison AS date_livraison,
+    concat(u.nom, ' ', u.prenom) AS client
+FROM commande c
+JOIN livraison l ON c.id = l.commande_id
+JOIN utilisateur u ON c.utilisateur_id = u.id
+WHERE c.etat = 2;

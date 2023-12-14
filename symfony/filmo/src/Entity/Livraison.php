@@ -17,7 +17,7 @@ class Livraison
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_livraison = null;
 
-    #[ORM\OneToOne(mappedBy: 'livraison', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'livraison')]
     private ?Commande $commande = null;
 
     public function getId(): ?int
@@ -25,14 +25,26 @@ class Livraison
         return $this->id;
     }
 
+     /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getDateLivraison(): ?\DateTimeInterface
     {
         return $this->date_livraison;
     }
 
-    public function setDateLivraison(?\DateTimeInterface $date_livraison): static
+    public function setDateLivraison(?string $date_livraison): static
     {
-        $this->date_livraison = $date_livraison;
+        $this->date_livraison = $date_livraison ? new \DateTime($date_livraison) : null;
 
         return $this;
     }

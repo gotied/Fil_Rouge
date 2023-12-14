@@ -31,10 +31,10 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailsCommande::class)]
     private Collection $detailsCommandes;
 
-    #[ORM\OneToOne(inversedBy: 'commande', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'commande')]
     private ?Facture $facture = null;
 
-    #[ORM\OneToOne(inversedBy: 'commande', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'commande')]
     private ?Livraison $livraison = null;
 
     public function __construct()

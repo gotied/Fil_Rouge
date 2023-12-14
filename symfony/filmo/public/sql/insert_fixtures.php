@@ -1,5 +1,5 @@
 <?php
-/* `filmo2`.`personne` */
+/* `filmo`.`personne` */
 $personne = array(
   array('id' => '1','prenom' => 'Hayao','nom' => 'Miyazaki'),
   array('id' => '2','prenom' => 'Toshio','nom' => 'Suzuki'),
@@ -223,7 +223,7 @@ $personne = array(
   array('id' => '220','prenom' => 'Juliet','nom' => 'Rylance')
 );
 
-/* `filmo2`.`produit` */
+/* `filmo`.`produit` */
 $produit = array(
     array('id' => '1','titre' => 'Princesse Mononoké','synopsis' => 'Japon, XVe siècle. Jadis protégée par des animaux géants, la forêt se dépeuple à cause de l\'homme.
   Blessé par un sanglier rendu fou par les démons, le jeune guerrier Ashitaka quitte les siens et part à la recherche du dieu-cerf qui seul pourra défaire le sortilège qui lui gangrène le bras.
@@ -356,7 +356,7 @@ $produit = array(
   Ellison va tenter de répondre à ces questions tandis que le tueur présumé, une entité surnaturelle présente sur les films, menace de plus en plus sa famille.','date_sortie' => '2012-10-05','duree' => '1h50','image' => 'sinister.webp','prix_ht' => '7.99','prix_four' => '1.99','stock' => '150','actif' => '1')
   );
 
-  /* `filmo2`.`genre` */
+  /* `filmo`.`genre` */
 $genre = array(
     array('id' => '1','nom' => 'Action'),
     array('id' => '2','nom' => 'Comédie'),
@@ -374,22 +374,22 @@ $genre = array(
     array('id' => '14','nom' => 'Epouvante-horreur')
   );
   
-  /* `filmo2`.`role` */
+  /* `filmo`.`role` */
 $role = array(
     array('id' => '1','nom' => 'Acteur'),
     array('id' => '2','nom' => 'Réalisateur'),
     array('id' => '3','nom' => 'Scénariste'),
     array('id' => '4','nom' => 'Producteur'),
-    array('id' => '5','nom' => 'Doubleur')
+    array('id' => '5','nom' => 'Voix originales')
   );
 
-/* `filmo2`.`fournisseur` */
+/* `filmo`.`fournisseur` */
 $fournisseur = array(
   array('id' => '1','nom' => 'MovieSupplier1','adresse' => '123 Main St, City','telephone' => '0234567890','email' => 'supplier@test.com'),
   array('id' => '2','nom' => 'MovieSupplier2','adresse' => '456 Oak St, Town','telephone' => '0876543210','email' => 'supplier@test.com')
 );
 
-  /* `filmo2`.`utilisateur` */
+  /* `filmo`.`utilisateur` */
 $utilisateur = array(
   array('id' => '1','email' => 'john@test.com','password' => 'test','nom' => 'Smith','prenom' => 'John','telephone' => '0612345678','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
   array('id' => '2','email' => 'jane@test.com','password' => 'test','nom' => 'Johnson','prenom' => 'Jane','telephone' => '0623456789','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
@@ -408,7 +408,7 @@ $utilisateur = array(
   array('id' => '15','email' => 'gerant_jean@test.com','password' => 'test','nom' => 'Garnier','prenom' => 'Jean','telephone' => '0609876543','role' => '4','coefficient' => NULL,'responsable_id' => NULL)
 );
 
-/* `filmo2`.`adresse` */
+/* `filmo`.`adresse` */
 $adresse = array(
   array('id' => '1','livraison' => '123 Shipping St, City','facturation' => '456 Billing St, City','id_uti' => '1'),
   array('id' => '2','livraison' => '789 Delivery St, Town','facturation' => '101 Invoicing St, Town','id_uti' => '2'),
@@ -424,7 +424,7 @@ $adresse = array(
   array('id' => '12','livraison' => '25 Office Plaza, Officeville','facturation' => '333 Executive Street, Officeville','id_uti' => '12')
 );
 
-/* `filmo2`.`commande` */
+/* `filmo`.`commande` */
 $commande = array(
   array('id' => '1','date_commande' => '2022-03-01 12:00:00','total' => '25.98','etat' => '3','id_uti' => '1'),
   array('id' => '2','date_commande' => '2022-04-02 15:30:00','total' => '27.98','etat' => '2','id_uti' => '2'),
@@ -448,7 +448,101 @@ $commande = array(
   array('id' => '20','date_commande' => '2024-04-20 12:15:00','total' => '23.97','etat' => '3','id_uti' => '6')
 );
 
-  /* `filmo2`.`r_film_perso` */
+/* `filmo`.`details_commande` */
+$details_commande = array(
+  array('id_pro' => '1','id_co' => '1','quantite' => '2'),
+  array('id_pro' => '1','id_co' => '3','quantite' => '3'),
+  array('id_pro' => '1','id_co' => '16','quantite' => '1'),
+  array('id_pro' => '2','id_co' => '2','quantite' => '2'),
+  array('id_pro' => '2','id_co' => '3','quantite' => '2'),
+  array('id_pro' => '3','id_co' => '4','quantite' => '2'),
+  array('id_pro' => '3','id_co' => '5','quantite' => '1'),
+  array('id_pro' => '3','id_co' => '16','quantite' => '1'),
+  array('id_pro' => '4','id_co' => '5','quantite' => '1'),
+  array('id_pro' => '4','id_co' => '6','quantite' => '1'),
+  array('id_pro' => '5','id_co' => '18','quantite' => '1'),
+  array('id_pro' => '6','id_co' => '9','quantite' => '1'),
+  array('id_pro' => '7','id_co' => '9','quantite' => '1'),
+  array('id_pro' => '8','id_co' => '12','quantite' => '15'),
+  array('id_pro' => '8','id_co' => '18','quantite' => '1'),
+  array('id_pro' => '9','id_co' => '12','quantite' => '15'),
+  array('id_pro' => '9','id_co' => '18','quantite' => '1'),
+  array('id_pro' => '10','id_co' => '6','quantite' => '1'),
+  array('id_pro' => '11','id_co' => '16','quantite' => '1'),
+  array('id_pro' => '12','id_co' => '16','quantite' => '1'),
+  array('id_pro' => '13','id_co' => '6','quantite' => '1'),
+  array('id_pro' => '13','id_co' => '13','quantite' => '1'),
+  array('id_pro' => '14','id_co' => '7','quantite' => '1'),
+  array('id_pro' => '15','id_co' => '7','quantite' => '1'),
+  array('id_pro' => '15','id_co' => '15','quantite' => '1'),
+  array('id_pro' => '15','id_co' => '20','quantite' => '1'),
+  array('id_pro' => '16','id_co' => '7','quantite' => '1'),
+  array('id_pro' => '17','id_co' => '8','quantite' => '10'),
+  array('id_pro' => '17','id_co' => '18','quantite' => '1'),
+  array('id_pro' => '19','id_co' => '20','quantite' => '1'),
+  array('id_pro' => '20','id_co' => '11','quantite' => '1'),
+  array('id_pro' => '21','id_co' => '19','quantite' => '1'),
+  array('id_pro' => '22','id_co' => '17','quantite' => '1'),
+  array('id_pro' => '22','id_co' => '19','quantite' => '1'),
+  array('id_pro' => '23','id_co' => '10','quantite' => '2'),
+  array('id_pro' => '24','id_co' => '20','quantite' => '1'),
+  array('id_pro' => '25','id_co' => '13','quantite' => '1'),
+  array('id_pro' => '26','id_co' => '14','quantite' => '20'),
+  array('id_pro' => '27','id_co' => '17','quantite' => '1'),
+  array('id_pro' => '28','id_co' => '15','quantite' => '1'),
+  array('id_pro' => '29','id_co' => '17','quantite' => '1'),
+  array('id_pro' => '30','id_co' => '10','quantite' => '2')
+);
+
+/* `filmo`.`facture` */
+$facture = array(
+  array('id' => '1','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2022-03-01','date_paiement' => '2022-03-01','payer' => '1','date_limite' => NULL,'id_co' => '1'),
+  array('id' => '2','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2022-04-02','date_paiement' => '2022-04-02','payer' => '1','date_limite' => NULL,'id_co' => '2'),
+  array('id' => '3','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2022-05-03','date_paiement' => '2022-05-03','payer' => '1','date_limite' => NULL,'id_co' => '3'),
+  array('id' => '4','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2022-06-01','date_paiement' => '2022-06-01','payer' => '1','date_limite' => NULL,'id_co' => '4'),
+  array('id' => '5','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2022-07-02','date_paiement' => '2022-07-02','payer' => '1','date_limite' => NULL,'id_co' => '5'),
+  array('id' => '6','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-01-10','date_paiement' => '2023-01-10','payer' => '1','date_limite' => NULL,'id_co' => '6'),
+  array('id' => '7','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-02-15','date_paiement' => '2023-02-15','payer' => '1','date_limite' => NULL,'id_co' => '7'),
+  array('id' => '8','mode_de_paiement' => 'Cheque','date_facture' => '2023-03-25','date_paiement' => NULL,'payer' => '0','date_limite' => '2023-04-30','id_co' => '8'),
+  array('id' => '9','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-04-25','date_paiement' => '2023-04-25','payer' => '1','date_limite' => NULL,'id_co' => '9'),
+  array('id' => '10','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-05-30','date_paiement' => '2023-05-30','payer' => '1','date_limite' => NULL,'id_co' => '10'),
+  array('id' => '11','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-07-05','date_paiement' => '2023-07-05','payer' => '1','date_limite' => NULL,'id_co' => '11'),
+  array('id' => '12','mode_de_paiement' => 'Cheque','date_facture' => '2023-08-20','date_paiement' => NULL,'payer' => '0','date_limite' => '2023-09-30','id_co' => '12'),
+  array('id' => '13','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-09-15','date_paiement' => '2023-09-15','payer' => '1','date_limite' => NULL,'id_co' => '13'),
+  array('id' => '14','mode_de_paiement' => 'Cheque','date_facture' => '2023-11-01','date_paiement' => '2023-11-30','payer' => '1','date_limite' => '2023-12-30','id_co' => '14'),
+  array('id' => '15','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-11-25','date_paiement' => '2023-11-25','payer' => '1','date_limite' => NULL,'id_co' => '15'),
+  array('id' => '16','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2023-12-25','date_paiement' => '2023-12-25','payer' => '1','date_limite' => NULL,'id_co' => '16'),
+  array('id' => '17','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2024-01-05','date_paiement' => '2024-01-05','payer' => '1','date_limite' => NULL,'id_co' => '17'),
+  array('id' => '18','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2024-02-10','date_paiement' => '2024-02-10','payer' => '1','date_limite' => NULL,'id_co' => '18'),
+  array('id' => '19','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2024-03-15','date_paiement' => '2024-03-15','payer' => '1','date_limite' => NULL,'id_co' => '19'),
+  array('id' => '20','mode_de_paiement' => 'Carte Bancaire','date_facture' => '2024-04-20','date_paiement' => '2024-04-20','payer' => '1','date_limite' => NULL,'id_co' => '20')
+);
+
+/* `filmo`.`livraison` */
+$livraison = array(
+  array('id' => '1','date_livraison' => '2022-03-04','id_co' => '1'),
+  array('id' => '2','date_livraison' => '2022-04-05','id_co' => '2'),
+  array('id' => '3','date_livraison' => '2022-05-06','id_co' => '3'),
+  array('id' => '4','date_livraison' => '2022-06-04','id_co' => '4'),
+  array('id' => '5','date_livraison' => '2022-06-05','id_co' => '5'),
+  array('id' => '6','date_livraison' => '2023-01-13','id_co' => '6'),
+  array('id' => '7','date_livraison' => '2023-02-18','id_co' => '7'),
+  array('id' => '8','date_livraison' => '2023-03-25','id_co' => '8'),
+  array('id' => '9','date_livraison' => '2023-04-28','id_co' => '9'),
+  array('id' => '10','date_livraison' => '2023-06-03','id_co' => '10'),
+  array('id' => '11','date_livraison' => '2023-07-08','id_co' => '11'),
+  array('id' => '12','date_livraison' => '2023-08-20','id_co' => '12'),
+  array('id' => '13','date_livraison' => '2023-09-18','id_co' => '13'),
+  array('id' => '14','date_livraison' => '2023-10-25','id_co' => '14'),
+  array('id' => '15','date_livraison' => '2023-11-28','id_co' => '15'),
+  array('id' => '16','date_livraison' => '2023-12-28','id_co' => '16'),
+  array('id' => '17','date_livraison' => '2024-01-08','id_co' => '17'),
+  array('id' => '18','date_livraison' => '2024-02-13','id_co' => '18'),
+  array('id' => '19','date_livraison' => '2024-03-18','id_co' => '19'),
+  array('id' => '20','date_livraison' => '2024-04-23','id_co' => '20')
+);
+
+  /* `filmo`.`r_film_perso` */
 $r_film_perso = array(
     array('id_pro' => '1','id_per' => '1'),
     array('id_pro' => '1','id_per' => '2'),
@@ -703,7 +797,7 @@ $r_film_perso = array(
     array('id_pro' => '30','id_per' => '220')
   );
 
-  /* `filmo2`.`r_genre_film` */
+  /* `filmo`.`r_genre_film` */
 $r_genre_film = array(
     array('id_pro' => '1','id_gen' => '3'),
     array('id_pro' => '1','id_gen' => '6'),
@@ -776,7 +870,7 @@ $r_genre_film = array(
     array('id_pro' => '30','id_gen' => '14')
   );
 
-  /* `filmo2`.`r_role_perso` */
+  /* `filmo`.`r_role_perso` */
 $r_role_perso = array(
     array('id_pro' => '1','id_per' => '1','id_ro' => '2'),
     array('id_pro' => '1','id_per' => '1','id_ro' => '3'),
@@ -1065,7 +1159,7 @@ $r_role_perso = array(
     array('id_pro' => '30','id_per' => '220','id_ro' => '1')
   );
 
-  /* `filmo2`.`r_fourni_film` */
+  /* `filmo`.`r_fourni_film` */
 $r_fourni_film = array(
   array('id_pro' => '1','id_four' => '1'),
   array('id_pro' => '2','id_four' => '1'),

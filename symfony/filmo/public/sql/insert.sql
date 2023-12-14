@@ -246,7 +246,7 @@ INSERT INTO role (nom) VALUES
 ('Réalisateur'), -- 2
 ('Scénariste'), -- 3
 ('Producteur'), -- 4
-('Doubleur'); -- 5
+('Voix originales'); -- 5
 
 -- Insertion des fournisseurs
 INSERT INTO fournisseur (nom, adresse, telephone, email) VALUES
@@ -1019,7 +1019,7 @@ INSERT INTO facture (mode_de_paiement, date_facture, date_paiement, payer, date_
 ('Carte Bancaire', '2022-07-02', '2022-07-02', 1, NULL, 5),
 ('Carte Bancaire', '2023-01-10', '2023-01-10', 1, NULL, 6),
 ('Carte Bancaire', '2023-02-15', '2023-02-15', 1, NULL, 7),
-('Cheque', '2023-03-20', NULL, 0, '2023-04-30', 8),
+('Cheque', '2023-03-25', NULL, 0, '2023-04-30', 8),
 ('Carte Bancaire', '2023-04-25', '2023-04-25', 1, NULL, 9),
 ('Carte Bancaire', '2023-05-30', '2023-05-30', 1, NULL, 10),
 ('Carte Bancaire', '2023-07-05', '2023-07-05', 1, NULL, 11),
@@ -1069,17 +1069,17 @@ INSERT INTO r_fourni_film (id_pro, id_four) VALUES
 -- Insertion des livraisons
 INSERT INTO livraison (date_livraison, id_co) VALUES
 ('2022-03-04', 1),
-('2022-03-05', 2),
-('2022-03-06', 3),
+('2022-04-05', 2),
+('2022-05-06', 3),
 ('2022-06-04', 4),
-('2022-06-05', 5),
+('2022-07-05', 5),
 ('2023-01-13', 6),
 ('2023-02-18', 7),
 ('2023-03-25', 8),
 ('2023-04-28', 9),
 ('2023-06-03', 10),
 ('2023-07-08', 11),
-('2023-08-15', 12),
+('2023-08-20', 12),
 ('2023-09-18', 13),
 ('2023-10-25', 14),
 ('2023-11-28', 15),

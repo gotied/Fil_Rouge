@@ -1,66 +1,65 @@
 -- Chiffre d'affaires mois par mois pour une année sélectionné --
 
-SELECT MONTH(dt_co) AS mois, YEAR(dt_co) AS annee, SUM(tt_co) AS chiffre_affaires
-FROM commande
-WHERE YEAR(dt_co) = 
+SELECT MONTH(c.date_commande) AS mois, YEAR(c.date_commande) AS annee, SUM(c.total) AS chiffre_affaire
+FROM commande c
+WHERE YEAR(c.date_commande) = ''
 GROUP BY mois, annee
 ORDER BY annee, mois;
 
 -- Top 10 produits les plus commmandés pour une année sélectionné -- 
 
-SELECT film.nm_fil AS produit, film.id_fil AS reference_produit, SUM(details.qte) AS quantite_commandee, fournisseur.nm_four AS fournisseur
-FROM details
-JOIN film ON details.id_fil = film.id_fil
-JOIN r_fourni_film ON film.id_fil = r_fourni_film.id_fil
-JOIN fournisseur ON r_fourni_film.id_four = fournisseur.id_four
-JOIN commande ON details.id_co = commande.id_co
-WHERE YEAR(commande.dt_co) = 
-GROUP BY film.id_fil, fournisseur.id_four
-ORDER BY quantite_commandee DESC
+SELECT p.titre AS film_titre, SUM(dc.quantite) AS quantite_commande, f.nom AS fournisseur
+FROM produit p
+JOIN details_commande dc ON p.id = dc.produit_id
+JOIN commande c ON dc.commande_id = c.id
+JOIN fournisseur_produit fp ON p.id = fp.produit_id
+JOIN fournisseur f ON fp.fournisseur_id = f.id
+WHERE YEAR(c.date_commande) = ''
+GROUP BY p.titre, f.nom
+ORDER BY quantite_commande DESC
 LIMIT 10;
 
 -- Top 10 produits les plus rémunérateurs pour une année sélectionné --
 
-SELECT film.nm_fil AS produit, film.id_fil AS reference_produit, SUM(details.qte * (film.pr_fil - film.pr_four)) AS marge, fournisseur.nm_four AS fournisseur
-FROM details
-JOIN film ON details.id_fil = film.id_fil
-JOIN r_fourni_film ON film.id_fil = r_fourni_film.id_fil
-JOIN fournisseur ON r_fourni_film.id_four = fournisseur.id_four
-JOIN commande ON details.id_co = commande.id_co
-WHERE YEAR(commande.dt_co) = 
-GROUP BY film.id_fil
+SELECT p.titre AS produit, f.nom AS fournisseur, SUM(dc.quantite * p.prix_ht) AS chiffre_affaire, SUM(dc.quantite * (p.prix_ht - p.prix_four)) AS marge
+FROM produit p
+JOIN details_commande dc ON p.id = dc.produit_id
+JOIN fournisseur_produit fp ON p.id = fp.produit_id
+JOIN fournisseur f ON fp.fournisseur_id = f.id
+JOIN commande c ON dc.commande_id = c.id
+WHERE YEAR(c.date_commande) = ''
+GROUP BY p.id
 ORDER BY marge DESC
 LIMIT 10;
 
 -- Top 10 des clients en nombre de commande --
 
-SELECT concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client, COUNT(commande.id_co) AS nombre_commandes
-FROM commande
-JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
-GROUP BY utilisateur.id_uti
+SELECT concat(u.nom, ' ', u.prenom) AS client, COUNT(c.id) AS nombre_commandes
+FROM utilisateur u
+JOIN commande c ON u.id = c.utilisateur_id
+GROUP BY  u.id
 ORDER BY nombre_commandes DESC
 LIMIT 10;
 
 -- Top 10 des clients en chiffre d'affaires --
 
-SELECT concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client, SUM(commande.tt_co) AS chiffre_affaires
-FROM commande
-JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
-GROUP BY utilisateur.id_uti
-ORDER BY chiffre_affaires DESC
+SELECT concat(u.nom, ' ', u.prenom) AS client, SUM(c.total) AS chiffre_affaire
+FROM utilisateur u
+JOIN commande c ON u.id = c.utilisateur_id
+GROUP BY u.id
+ORDER BY chiffre_affaire DESC
 LIMIT 10;
 
 -- Chiffre d'affaires par type de client --
 
-SELECT concat(utilisateur.nm_uti, ' ', utilisateur.pm_uti) AS client, utilisateur.rl_uti AS type_client, SUM(commande.tt_co) AS chiffre_affaires
-FROM commande
-JOIN utilisateur ON commande.id_uti = utilisateur.id_uti
-// WHERE utilisateur.rl_uti = //
-GROUP BY utilisateur.id_uti  
-ORDER BY chiffre_affaires  DESC;
+SELECT u.roles AS type_client, SUM(c.total) AS chiffre_affaire
+FROM utilisateur u
+JOIN commande c ON u.id = c.utilisateur_id
+WHERE u.roles = ''
+GROUP BY u.roles;
 
 -- Nombre de commandes en cours de livraison --
 
-SELECT COUNT(id_co) AS nombre_commandes_en_cours_de_livraison
+SELECT COUNT(commande.id) AS commandes_en_cours_de_livraison
 FROM commande
-WHERE et_co = 2;
+WHERE etat = 2;
