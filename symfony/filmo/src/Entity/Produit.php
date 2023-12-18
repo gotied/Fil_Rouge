@@ -32,7 +32,7 @@ class Produit
     private ?string $image = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2, nullable: true)]
-    private ?string $prix_ht = null;
+    private ?string $prix_ttc = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2, nullable: true)]
     private ?string $prix_four = null;
@@ -144,14 +144,14 @@ class Produit
         return $this;
     }
 
-    public function getPrixHt(): ?string
+    public function getPrixTtc(): ?string
     {
-        return $this->prix_ht;
+        return $this->prix_ttc;
     }
 
-    public function setPrixHt(?string $prix_ht): static
+    public function setPrixTtc(?string $prix_ttc): static
     {
-        $this->prix_ht = $prix_ht;
+        $this->prix_ttc = $prix_ttc;
 
         return $this;
     }

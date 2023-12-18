@@ -21,6 +21,39 @@ class DetailsCommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, DetailsCommande::class);
     }
 
+    // OBP = Order by popularity, max results 8
+    public function OBP8produit(): array {
+        return $this->createQueryBuilder('dc')
+            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.prix_ttc, p.image')
+            ->leftJoin('dc.produit', 'p')
+            ->groupBy('p.id')
+            ->orderBy('qte_vendu', 'DESC')
+            ->setMaxResults(8)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // OBP = Order by popularity 
+    public function OBPproduitDESC(): array {
+        return $this->createQueryBuilder('dc')
+            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.prix_ttc, p.image')
+            ->leftJoin('dc.produit', 'p')
+            ->groupBy('p.id')
+            ->orderBy('qte_vendu', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function OBPproduitASC(): array {
+        return $this->createQueryBuilder('dc')
+            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.prix_ttc, p.image')
+            ->leftJoin('dc.produit', 'p')
+            ->groupBy('p.id')
+            ->orderBy('qte_vendu', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return DetailsCommande[] Returns an array of DetailsCommande objects
 //     */

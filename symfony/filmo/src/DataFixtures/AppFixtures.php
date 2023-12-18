@@ -40,7 +40,7 @@ class AppFixtures extends Fixture
         ->setDateSortie($pro['date_sortie'])
         ->setDuree($pro['duree'])
         ->setImage($pro['image'])
-        ->setPrixHt($pro['prix_ht'])
+        ->setPrixTtc($pro['prix_ttc'])
         ->setPrixFour($pro['prix_four'])
         ->setStock($pro['stock'])
         ->setActif($pro['actif']);

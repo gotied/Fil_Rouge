@@ -9,7 +9,7 @@ CREATE TABLE produit(
    date_sortie DATE,
    duree VARCHAR(10) ,
    image VARCHAR(50) ,
-   prix_ht DECIMAL(6,2)  ,
+   prix_ttc DECIMAL(6,2)  ,
    prix_four DECIMAL(6,2)  ,
    stock INT,
    actif BOOLEAN,
