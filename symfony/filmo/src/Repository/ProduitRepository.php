@@ -185,9 +185,26 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
     // Recherche
+    // public function recherche($recherche): array {
+    //     return $this->createQueryBuilder('p')
+    //         ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \', \') AS role')
+    //         ->leftJoin('p.genres', 'g')
+    //         ->leftJoin('p.rolePersonneProduits', 'rpp')
+    //         ->leftJoin('rpp.role', 'r')
+    //         ->leftJoin('rpp.personne', 'pe')
+    //         ->where('p.titre LIKE :recherche')
+    //         ->orWhere('p.date_sortie LIKE :recherche')
+    //         ->orWhere('g.nom LIKE :recherche')
+    //         ->orWhere('CONCAT(pe.prenom, \' \', pe.nom) LIKE :recherche')
+    //         ->orWhere('r.nom LIKE :recherche')
+    //         ->groupBy('p.titre')
+    //         ->setParameter('recherche', '%'.$recherche.'%')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+    
     public function recherche($recherche): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \', \') AS role')
+        $qb = $this->createQueryBuilder('p')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
@@ -195,14 +212,69 @@ class ProduitRepository extends ServiceEntityRepository
             ->where('p.titre LIKE :recherche')
             ->orWhere('p.date_sortie LIKE :recherche')
             ->orWhere('g.nom LIKE :recherche')
-            ->orWhere('CONCAT(pe.prenom, \' \', pe.nom) LIKE :recherche')
-            ->orWhere('r.nom LIKE :recherche')
             ->groupBy('p.titre')
-            ->setParameter('recherche', '%'.$recherche.'%')
-            ->getQuery()
-            ->getResult();
-    }
+            ->setParameter('recherche', '%'.$recherche.'%');
+        $result = $qb->getQuery()->getResult();
 
+        if ($result) {
+            $qb = $this->createQueryBuilder('p')
+            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
+            ->leftJoin('p.genres', 'g')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('p.titre LIKE :recherche')
+            ->orWhere('p.date_sortie LIKE :recherche')
+            ->orWhere('g.nom LIKE :recherche')
+            ->groupBy('p.titre')
+            ->setParameter('recherche', '%'.$recherche.'%');
+            return $qb->getQuery()->getResult();
+        }
+        
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.genres', 'g')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('CONCAT(pe.prenom, \' \', pe.nom) LIKE :recherche')
+            ->setParameter('recherche', '%'.$recherche.'%');
+        $result = $qb->getQuery()->getResult();
+
+        if ($result) {
+            $qb = $this->createQueryBuilder('p')
+            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \', \') AS role')
+            ->leftJoin('p.genres', 'g')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('CONCAT(pe.prenom, \' \', pe.nom) LIKE :recherche')
+            ->groupBy('p.titre')
+            ->setParameter('recherche', '%'.$recherche.'%');
+            return $qb->getQuery()->getResult();
+        }
+
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.genres', 'g')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('r.nom LIKE :recherche')
+            ->setParameter('recherche', '%'.$recherche.'%');
+        $result = $qb->getQuery()->getResult();
+
+        if ($result) {
+            $qb = $this->createQueryBuilder('p')
+            ->select('DISTINCT CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.nom AS role')
+            ->leftJoin('p.genres', 'g')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('r.nom LIKE :recherche')
+            ->setParameter('recherche', '%'.$recherche.'%');
+            return $qb->getQuery()->getResult();
+        }
+    }
+    
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */

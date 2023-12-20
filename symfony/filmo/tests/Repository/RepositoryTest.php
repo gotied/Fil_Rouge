@@ -16,7 +16,7 @@ class RepositoryTest extends KernelTestCase {
         self::bootKernel();
         $container = self::$kernel->getContainer();
         $repository = $container->get(ProduitRepository::class);
-        $result = $repository->recherche('acteur');
+        $result = $repository->recherche('réali');
         $this->assertIsArray($result);
         dump($result);
     }
