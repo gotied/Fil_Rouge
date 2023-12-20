@@ -21,6 +21,34 @@ class PersonneRepository extends ServiceEntityRepository
         parent::__construct($registry, Personne::class);
     }
 
+    // Page Catégorie
+    // Order by name, where role
+    public function OBNpersASC($role): array {
+        return $this->createQueryBuilder('pe')
+            ->select('pe.id, CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.id AS role_id, r.nom AS role')
+            ->leftJoin('pe.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->where('r.nom = :nom')
+            ->setParameter('nom', $role)
+            ->groupBy('cast')
+            ->orderBy('cast', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function OBNpersDESC($role): array {
+        return $this->createQueryBuilder('pe')
+            ->select('pe.id, CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.id AS role_id, r.nom AS role')
+            ->leftJoin('pe.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->where('r.nom = :nom')
+            ->setParameter('nom', $role)
+            ->groupBy('cast')
+            ->orderBy('cast', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Personne[] Returns an array of Personne objects
 //     */

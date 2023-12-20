@@ -20,6 +20,24 @@ class RoleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Role::class);
     }
+    
+    // Page Catégorie
+    // Order by name
+    public function OBNroleASC(): array {
+        return $this->createQueryBuilder('r')
+            ->select('r.id, r.nom')
+            ->orderBy('r.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function OBNroleDESC(): array {
+        return $this->createQueryBuilder('r')
+            ->select('r.id, r.nom')
+            ->orderBy('r.nom', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Role[] Returns an array of Role objects

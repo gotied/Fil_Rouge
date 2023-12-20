@@ -27,3 +27,9 @@ services:
         public: true
     App\Repository\ProduitRepository:
         public: true
+    App\Repository\GenreRepository:
+        public: true
+    App\Repository\RoleRepository:
+        public: true
+    App\Repository\PersonneRepository:
+        public: true

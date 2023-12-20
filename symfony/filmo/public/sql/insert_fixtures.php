@@ -361,7 +361,7 @@ $genre = array(
     array('id' => '1','nom' => 'Action'),
     array('id' => '2','nom' => 'Comédie'),
     array('id' => '3','nom' => 'Drame'),
-    array('id' => '4','nom' => 'Sci-Fi'),
+    array('id' => '4','nom' => 'Science-Fiction'),
     array('id' => '5','nom' => 'Thriller'),
     array('id' => '6','nom' => 'Aventure'),
     array('id' => '7','nom' => 'Animation'),

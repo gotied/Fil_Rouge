@@ -23,6 +23,7 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    // Page Produit
     public function allproduit(): array {
         return $this->createQueryBuilder('p')
             ->select('p.id, p.prix_ttc, p.image')
@@ -47,6 +48,7 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // Page Catégorie / produit
     // WGN = Where genre, order by name
     public function WGNproduitASC($nom): array {
         return $this->createQueryBuilder('p')
@@ -97,7 +99,7 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // WRCN = where cast / role, order by name
+    // WRCN = Where cast / role, order by name
     public function WRCNproduitASC($role, $prenom, $nom): array {
         return $this->createQueryBuilder('p')
             ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast')
@@ -111,6 +113,92 @@ class ProduitRepository extends ServiceEntityRepository
                 new Parameter('nom', $nom)
             )))
             ->orderBy('p.titre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function WRCNproduitDESC($role, $prenom, $nom): array {
+        return $this->createQueryBuilder('p')
+            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
+            ->setParameters(new ArrayCollection(array(
+                new Parameter('role', $role),
+                new Parameter('prenom', $prenom),
+                new Parameter('nom', $nom)
+            )))
+            ->orderBy('p.titre', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    //WRCP = Where cast / role, order by popularity 
+    public function WRCPproduitDESC($role, $prenom, $nom): array {
+        return $this->createQueryBuilder('p')
+            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast, SUM(dc.quantite) AS qte_vendu')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->leftJoin('p.detailsCommandes', 'dc')
+            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
+            ->setParameters(new ArrayCollection(array(
+                new Parameter('role', $role),
+                new Parameter('prenom', $prenom),
+                new Parameter('nom', $nom)
+            )))
+            ->groupBy('p.id')
+            ->orderBy('qte_vendu', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function WRCPproduitASC($role, $prenom, $nom): array {
+        return $this->createQueryBuilder('p')
+            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast, SUM(dc.quantite) AS qte_vendu')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->leftJoin('p.detailsCommandes', 'dc')
+            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
+            ->setParameters(new ArrayCollection(array(
+                new Parameter('role', $role),
+                new Parameter('prenom', $prenom),
+                new Parameter('nom', $nom)
+            )))
+            ->groupBy('p.id')
+            ->orderBy('qte_vendu', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Page Détails produit
+    // WI = Where id
+    public function WIproduit($id): array {
+        return $this->createQueryBuilder('p')
+            ->select('p.id, p.titre, p.synopsis, p.date_sortie, p.duree, p.image, p.prix_ttc')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Recherche
+    public function recherche($recherche): array {
+        return $this->createQueryBuilder('p')
+            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \', \') AS role')
+            ->leftJoin('p.genres', 'g')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('p.titre LIKE :recherche')
+            ->orWhere('p.date_sortie LIKE :recherche')
+            ->orWhere('g.nom LIKE :recherche')
+            ->orWhere('CONCAT(pe.prenom, \' \', pe.nom) LIKE :recherche')
+            ->orWhere('r.nom LIKE :recherche')
+            ->groupBy('p.titre')
+            ->setParameter('recherche', '%'.$recherche.'%')
             ->getQuery()
             ->getResult();
     }

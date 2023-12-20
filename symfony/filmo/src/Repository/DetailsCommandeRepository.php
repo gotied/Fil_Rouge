@@ -21,6 +21,7 @@ class DetailsCommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, DetailsCommande::class);
     }
 
+    // Page Accueil
     // OBP = Order by popularity, max results 8
     public function OBP8produit(): array {
         return $this->createQueryBuilder('dc')
@@ -33,6 +34,7 @@ class DetailsCommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // Page Produit
     // OBP = Order by popularity 
     public function OBPproduitDESC(): array {
         return $this->createQueryBuilder('dc')

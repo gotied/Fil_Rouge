@@ -5,7 +5,7 @@ INSERT INTO genre (nom) VALUES
 ('Action'), -- 1
 ('Comédie'), -- 2
 ('Drame'), -- 3
-('Sci-Fi'), -- 4
+('Science-Fiction'), -- 4
 ('Thriller'), -- 5
 ('Aventure'), -- 6
 ('Animation'), -- 7

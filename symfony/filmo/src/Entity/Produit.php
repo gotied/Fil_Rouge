@@ -22,7 +22,7 @@ class Produit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $synopsis = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_sortie = null;
 
     #[ORM\Column(length: 10, nullable: true)]
@@ -115,7 +115,7 @@ class Produit
 
     public function setDateSortie(?string $date_sortie): static
     {
-        $this->date_sortie = $date_sortie ? new \DateTime($date_sortie) : null;
+        $this->date_sortie = $date_sortie ? new \DateTimeImmutable($date_sortie) : null;
 
         return $this;
     }
