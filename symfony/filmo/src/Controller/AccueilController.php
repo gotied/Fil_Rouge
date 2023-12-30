@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccueilController extends AbstractController
 {
     #[Route('/', name: 'app_accueil')]
-    public function index(ProduitRepository $pRepo, Request $request, Footer $footer): Response
+    public function index(Request $request, Footer $footer): Response
     {
         $sf = $footer->showFooter($request);
 

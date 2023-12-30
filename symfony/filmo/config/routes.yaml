@@ -1,6 +1,3 @@
-# app_custom_home:
-#     path: /
-#     controller: App\Controller\AccueilController::index
 controllers:
     resource: ../src/Controller/
     type: attribute
