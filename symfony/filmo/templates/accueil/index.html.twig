@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    {% if sf %}
+        <div class="text-center" style="color: white;">
+            {{sf|raw}}
+        </div>
+        {% else %}
+            <h1>TEST TEST TEST</h1>
+    {% endif %}
+{% endblock %}

@@ -203,6 +203,7 @@ class ProduitRepository extends ServiceEntityRepository
     //         ->getResult();
     // }
     
+    // TODO: modif fonction recherche / service 
     public function recherche($recherche): array {
         $qb = $this->createQueryBuilder('p')
             ->leftJoin('p.genres', 'g')
@@ -218,7 +219,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
+            ->select('p.titre, p.date_sortie, g.nom AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
