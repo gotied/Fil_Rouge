@@ -8,6 +8,7 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{asset ('css/style.css')}}">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap">
         {% endblock %}
 
         {% block javascripts %}
@@ -29,32 +30,32 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">Catégorie</a>
-                                    <ul class="dropdown-menu" style="background-color: #D03A3B;">
-                                        <li><a class="dropdown-item" id="" href="#" style="color: white;">Genre</a></li>
-                                        <li><a class="dropdown-item" href="#" style="color: white;">Casting</a></li>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" id="" href="#">Genre</a></li>
+                                        <li><a class="dropdown-item" href="#">Casting</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="rechercher" aria-label="Search" style="width: 426px;">
+                            <form method="get" class="d-flex" role="search" action="{{path ('app_accueil')}}" style="margin-right: 75px;">
+                                <input class="form-control me-2" type="search" placeholder="rechercher" aria-label="Search" name="search-bar" style="width: 420px;">
                                 <button class="btn" type="submit"><img src="{{asset ('img/icon/magnifying-glass-solid.svg')}}" alt="bouton rechercher"></button>
                             </form>
                         </div>
                         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#" style="color: white;"><img src="{{asset ('img/icon/cart-shopping-solid.svg')}}" alt="panier" style="width: 18px; height: 18px;"></a>
+                                    <a class="nav-link active" aria-current="page" href="#"><img src="{{asset ('img/icon/cart-shopping-solid.svg')}}" class="nav-link-icon" alt="panier"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#" style="color: white;"><img src="{{asset ('img/icon/envelope-solid.svg')}}" alt="contact" style="width: 18px;"></a>
+                                    <a class="nav-link active" aria-current="page" href="#"><img src="{{asset ('img/icon/envelope-solid.svg')}}" alt="contact" style="width: 18px;"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#" style="color: white;"><img src="{{asset ('img/icon/user-solid-white.svg')}}" alt="profil" style="width: 18px; height: 18px;"></a>
+                                    <a class="nav-link active" aria-current="page" href="#"><img src="{{asset ('img/icon/user-solid-white.svg')}}" alt="profil" style="width: 18px; height: 18px;"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#" style="color: white;"><img src="{{asset ('img/icon/right-to-bracket-solid.svg')}}" alt="déconnexion" style="width: 18px;"></a>
+                                    <a class="nav-link active" aria-current="page" href="#"><img src="{{asset ('img/icon/right-to-bracket-solid.svg')}}" alt="déconnexion" style="width: 18px;"></a>
                                 </li>
                             </ul>
                         </div>
@@ -71,9 +72,9 @@
                     <a href="#"><img src="{{asset ('img/icon/twitter.svg')}}" alt="twitter"></a>
                     <a href="https://github.com/gotied"><img src="{{asset ('img/icon/github.svg')}}" alt="github"></a>
                 </div>
-                <div class="d-flex justify-content-center justify-content-evenly" style="margin-top: 10px;">
-                    <a class="a-link-footer" href="{{path ('app_accueil', {'pdc':'pdc'})}}">Politique de confidentialité</a>
-                    <a class="a-link-footer" href="{{path ('app_accueil', {'ml':'ml'})}}">Mentions légales</a>
+                <div class="d-flex justify-content-center" id="div-2-footer" style="margin-top: 25px; margin-right: 40px;">
+                    <a class="a-link-footer mx-5" href="{{path ('app_accueil', {'pdc':'pdc'})}}">Politique de confidentialité</a>
+                    <a class="a-link-footer mx-5" href="{{path ('app_accueil', {'ml':'ml'})}}">Mentions légales</a>
                 </div>
             </div>
         </footer>

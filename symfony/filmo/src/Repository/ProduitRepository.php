@@ -202,14 +202,10 @@ class ProduitRepository extends ServiceEntityRepository
     //         ->getQuery()
     //         ->getResult();
     // }
-    
-    // TODO: modif fonction recherche / service 
+
     public function recherche($recherche): array {
         $qb = $this->createQueryBuilder('p')
             ->leftJoin('p.genres', 'g')
-            ->leftJoin('p.rolePersonneProduits', 'rpp')
-            ->leftJoin('rpp.role', 'r')
-            ->leftJoin('rpp.personne', 'pe')
             ->where('p.titre LIKE :recherche')
             ->orWhere('p.date_sortie LIKE :recherche')
             ->orWhere('g.nom LIKE :recherche')
@@ -219,10 +215,9 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.titre, p.date_sortie, g.nom AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
+            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
-            ->leftJoin('rpp.role', 'r')
             ->leftJoin('rpp.personne', 'pe')
             ->where('p.titre LIKE :recherche')
             ->orWhere('p.date_sortie LIKE :recherche')
@@ -243,7 +238,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \', \') AS role')
+            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, CONCAT(pe.prenom, \' \', pe.nom) AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \' \') AS role')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
@@ -255,7 +250,6 @@ class ProduitRepository extends ServiceEntityRepository
         }
 
         $qb = $this->createQueryBuilder('p')
-            ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
             ->leftJoin('rpp.personne', 'pe')
@@ -266,7 +260,6 @@ class ProduitRepository extends ServiceEntityRepository
         if ($result) {
             $qb = $this->createQueryBuilder('p')
             ->select('DISTINCT CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.nom AS role')
-            ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
             ->leftJoin('rpp.personne', 'pe')

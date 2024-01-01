@@ -7,7 +7,93 @@
         <div class="text-center" style="color: white;">
             {{sf|raw}}
         </div>
+        {% elseif search %}
+            {# <pre>
+                {{ dump(search) }}
+            </pre> #}
+            <div class="d-flex flex-wrap justify-content-center">
+                {% for result in search %}
+                    {% if (attribute(result, 'role') is defined) and (attribute(result, 'titre') is not defined) %}
+                            <div class="card my-5 mx-5 col-3" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="#" class="a-link-card">{{result.cast}}</a></h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">{{result.role}}</h6>
+                                </div>
+                            </div>
+                            {% elseif (attribute(result, 'role') is defined) and (attribute(result, 'titre') is defined) %}
+                                <div class="card my-5 mx-5 col-3" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-2"><a href="#" class="a-link-card">{{result.titre}}</a></h5>
+                                        <h6 class="card-subtitle mb-3 text-body-secondary">{{result.date_sortie|date('d-m-Y')}}</h6>
+                                        <h6 class="card-subtitle mb-3 text-body-secondary">
+                                            {% for genre in result.genre|split(' ') %}
+                                                <a href="#" class="a-link-card-sub">{{genre}}</a>    
+                                            {% endfor %}
+                                        </h6>
+                                        <h6 class="card-subtitle mb-3 text-body-secondary">
+                                            {% for role in result.role|split(' ') %}
+                                                <a href="#" class="a-link-card-sub">{{role}}</a>
+                                            {% endfor %}
+                                        </h6>
+                                        <p class="card-text">{{result.cast}}</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="card my-5 mx-5 col-3" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="#" class="a-link-card">{{result.titre}}</a></h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">{{result.date_sortie|date('d-m-Y')}}</h6>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                                            {% for genre in result.genre|split(' ') %}
+                                                <a href="#" class="a-link-card-sub">{{genre}}</a>    
+                                            {% endfor %}
+                                        </h6>
+                                        <p class="card-text">{{result.cast}}</p>
+                                    </div>
+                                </div>
+                        {% endif %}
+                {% endfor %}
+            </div>
         {% else %}
-            <h1>TEST TEST TEST</h1>
+            <div class="d-flex justify-content-center" style="margin-bottom: 50px; margin-top: 20px;">
+                <div id="div-accueil">
+                    <h1>TOP 6 DES FILMS LES PLUS VENDUS</h1>
+                </div>
+            </div>
+            {# <pre>
+                {{ dump(top6) }}
+            </pre> #}
+            <div class="container-fluid" style="margin-top: 25px; margin-bottom: 35px;">
+                <div class="d-flex flex-wrap justify-content-center justify-content-between">
+                    <div class="col-7 mx-3">
+                        <div class="d-flex flex-wrap justify-content-left">
+                            {% for pro in top6 %}
+                                <div class="card mb-3 mx-5" style="max-width: 430px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="{{asset ('img/affiche/')}}{{pro.image}}" class="img-fluid rounded-start" alt="affiche {{pro.titre}}"></a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><a href="#" class="a-link-pro">{{pro.titre}}</a></h5>
+                                                <p class="card-text">{{pro.prix_ttc}} €</p>
+                                                <p class="card-text"><a href="#"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-3 mx-5">
+                        <div class="div-col2">
+                            <h1>PROMO FLASH</h1>
+                            <h1>1%</h1>
+                            <h1>DE RÉDUCTION</h1>
+                            <img src="{{asset ('img/icon/saul-goodman-300x188.png')}}" alt="saul goodman">
+                        </div>
+                    </div>
+                </div>
+            </div>
     {% endif %}
 {% endblock %}

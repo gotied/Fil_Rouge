@@ -22,14 +22,14 @@ class DetailsCommandeRepository extends ServiceEntityRepository
     }
 
     // Page Accueil
-    // OBP = Order by popularity, max results 8
-    public function OBP8produit(): array {
+    // OBP = Order by popularity, max results 6
+    public function OBP6produit(): array {
         return $this->createQueryBuilder('dc')
-            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.prix_ttc, p.image')
+            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.titre, p.prix_ttc, p.image')
             ->leftJoin('dc.produit', 'p')
             ->groupBy('p.id')
             ->orderBy('qte_vendu', 'DESC')
-            ->setMaxResults(8)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
     }
