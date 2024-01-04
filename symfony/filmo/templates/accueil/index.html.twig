@@ -65,10 +65,10 @@
             </pre> #}
             <div class="container-fluid" style="margin-top: 25px; margin-bottom: 35px;">
                 <div class="d-flex flex-wrap justify-content-center justify-content-between">
-                    <div class="col-7 mx-3">
+                    <div class="col-7 mx-3" id="div-pro">
                         <div class="d-flex flex-wrap justify-content-left">
                             {% for pro in top6 %}
-                                <div class="card mb-3 mx-5" style="max-width: 430px;">
+                                <div class="card mb-3 mx-3" id="card-pro" style="max-width: 430px;">
                                     <div class="row g-0">
                                         <div class="col-md-4">
                                             <a href="#"><img src="{{asset ('img/affiche/')}}{{pro.image}}" class="img-fluid rounded-start" alt="affiche {{pro.titre}}"></a>
@@ -76,6 +76,7 @@
                                         <div class="col-md-8">
                                             <div class="card-body">
                                                 <h5 class="card-title"><a href="#" class="a-link-pro">{{pro.titre}}</a></h5>
+                                                <p class="card-text">{{pro.date_sortie|date('d-m-Y')}}</p>
                                                 <p class="card-text">{{pro.prix_ttc}} €</p>
                                                 <p class="card-text"><a href="#"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a></p>
                                             </div>
@@ -85,12 +86,12 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-3 mx-5">
-                        <div class="div-col2">
-                            <h1>PROMO FLASH</h1>
-                            <h1>1%</h1>
-                            <h1>DE RÉDUCTION</h1>
-                            <img src="{{asset ('img/icon/saul-goodman-300x188.png')}}" alt="saul goodman">
+                    <div class="col-3 mx-5 my-5">
+                        <div class="div-promo">
+                            <h1 class="h1-promo">PROMO FLASH</h1>
+                            <h1 class="h1-promo-2">1%</h1>
+                            <h1 class="h1-promo">DE RÉDUCTION</h1>
+                            <img src="{{asset ('img/icon/saul-goodman-300x188.png')}}" alt="saul goodman" class="img-fluid">
                         </div>
                     </div>
                 </div>

@@ -24,28 +24,12 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
     // Page Produit
-    public function allproduit(): array {
+    public function allproduit() {
         return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image')
-            ->getQuery()
-            ->getResult();
-    }
-
-    // OBN = Order by name
-    public function OBNproduitASC(): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image')
-            ->orderBy('p.titre', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function OBNproduitDESC(): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image')
-            ->orderBy('p.titre', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->select('p.id, p.titre, p.prix_ttc, p.image, p.date_sortie, SUM(dc.quantite) AS qte_vendu')
+            ->leftJoin('p.detailsCommandes', 'dc')
+            ->groupBy('p.id')
+            ->getQuery();
     }
 
     // Page Catégorie / produit

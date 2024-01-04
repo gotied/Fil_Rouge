@@ -1,7 +1,7 @@
 body {
     background-color: #D03A3B;
 }
-#navbar-header, #navbar-footer {
+#navbar-header, #navbar-footer, .page-link {
     background-color: #D03A3B !important;
 }
 .dropdown-menu {
@@ -10,6 +10,13 @@ body {
 .nav-link, .dropdown-item, .form-control, input::placeholder {
     font-family: 'Luckiest Guy';
     font-size: 16px;
+}
+.page-link {
+    border: none !important;
+    color: white;
+}
+.active>.page-link, .page-link.active {
+    color: #FFF559;
 }
 .a-link-footer {
     text-decoration: none;
@@ -28,7 +35,7 @@ input::placeholder {
     color: #FFF559 !important;
     background-color: #D03A3B;
 }
-.nav-link:hover, .a-link-footer:hover {
+.nav-link:hover, .a-link-footer:hover, .page-link:hover {
     color: #FFF559 !important;
 }
 .navbar-toggler {
@@ -69,18 +76,39 @@ h1 {
 .a-link-pro:hover {
     color: #D03A3B;
 }
-.div-col2 {
+.div-promo {
     text-align: center;
     border-color: #ffffff;
     border-width: 5px;
     border-style: solid;
     padding: 20px;
-    /* box-shadow: 0px 0px 5px 3px #ffffff; */
+    box-shadow: 0px 0px 5px 3px #ffffff;
+}
+.h1-promo {
+    color: #FFF559 !important;
+    font-family: 'Luckiest Guy' !important;
+}
+.h1-promo-2 {
+    color: #ffffff !important;
+    font-family: 'Luckiest Guy' !important;
 }
 /* .form-control:focus {
     box-shadow: 0 0 4px 0 #FFF559; 
     outline: 2px solid #FFF559;
 } */
+@media screen and (max-width: 905px) {
+	.h1-promo {
+        font-size: 25px;
+    }
+    .div-promo {
+        padding: 10px;
+        width: 250px;
+        margin-left: 180px;
+    }
+    #div-pro {
+        margin-left: 120px !important;
+    }
+}
 @media screen and (max-width: 620px) {
 	.form-control {
         width: auto !important;
@@ -88,10 +116,31 @@ h1 {
     #div-2-footer {
         margin-right: 0px !important;
     }
+    .h1-promo {
+        font-size: 20px;
+    }
+    .div-promo {
+        margin-left: 115px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .div-promo {
+        padding: 25px;
+        margin-left: 85px;
+    }
+    #div-pro {
+        margin-left: 100px !important;
+    }
 }
 @media screen and (max-width: 490px) {
 	#div-accueil {
         padding: 10px;
+    }
+    .h1-promo {
+        font-size: 17px;
+    }
+    .div-promo {
+        margin-left: 65px;
     }
 }
 @media screen and (max-width: 460px) {
@@ -100,10 +149,16 @@ h1 {
         border-width: 0px !important;
         box-shadow: none;
     }
+    .div-promo {
+        margin-left: 45px;
+    }
 }
 @media screen and (max-width: 420px) {
 	#div-accueil {
         margin-left: 50px;
+    }
+    .div-promo {
+        margin-left: 30px;
     }
 }
 @media screen and (max-width: 370px) {
@@ -112,5 +167,8 @@ h1 {
     }
     #div-accueil {
         margin-left: 35px;
+    }
+    .div-promo {
+        margin-left: 5px;
     }
 }

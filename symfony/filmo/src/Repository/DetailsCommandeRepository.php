@@ -25,33 +25,11 @@ class DetailsCommandeRepository extends ServiceEntityRepository
     // OBP = Order by popularity, max results 6
     public function OBP6produit(): array {
         return $this->createQueryBuilder('dc')
-            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.titre, p.prix_ttc, p.image')
+            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.titre, p.prix_ttc, p.image, p.date_sortie')
             ->leftJoin('dc.produit', 'p')
             ->groupBy('p.id')
             ->orderBy('qte_vendu', 'DESC')
             ->setMaxResults(6)
-            ->getQuery()
-            ->getResult();
-    }
-
-    // Page Produit
-    // OBP = Order by popularity 
-    public function OBPproduitDESC(): array {
-        return $this->createQueryBuilder('dc')
-            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.prix_ttc, p.image')
-            ->leftJoin('dc.produit', 'p')
-            ->groupBy('p.id')
-            ->orderBy('qte_vendu', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function OBPproduitASC(): array {
-        return $this->createQueryBuilder('dc')
-            ->select('SUM(dc.quantite) AS qte_vendu, p.id, p.prix_ttc, p.image')
-            ->leftJoin('dc.produit', 'p')
-            ->groupBy('p.id')
-            ->orderBy('qte_vendu', 'ASC')
             ->getQuery()
             ->getResult();
     }

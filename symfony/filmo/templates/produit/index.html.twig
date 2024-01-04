@@ -3,5 +3,23 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-
+    {# <pre>
+        {{ dump(pagination) }}
+    </pre> #}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center justify-content-evenly">
+            <div>{{ knp_pagination_sortable(pagination, 'A-Z', 'p.titre', {}, {'direction': 'asc'})}}</div>
+            <div>{{ knp_pagination_sortable(pagination, 'Z-A', 'p.titre', {}, {'direction': 'desc'})}}</div>
+            <div>{{ knp_pagination_sortable(pagination, 'Populaire DESC', 'qte_vendu', {}, {'direction': 'desc'})}}</div>
+            <div>{{ knp_pagination_sortable(pagination, 'Populaire ASC', 'qte_vendu', {}, {'direction': 'asc'})}}</div>
+        </div>
+    </div>
+    {% for produit in pagination %}
+        <pre>
+            {{ dump(produit) }}
+        </pre>
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}
