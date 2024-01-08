@@ -87,11 +87,17 @@ h1 {
 .h1-promo {
     color: #FFF559 !important;
     font-family: 'Luckiest Guy' !important;
+    font-size: 30px;
 }
 .h1-promo-2 {
     color: #ffffff !important;
     font-family: 'Luckiest Guy' !important;
 }
+/* .active-link {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #FFF559;
+} */
 /* .form-control:focus {
     box-shadow: 0 0 4px 0 #FFF559; 
     outline: 2px solid #FFF559;
@@ -107,6 +113,19 @@ h1 {
     }
     #div-pro {
         margin-left: 120px !important;
+    }
+    #card-syno {
+        width: 20rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    #card-pro {
+        width: 18rem;
+    }
+    #card-pro-acc {
+        width: 18rem;
     }
 }
 @media screen and (max-width: 620px) {
@@ -142,6 +161,10 @@ h1 {
     .div-promo {
         margin-left: 65px;
     }
+    #div-pro {
+        margin-left: 80px !important;
+    }
+    
 }
 @media screen and (max-width: 460px) {
 	#div-accueil {
@@ -160,8 +183,17 @@ h1 {
     .div-promo {
         margin-left: 30px;
     }
+    #card-pro {
+        width: 15rem;
+    }
+    #card-pro-acc {
+        width: 15rem;
+    }
+    #div-pro {
+        margin-left: 70px !important;
+    }
 }
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 375px) {
 	#div-2-footer {
         margin-right: 0px !important;
     }
@@ -170,5 +202,8 @@ h1 {
     }
     .div-promo {
         margin-left: 5px;
+    }
+    #div-pro {
+        margin-left: 60px !important;
     }
 }

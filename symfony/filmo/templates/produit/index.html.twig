@@ -1,25 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Film{% endblock %}
 
 {% block body %}
-    {# <pre>
-        {{ dump(pagination) }}
-    </pre> #}
-    <div class="container-fluid">
-        <div class="d-flex justify-content-center justify-content-evenly">
-            <div>{{ knp_pagination_sortable(pagination, 'A-Z', 'p.titre', {}, {'direction': 'asc'})}}</div>
-            <div>{{ knp_pagination_sortable(pagination, 'Z-A', 'p.titre', {}, {'direction': 'desc'})}}</div>
-            <div>{{ knp_pagination_sortable(pagination, 'Populaire DESC', 'qte_vendu', {}, {'direction': 'desc'})}}</div>
-            <div>{{ knp_pagination_sortable(pagination, 'Populaire ASC', 'qte_vendu', {}, {'direction': 'asc'})}}</div>
+    {% if detailsPro %}
+        {# <pre>
+            {{ dump(detailsPro, detailsCast) }}
+        </pre> #}
+        <div class="d-flex row justify-content-center">
+            {% for produit in detailsPro %}
+                <div class="card my-5 mx-3" style="width: 18rem;">
+                    <img src="{{asset ('img/affiche/' ~ produit.image)}}" class="card-img-top img-fluid" alt="affiche {{produit.titre}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{produit.titre}}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{produit.duree}}</li>
+                        <li class="list-group-item">{{produit.date_sortie|date('d-m-Y')}}</li>
+                        <li class="list-group-item">{{produit.prix_ttc}} €</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a>
+                    </div>
+                </div>
+                <div class="card my-5 mx-3" id="card-syno" style="width: 30rem;">
+                    <div class="card-body">
+                        <p class="card-text">{{produit.synopsis}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+                <div class="card my-5 mx-3" style="width: 18rem;">
+                    <div class="card-body">
+                        {% for cast in detailsCast %}
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{cast.role}}</h6>
+                            <p class="card-text">{{cast.cast}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
         </div>
-    </div>
-    {% for produit in pagination %}
-        <pre>
-            {{ dump(produit) }}
-        </pre>
-    {% endfor %}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+    {% else %}
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center justify-content-evenly">
+                <div>{{ knp_pagination_sortable(pagination, 'A-Z', 'p.titre', {}, {'direction': 'asc'})}}</div>
+                <div>{{ knp_pagination_sortable(pagination, 'Z-A', 'p.titre', {}, {'direction': 'desc'})}}</div>
+                <div>{{ knp_pagination_sortable(pagination, 'Populaire DESC', 'qte_vendu', {}, {'direction': 'desc'})}}</div>
+                <div>{{ knp_pagination_sortable(pagination, 'Populaire ASC', 'qte_vendu', {}, {'direction': 'asc'})}}</div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center my-5">
+            {% for produit in pagination %}
+                <div class="card my-3 mx-3" id="card-pro" style="max-width: 430px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <a href="{{path ('app_produit', {'film':produit.id})}}"><img src="{{asset ('img/affiche/' ~ produit.image)}}" class="img-fluid rounded-start" alt="affiche {{produit.titre}}"></a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="{{path ('app_produit', {'film':produit.id})}}" class="a-link-pro">{{produit.titre}}</a></h5>
+                                <p class="card-text">{{produit.date_sortie|date('d-m-Y')}}</p>
+                                <p class="card-text">{{produit.prix_ttc}} €</p>
+                                <p class="card-text"><a href="#"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% endif %}
 {% endblock %}

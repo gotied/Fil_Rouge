@@ -15,9 +15,18 @@ class ProduitController extends AbstractController
     public function index(ProduitRepository $proRepo, PaginatorInterface $paginator, Request $request): Response
     {
         $pagination = $paginator->paginate($proRepo->allproduit(), $request->query->getInt('page', 1), 8);
-        
+        $detailsPro = $proRepo->WIproduit($request->query->get('film', ));
+        $detailsCast = $proRepo->WICproduit($request->query->get('film', ));
+
+        usort($detailsCast, function($a, $b) {
+            $order = ['Réalisateur', 'Producteur', 'Scénariste', 'Voix originales', 'Acteur'];
+            return array_search($a['role'], $order) - array_search($b['role'], $order);
+        });
+
         return $this->render('produit/index.html.twig', [
             'pagination' => $pagination,
+            'detailsPro' => $detailsPro,
+            'detailsCast' => $detailsCast,
         ]);
     }
 }

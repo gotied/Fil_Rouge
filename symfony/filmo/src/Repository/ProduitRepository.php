@@ -167,6 +167,19 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    // Cast
+    public function WICproduit($id): array {
+        return $this->createQueryBuilder('p')
+            ->select('p.id AS film_id, r.nom AS role, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
+            ->leftJoin('p.rolePersonneProduits', 'rpp')
+            ->leftJoin('rpp.role', 'r')
+            ->leftJoin('rpp.personne', 'pe')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->groupBy('role')
+            ->getQuery()
+            ->getResult();
+    }
 
     // Recherche
     // public function recherche($recherche): array {
@@ -199,7 +212,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
+            ->select('p.id, p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.personne', 'pe')
@@ -222,7 +235,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, CONCAT(pe.prenom, \' \', pe.nom) AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \' \') AS role')
+            ->select('p.id, p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, CONCAT(pe.prenom, \' \', pe.nom) AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \' \') AS role')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')

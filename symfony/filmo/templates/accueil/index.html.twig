@@ -23,7 +23,7 @@
                             {% elseif (attribute(result, 'role') is defined) and (attribute(result, 'titre') is defined) %}
                                 <div class="card my-5 mx-5 col-3" style="width: 18rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title mb-2"><a href="#" class="a-link-card">{{result.titre}}</a></h5>
+                                        <h5 class="card-title mb-2"><a href="{{path ('app_produit', {'film':result.id})}}" class="a-link-card">{{result.titre}}</a></h5>
                                         <h6 class="card-subtitle mb-3 text-body-secondary">{{result.date_sortie|date('d-m-Y')}}</h6>
                                         <h6 class="card-subtitle mb-3 text-body-secondary">
                                             {% for genre in result.genre|split(' ') %}
@@ -41,7 +41,7 @@
                             {% else %}
                                 <div class="card my-5 mx-5 col-3" style="width: 18rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="#" class="a-link-card">{{result.titre}}</a></h5>
+                                        <h5 class="card-title"><a href="{{path ('app_produit', {'film':result.id})}}" class="a-link-card">{{result.titre}}</a></h5>
                                         <h6 class="card-subtitle mb-2 text-body-secondary">{{result.date_sortie|date('d-m-Y')}}</h6>
                                         <h6 class="card-subtitle mb-2 text-body-secondary">
                                             {% for genre in result.genre|split(' ') %}
@@ -65,17 +65,17 @@
             </pre> #}
             <div class="container-fluid" style="margin-top: 25px; margin-bottom: 35px;">
                 <div class="d-flex flex-wrap justify-content-center justify-content-between">
-                    <div class="col-7 mx-3" id="div-pro">
+                    <div class="col-8 mx-3" id="div-pro">
                         <div class="d-flex flex-wrap justify-content-left">
                             {% for pro in top6 %}
-                                <div class="card mb-3 mx-3" id="card-pro" style="max-width: 430px;">
+                                <div class="card mb-3 mx-3" id="card-pro-acc" style="max-width: 430px;">
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            <a href="#"><img src="{{asset ('img/affiche/')}}{{pro.image}}" class="img-fluid rounded-start" alt="affiche {{pro.titre}}"></a>
+                                            <a href="{{path ('app_produit', {'film':pro.id})}}"><img src="{{asset ('img/affiche/' ~ pro.image)}}" class="img-fluid rounded-start" alt="affiche {{pro.titre}}"></a>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title"><a href="#" class="a-link-pro">{{pro.titre}}</a></h5>
+                                                <h5 class="card-title"><a href="{{path ('app_produit', {'film':pro.id})}}" class="a-link-pro">{{pro.titre}}</a></h5>
                                                 <p class="card-text">{{pro.date_sortie|date('d-m-Y')}}</p>
                                                 <p class="card-text">{{pro.prix_ttc}} €</p>
                                                 <p class="card-text"><a href="#"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a></p>
@@ -86,7 +86,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-3 mx-5 my-5">
+                    <div class="col-2 mx-5 my-5" style="max-width: 45rem">
                         <div class="div-promo">
                             <h1 class="h1-promo">PROMO FLASH</h1>
                             <h1 class="h1-promo-2">1%</h1>
