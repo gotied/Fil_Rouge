@@ -22,31 +22,14 @@ class PersonneRepository extends ServiceEntityRepository
     }
 
     // Page Catégorie
-    // Order by name, where role
-    public function OBNpersASC($role): array {
+    public function WRper($id) {
         return $this->createQueryBuilder('pe')
-            ->select('pe.id, CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.id AS role_id, r.nom AS role')
+            ->select('DISTINCT pe.id, CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.id AS role_id, r.nom AS role')
             ->leftJoin('pe.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
-            ->where('r.nom = :nom')
-            ->setParameter('nom', $role)
-            ->groupBy('cast')
-            ->orderBy('cast', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function OBNpersDESC($role): array {
-        return $this->createQueryBuilder('pe')
-            ->select('pe.id, CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.id AS role_id, r.nom AS role')
-            ->leftJoin('pe.rolePersonneProduits', 'rpp')
-            ->leftJoin('rpp.role', 'r')
-            ->where('r.nom = :nom')
-            ->setParameter('nom', $role)
-            ->groupBy('cast')
-            ->orderBy('cast', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->where('r.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
     }
 
 //    /**

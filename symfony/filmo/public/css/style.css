@@ -13,14 +13,17 @@ body {
 }
 .page-link {
     border: none !important;
-    color: white;
+    color: #ffffff;
+}
+#page-disabled {
+    color: #ffffff !important;
 }
 .active>.page-link, .page-link.active {
     color: #FFF559;
 }
 .a-link-footer {
     text-decoration: none;
-    color: white;
+    color: #ffffff;
     font-family: 'Luckiest Guy';
     font-size: 13px;
 }
@@ -35,7 +38,7 @@ input::placeholder {
     color: #FFF559 !important;
     background-color: #D03A3B;
 }
-.nav-link:hover, .a-link-footer:hover, .page-link:hover {
+.nav-link:hover, .a-link-footer:hover, .page-link:hover, .link-cat:hover {
     color: #FFF559 !important;
 }
 .navbar-toggler {
@@ -92,6 +95,14 @@ h1 {
 .h1-promo-2 {
     color: #ffffff !important;
     font-family: 'Luckiest Guy' !important;
+}
+.li-cat {
+    list-style: none;
+    text-align: center;
+}
+.link-cat {
+    text-decoration: none;
+    color: #ffffff;
 }
 /* .active-link {
     border-style: solid;

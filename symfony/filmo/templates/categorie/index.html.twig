@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie{% endblock %}
+
+{% block body %}
+    {% if 'genre' in app.request.query.get('categorie') %}
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center justify-content-evenly">
+                <div>{{ knp_pagination_sortable(genrePa, 'A-Z', 'g.nom', {}, {'direction': 'asc'})}}</div>
+                <div>{{ knp_pagination_sortable(genrePa, 'Z-A', 'g.nom', {}, {'direction': 'desc'})}}</div>
+                <div>{{ knp_pagination_sortable(genrePa, 'Populaire DESC', 'qte_vendu', {}, {'direction': 'desc'})}}</div>
+                <div>{{ knp_pagination_sortable(genrePa, 'Populaire ASC', 'qte_vendu', {}, {'direction': 'asc'})}}</div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="my-5 d-flex justify-content-center">
+                <ul>
+                    {% for genre in genrePa %}
+                        <li class="li-cat my-3"><a href="{{path ('app_produit', {'genre':genre.id})}}" class="link-cat">{{genre.nom}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if 'role' in app.request.query.get('categorie') %}
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center justify-content-evenly">
+                <div>{{ knp_pagination_sortable(rolePa, 'A-Z', 'r.nom', {}, {'direction': 'asc'})}}</div>
+                <div>{{ knp_pagination_sortable(rolePa, 'Z-A', 'r.nom', {}, {'direction': 'desc'})}}</div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="my-5 d-flex justify-content-center" style="margin-bottom: 350px !important;">
+                <ul>
+                    {% for role in rolePa %}
+                        <li class="li-cat my-3"><a href="{{path ('app_categorie', {'role':role.id})}}" class="link-cat">{{role.nom}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% elseif perPa is not empty %}
+            <div class="container-fluid">
+                <div class="d-flex justify-content-center justify-content-evenly">
+                    <div>{{ knp_pagination_sortable(perPa, 'A-Z', 'cast', {}, {'direction': 'asc'})}}</div>
+                    <div>{{ knp_pagination_sortable(perPa, 'Z-A', 'cast', {}, {'direction': 'desc'})}}</div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center my-5">
+                {% for cast in perPa %}
+                    <div class="card my-3 mx-3 col-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{path ('app_produit', {'role':cast.role_id, 'cast':cast.id})}}" class="a-link-card">{{cast.cast}}</a></h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{cast.role}}</h6>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(perPa) }}
+            </div>
+    {% endif %}
+{% endblock %}

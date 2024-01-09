@@ -8,15 +8,12 @@
             {{sf|raw}}
         </div>
         {% elseif search %}
-            {# <pre>
-                {{ dump(search) }}
-            </pre> #}
             <div class="d-flex flex-wrap justify-content-center">
                 {% for result in search %}
                     {% if (attribute(result, 'role') is defined) and (attribute(result, 'titre') is not defined) %}
                             <div class="card my-5 mx-5 col-3" style="width: 18rem;">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="#" class="a-link-card">{{result.cast}}</a></h5>
+                                    <h5 class="card-title"><a href="{{path ('app_produit', {'role':result.role_id, 'cast':result.id})}}" class="a-link-card">{{result.cast}}</a></h5>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">{{result.role}}</h6>
                                 </div>
                             </div>
@@ -25,16 +22,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title mb-2"><a href="{{path ('app_produit', {'film':result.id})}}" class="a-link-card">{{result.titre}}</a></h5>
                                         <h6 class="card-subtitle mb-3 text-body-secondary">{{result.date_sortie|date('d-m-Y')}}</h6>
-                                        <h6 class="card-subtitle mb-3 text-body-secondary">
-                                            {% for genre in result.genre|split(' ') %}
-                                                <a href="#" class="a-link-card-sub">{{genre}}</a>    
-                                            {% endfor %}
-                                        </h6>
-                                        <h6 class="card-subtitle mb-3 text-body-secondary">
-                                            {% for role in result.role|split(' ') %}
-                                                <a href="#" class="a-link-card-sub">{{role}}</a>
-                                            {% endfor %}
-                                        </h6>
+                                        <h6 class="card-subtitle mb-3 text-body-secondary">{{result.genre}}</h6>
+                                        <h6 class="card-subtitle mb-3 text-body-secondary">{{result.role}}</h6>
                                         <p class="card-text">{{result.cast}}</p>
                                     </div>
                                 </div>
@@ -43,11 +32,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="{{path ('app_produit', {'film':result.id})}}" class="a-link-card">{{result.titre}}</a></h5>
                                         <h6 class="card-subtitle mb-2 text-body-secondary">{{result.date_sortie|date('d-m-Y')}}</h6>
-                                        <h6 class="card-subtitle mb-2 text-body-secondary">
-                                            {% for genre in result.genre|split(' ') %}
-                                                <a href="#" class="a-link-card-sub">{{genre}}</a>    
-                                            {% endfor %}
-                                        </h6>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">{{result.genre}}</h6>
                                         <p class="card-text">{{result.cast}}</p>
                                     </div>
                                 </div>
@@ -60,9 +45,6 @@
                     <h1>TOP 6 DES FILMS LES PLUS VENDUS</h1>
                 </div>
             </div>
-            {# <pre>
-                {{ dump(top6) }}
-            </pre> #}
             <div class="container-fluid" style="margin-top: 25px; margin-bottom: 35px;">
                 <div class="d-flex flex-wrap justify-content-center justify-content-between">
                     <div class="col-8 mx-3" id="div-pro">

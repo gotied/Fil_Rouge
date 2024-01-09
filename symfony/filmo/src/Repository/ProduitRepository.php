@@ -32,127 +32,29 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    // Page Catégorie / produit
-    // WGN = Where genre, order by name
-    public function WGNproduitASC($nom): array {
+    // Page Catégorie / genre / produit
+    public function WGproduit($id) {
         return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, g.nom AS genre')
-            ->leftJoin('p.genres', 'g')
-            ->where('g.nom = :nom')
-            ->setParameter('nom', $nom)
-            ->orderBy('p.titre', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function WGNproduitDESC($nom): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, g.nom AS genre')
-            ->leftJoin('p.genres', 'g')
-            ->where('g.nom = :nom')
-            ->setParameter('nom', $nom)
-            ->orderBy('p.titre', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    // WGP = Where genre, order by popularity
-    public function WGPproduitDESC($nom): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, g.nom AS genre, SUM(dc.quantite) AS qte_vendu')
+            ->select('p.id, p.titre, p.prix_ttc, p.image, p.date_sortie, g.nom AS genre, SUM(dc.quantite) AS qte_vendu')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.detailsCommandes', 'dc')
-            ->where('g.nom = :nom')
-            ->setParameter('nom', $nom)
+            ->where('g.id = :id')
+            ->setParameter('id', $id)
             ->groupBy('p.id')
-            ->orderBy('qte_vendu', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
-
-    public function WGPproduitASC($nom): array {
+    // Page Catégorie / cast|role / produit
+    public function WCRproduit($id_role, $id_per): array {
         return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, g.nom AS genre, SUM(dc.quantite) AS qte_vendu')
-            ->leftJoin('p.genres', 'g')
-            ->leftJoin('p.detailsCommandes', 'dc')
-            ->where('g.nom = :nom')
-            ->setParameter('nom', $nom)
-            ->groupBy('p.id')
-            ->orderBy('qte_vendu', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    // WRCN = Where cast / role, order by name
-    public function WRCNproduitASC($role, $prenom, $nom): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast')
+            ->select('p.id, p.titre, p.prix_ttc, p.image, p.date_sortie, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
             ->leftJoin('rpp.personne', 'pe')
-            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
+            ->where('r.id = :role AND pe.id = :cast')
             ->setParameters(new ArrayCollection(array(
-                new Parameter('role', $role),
-                new Parameter('prenom', $prenom),
-                new Parameter('nom', $nom)
+                new Parameter('role', $id_role),
+                new Parameter('cast', $id_per)
             )))
-            ->orderBy('p.titre', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function WRCNproduitDESC($role, $prenom, $nom): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast')
-            ->leftJoin('p.rolePersonneProduits', 'rpp')
-            ->leftJoin('rpp.role', 'r')
-            ->leftJoin('rpp.personne', 'pe')
-            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
-            ->setParameters(new ArrayCollection(array(
-                new Parameter('role', $role),
-                new Parameter('prenom', $prenom),
-                new Parameter('nom', $nom)
-            )))
-            ->orderBy('p.titre', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    //WRCP = Where cast / role, order by popularity 
-    public function WRCPproduitDESC($role, $prenom, $nom): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast, SUM(dc.quantite) AS qte_vendu')
-            ->leftJoin('p.rolePersonneProduits', 'rpp')
-            ->leftJoin('rpp.role', 'r')
-            ->leftJoin('rpp.personne', 'pe')
-            ->leftJoin('p.detailsCommandes', 'dc')
-            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
-            ->setParameters(new ArrayCollection(array(
-                new Parameter('role', $role),
-                new Parameter('prenom', $prenom),
-                new Parameter('nom', $nom)
-            )))
-            ->groupBy('p.id')
-            ->orderBy('qte_vendu', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function WRCPproduitASC($role, $prenom, $nom): array {
-        return $this->createQueryBuilder('p')
-            ->select('p.id, p.prix_ttc, p.image, r.nom AS role, CONCAT(pe.prenom, \' \', pe.nom) AS cast, SUM(dc.quantite) AS qte_vendu')
-            ->leftJoin('p.rolePersonneProduits', 'rpp')
-            ->leftJoin('rpp.role', 'r')
-            ->leftJoin('rpp.personne', 'pe')
-            ->leftJoin('p.detailsCommandes', 'dc')
-            ->where('r.nom = :role AND pe.prenom = :prenom AND pe.nom = :nom')
-            ->setParameters(new ArrayCollection(array(
-                new Parameter('role', $role),
-                new Parameter('prenom', $prenom),
-                new Parameter('nom', $nom)
-            )))
-            ->groupBy('p.id')
-            ->orderBy('qte_vendu', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -212,7 +114,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.id, p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
+            ->select('p.id, p.titre, p.date_sortie, g.id AS genre_id, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, GROUP_CONCAT(DISTINCT CONCAT(pe.prenom, \' \', pe.nom) SEPARATOR \', \') AS cast')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.personne', 'pe')
@@ -235,7 +137,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('p.id, p.titre, p.date_sortie, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \' \') AS genre, CONCAT(pe.prenom, \' \', pe.nom) AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \' \') AS role')
+            ->select('p.id, p.titre, p.date_sortie, g.id AS genre_id, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre, CONCAT(pe.prenom, \' \', pe.nom) AS cast, GROUP_CONCAT(DISTINCT r.nom SEPARATOR \', \') AS role')
             ->leftJoin('p.genres', 'g')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
@@ -256,7 +158,7 @@ class ProduitRepository extends ServiceEntityRepository
 
         if ($result) {
             $qb = $this->createQueryBuilder('p')
-            ->select('DISTINCT CONCAT(pe.prenom, \' \', pe.nom) AS cast, r.nom AS role')
+            ->select('DISTINCT CONCAT(pe.prenom, \' \', pe.nom) AS cast, pe.id, r.nom AS role, r.id AS role_id')
             ->leftJoin('p.rolePersonneProduits', 'rpp')
             ->leftJoin('rpp.role', 'r')
             ->leftJoin('rpp.personne', 'pe')

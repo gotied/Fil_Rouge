@@ -22,45 +22,15 @@ class GenreRepository extends ServiceEntityRepository
     }
 
     // Page Catégorie 
-    // OBN = Order by name
-    public function OBNgenreASC(): array {
-        return $this->createQueryBuilder('g')
-            ->select('g.id, g.nom')
-            ->orderBy('g.nom', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function OBNgenreDESC(): array {
-        return $this->createQueryBuilder('g')
-            ->select('g.id, g.nom')
-            ->orderBy('g.nom', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    // OBP = Order by popularity
-    public function OBPgenreDESC(): array {
+    public function allGenre() {
         return $this->createQueryBuilder('g')
             ->select('g.id, g.nom, SUM(dc.quantite) AS qte_vendu')
             ->leftJoin('g.produit', 'p')
             ->leftJoin('p.detailsCommandes', 'dc')
             ->groupBy('g.id')
-            ->orderBy('qte_vendu', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
-
-    public function OBPgenreASC(): array {
-        return $this->createQueryBuilder('g')
-            ->select('g.id, g.nom, SUM(dc.quantite) AS qte_vendu')
-            ->leftJoin('g.produit', 'p')
-            ->leftJoin('p.detailsCommandes', 'dc')
-            ->groupBy('g.id')
-            ->orderBy('qte_vendu', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
+    
 //    /**
 //     * @return Genre[] Returns an array of Genre objects
 //     */
