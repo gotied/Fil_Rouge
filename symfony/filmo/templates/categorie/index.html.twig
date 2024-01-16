@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="container-fluid">
-            <div class="my-5 d-flex justify-content-center" style="margin-bottom: 350px !important;">
+            <div class="my-5 d-flex justify-content-center">
                 <ul>
                     {% for role in rolePa %}
                         <li class="li-cat my-3"><a href="{{path ('app_categorie', {'role':role.id})}}" class="link-cat">{{role.nom}}</a></li>

@@ -1,5 +1,11 @@
 body {
     background-color: #D03A3B;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+footer {
+    margin-top: auto;
 }
 #navbar-header, #navbar-footer, .page-link {
     background-color: #D03A3B !important;
@@ -7,10 +13,10 @@ body {
 .dropdown-menu {
     background-color: #D03A3B;
 }
-.nav-link, .dropdown-item, .form-control, input::placeholder {
+/* .nav-link, .dropdown-item, .form-control, input::placeholder {
     font-family: 'Luckiest Guy';
     font-size: 16px;
-}
+} */
 .page-link {
     border: none !important;
     color: #ffffff;
@@ -24,8 +30,8 @@ body {
 .a-link-footer {
     text-decoration: none;
     color: #ffffff;
-    font-family: 'Luckiest Guy';
-    font-size: 13px;
+    /* font-family: 'Luckiest Guy'; */
+    /* font-size: 13px; */
 }
 input::placeholder {
     color: rgb(162, 162, 162) !important;
@@ -43,6 +49,7 @@ input::placeholder {
 }
 .navbar-toggler {
     border-color: #ffffff;
+    color: #ffffff;
 }
 .navbar-toggler:hover {
     color: #ffffff;
@@ -104,6 +111,34 @@ h1 {
     text-decoration: none;
     color: #ffffff;
 }
+#contact_form_email, #contact_form_objet, #contact_form_message, #inputEmail, #inputPassword, #registration_form_email, #registration_form_plainPassword, #reset_password_request_form_email, #change_password_form_plainPassword_first, #change_password_form_plainPassword_second {
+    background-color: #D9D9D9;
+    border-color: #000000;
+}
+#contact_form_email:focus, #contact_form_objet:focus, #contact_form_message:focus, #inputEmail:focus, #inputPassword:focus, #registration_form_email:focus, #registration_form_plainPassword:focus, #reset_password_request_form_email:focus, #change_password_form_plainPassword_first:focus, #change_password_form_plainPassword_second:focus {
+    box-shadow: 0 0 4px 0 #D03A3B; 
+    outline: 3px solid #D03A3B;
+    border-color: #D03A3B;
+}
+#contact_form_save, #submit_login, #registration_form_agreeTerms, #checkbox_login, #submit_reset, #submit_reset_new {
+    background-color: #D03A3B;
+    border-color: #D03A3B;
+}
+#submit_register {
+    background-color: #D03A3B;
+    border-color: #D03A3B;
+    color: #ffffff;
+}
+#registration_form_agreeTerms:focus, #checkbox_login:focus {
+    outline: none;
+    box-shadow: none;
+}
+#a-link-login, #a-link-login-mdp, #a-link-mdp {
+    color: inherit;
+}
+#a-link-login:hover, #a-link-login-mdp:hover, #a-link-mdp:hover {
+    color: #D03A3B;
+}
 /* .active-link {
     border-style: solid;
     border-width: 1px;
@@ -130,17 +165,17 @@ h1 {
         margin-top: 1rem !important;
         margin-bottom: 1rem !important;
     }
+    #card-contact {
+        width: auto !important;
+    }
 }
 @media screen and (max-width: 768px) {
-    #card-pro {
-        width: 18rem;
-    }
-    #card-pro-acc {
+    #card-pro, #card-pro-acc, #card-pro-g {
         width: 18rem;
     }
 }
 @media screen and (max-width: 620px) {
-	.form-control {
+	#input-search {
         width: auto !important;
     }
     #div-2-footer {
@@ -175,7 +210,6 @@ h1 {
     #div-pro {
         margin-left: 80px !important;
     }
-    
 }
 @media screen and (max-width: 460px) {
 	#div-accueil {
@@ -194,14 +228,18 @@ h1 {
     .div-promo {
         margin-left: 30px;
     }
-    #card-pro {
-        width: 15rem;
-    }
-    #card-pro-acc {
+    #card-pro, #card-pro-acc, #card-pro-g {
         width: 15rem;
     }
     #div-pro {
         margin-left: 70px !important;
+    }
+    #contact_form_message {
+        width: 25ch !important;
+        height: 15ch;
+    }
+    #submit_login, #label_remember {
+        margin-top: 1rem !important;
     }
 }
 @media screen and (max-width: 375px) {
@@ -216,5 +254,8 @@ h1 {
     }
     #div-pro {
         margin-left: 60px !important;
+    }
+    #checkbox_login {
+        margin-left: 0rem !important;
     }
 }

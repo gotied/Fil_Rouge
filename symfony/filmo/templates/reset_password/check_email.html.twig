@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+        <div class="card my-5 mx-5" style="width: 30rem;">
+            <div class="card-body">
+                <p class="card-text">
+                    Si un compte correspondant à votre adresse email existe, alors un email vient d'être envoyé, contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+                    <br>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                </p>
+                <p>Si vous ne recevez pas d'email, veuillez vérifier vos courriers indésirables ou <a href="{{ path('app_forgot_password_request') }}" id="a-link-mdp">recommencer</a>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

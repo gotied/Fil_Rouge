@@ -26,7 +26,7 @@ class AccueilController extends AbstractController
         return $this->render('accueil/index.html.twig', [
             'sf' => $sf,
             'top6' => $top6,
-            'search' => $search,
+            'search' => $search
         ]);
     }
 }

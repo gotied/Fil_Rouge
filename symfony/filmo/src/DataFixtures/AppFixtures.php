@@ -16,9 +16,17 @@ use App\Entity\RolePersonneProduit;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private $passwordHash;
+
+    public function __construct(UserPasswordHasherInterface $passwordHash) 
+    {
+        $this->passwordHash = $passwordHash;
+    }
+
     public function load(ObjectManager $manager): void
     {
        include 'public/sql/insert_fixtures.php';
@@ -103,13 +111,15 @@ class AppFixtures extends Fixture
         $new_uti
         ->setId($uti['id'])
         ->setEmail($uti['email'])
-        ->setPassword($uti['password'])
-        // TODO: hash password
         ->setNom($uti['nom'])
         ->setPrenom($uti['prenom'])
         ->setTelephone($uti['telephone'])
         ->setRoles(['ROLE_USER'])
-        ->setCoefficient($uti['coefficient']);
+        ->setCoefficient($uti['coefficient'])
+        ->setIsVerified(true);
+        
+        $password = $this->passwordHash->hashPassword($new_uti, $uti['password']);
+        $new_uti->setPassword($password);
 
         $manager->persist($new_uti);
         $data = $manager->getClassMetadata(Utilisateur::class);
