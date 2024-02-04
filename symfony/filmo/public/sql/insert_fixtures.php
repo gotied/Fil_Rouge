@@ -399,10 +399,10 @@ $utilisateur = array(
   array('id' => '6','email' => 'adam@test.com','password' => 'test','nom' => 'Moreau','prenom' => 'Adam','telephone' => '0678765432','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
   array('id' => '7','email' => 'clara@test.com','password' => 'test','nom' => 'Dubois','prenom' => 'Clara','telephone' => '0654345678','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
   array('id' => '8','email' => 'mohamed@test.com','password' => 'test','nom' => 'Bouvier','prenom' => 'Mohamed','telephone' => '0687654321','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
-  array('id' => '9','email' => 'zoé@test.com','password' => 'test','nom' => 'Bonnet','prenom' => 'Zoé','telephone' => '0654321098','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
+  array('id' => '9','email' => 'zoe@test.com','password' => 'test','nom' => 'Bonnet','prenom' => 'Zoé','telephone' => '0654321098','role' => '0','coefficient' => '1.20','responsable_id' => '13'),
   array('id' => '10','email' => 'lucie@test.com','password' => 'test','nom' => 'Leroux','prenom' => 'Lucie','telephone' => '0679911234','role' => '1','coefficient' => '2.20','responsable_id' => '14'),
   array('id' => '11','email' => 'nathan@test.com','password' => 'test','nom' => 'Roux','prenom' => 'Nathan','telephone' => '0615365678','role' => '1','coefficient' => '3.20','responsable_id' => '14'),
-  array('id' => '12','email' => 'léa@test.com','password' => 'test','nom' => 'Fournier','prenom' => 'Léa','telephone' => '0690123456','role' => '1','coefficient' => '2.50','responsable_id' => '14'),
+  array('id' => '12','email' => 'lea@test.com','password' => 'test','nom' => 'Fournier','prenom' => 'Léa','telephone' => '0690123456','role' => '1','coefficient' => '2.50','responsable_id' => '14'),
   array('id' => '13','email' => 'commercial_harris@test.com','password' => 'test','nom' => 'Harris','prenom' => 'William','telephone' => '0612345879','role' => '2','coefficient' => NULL,'responsable_id' => NULL),
   array('id' => '14','email' => 'commercial_girard@test.com','password' => 'test','nom' => 'Girard','prenom' => 'Hugo','telephone' => '0678901234','role' => '3','coefficient' => NULL,'responsable_id' => NULL),
   array('id' => '15','email' => 'gerant_jean@test.com','password' => 'test','nom' => 'Garnier','prenom' => 'Jean','telephone' => '0609876543','role' => '4','coefficient' => NULL,'responsable_id' => NULL)

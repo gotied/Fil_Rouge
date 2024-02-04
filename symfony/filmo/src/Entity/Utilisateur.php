@@ -25,7 +25,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = ['ROLE_CLIENT'];
 
     /**
      * @var string The hashed password
@@ -272,10 +272,23 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->isVerified;
     }
 
+    /**
+     * Get the value of isVerified
+     */ 
+    public function getIsVerified()
+    {
+        return $this->isVerified;
+    }
+    
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+    
+    public function __toString(): string
+    {
+        return $this->email;
     }
 }

@@ -1,0 +1,187 @@
+{% extends "profil/index.html.twig" %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+<div class="d-flex justify-content-center"><h1>Profil</h1></div>
+    {% if app.user.nom is null and app.user.prenom is null %}
+        <div class="d-flex justify-content-center">
+            <div class="card my-5 mx-5" style="width: 26rem;">
+                <div class="card-body">
+                    <h5 class="card-title" style="margin-bottom: 2rem; margin-top: 0.5rem;">Veuillez renseigner votre nom et prénom</h5>
+                    <p class="card-text">
+                        {{form(nameForm)}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% elseif app.user.telephone is null %}
+        <div class="d-flex justify-content-center">
+            <div class="card my-5 mx-5" style="width: 26rem;">
+                <div class="card-body">
+                    <h5 class="card-title" style="margin-bottom: 2rem; margin-top: 0.5rem;">Votre numéro de téléphone</h5>
+                    <p class="card-text">
+                        {{form(telForm)}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="card my-5 mx-5" style="width: 18rem; height: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin-top: 0.5rem; margin-bottom: 1rem;">Vos informations</h5>
+                        <p class="card-text">
+                            {{app.user.nom}}
+                            {{app.user.prenom}}
+                            <a href="{{path ('app_profil_client', {'form':'name'})}}" class="a-link-profil"><img src="{{asset ('img/icon/ellipsis-solid.svg')}}" alt="modifier" title="modifier" style="width: 15px; margin-top: 2px; margin-left: 3px;"></a>
+                        </p>
+                        {% if app.user.IsVerified == false %}
+                            <div class="email-overlay">
+                                <p class="card-text">
+                                    {{ app.user.email }}
+                                    <a href="{{ path('app_profil_client', {'form': 'email'}) }}" class="a-link-profil"><img src="{{asset ('img/icon/ellipsis-solid.svg')}}" alt="modifier" title="modifier" style="width: 15px; margin-top: 2px; margin-left: 3px;"></a>
+                                </p>
+                                <div class="overlay-text-email">
+                                    Veuillez vérifier votre adresse email
+                                </div>
+                            </div>
+                        {% else %}
+                            <p class="card-text">
+                                {{ app.user.email }}
+                                <a href="{{ path('app_profil_client', {'form': 'email'}) }}" class="a-link-profil"><img src="{{asset ('img/icon/ellipsis-solid.svg')}}" alt="modifier" title="modifier" style="width: 15px; margin-top: 2px; margin-left: 3px;"></a>
+                            </p>
+                        {% endif %}
+                        <p class="card-text">
+                            {{app.user.telephone}}
+                            <a href="{{path ('app_profil_client', {'form':'tel'})}}" class="a-link-profil"><img src="{{asset ('img/icon/ellipsis-solid.svg')}}" alt="modifier" title="modifier" style="width: 15px; margin-top: 2px; margin-left: 3px;"></a>
+                        </p>
+                        <p class="card-text" style="margin-top: 1.5rem;">
+                            <a href="{{path ('app_profil_client', {'form':'password'})}}" class="a-link-profil">Modifier le mot de passe</a>
+                        </p>
+                        {% if userAdresse.0.livraison is not null %}
+                            <p class="card-text"><a href="{{path ('app_profil_client', {'voir':'adresse'})}}" class="a-link-profil">Voir vos adresses</a></p>
+                            {% else %}
+                                <p class="card-text"><a href="{{path ('app_profil_client', {'form':'adresse','action':'ajouter'})}}" class="a-link-profil">Ajouter une adresse</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if app.request.query.get('voir') == 'adresse' %}
+                    {% if userAdresse.0.livraison is not null %}
+                        <div class="card my-5 mx-5" style="height: 16rem;">
+                            <div class="card-body d-flex flex-row">
+                                <div>
+                                    <h5 class="card-title" style="margin-top: 0.5rem; margin-right: 2rem;">Vos adresses</h5>
+                                    <p class="card-text"><a href="{{path ('app_profil_client', {'form':'adresse','action':'ajouter'})}}" class="a-link-profil">Nouvelle adresse</a></p>
+                                </div>
+                                {% for adresse in userAdresse %}
+                                <div style="margin-right: 1.5rem;">
+                                    <h6 class="card-title" style="margin-top: 0.5rem;">Livraison</h6>
+                                        <p class="card-text">{{adresse.livraison}}</p>
+                                        <h6 class="card-title" style="margin-top: 0.5rem;">Facturation</h6>
+                                        <p class="card-text">{{adresse.facturation}}</p>
+                                        <p class="card-text"><a href="{{path ('app_profil_client', {'form':'adresse','action':'modifier','adresse_id':adresse.adresse_id})}}" class="a-link-profil">Modifer l'adresse</a></p>
+                                        <p class="card-text"><a href="{{path ('app_profil_client', {'action':'supprimer','adresse_id':adresse.adresse_id})}}" class="a-link-profil">Supprimer l'adresse</a></p>
+                                </div>
+                                {% endfor %}
+                                <div>
+                                    <p style="margin-left: 1.5rem;"><a href="{{path ('app_profil_client')}}" title="fermer"><img src="{{asset ('img/icon/xmark-solid-black.svg')}}" alt="fermer" style="width: 20px; height: 20px;"></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if app.request.query.get('form') == 'name' %}
+                    <div class="card my-5 mx-5" style="width: 18rem; height: 21rem;">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{form(nameForm, {'label': false})}}
+                                <button type="button" class="btn btn-primary" id="boutton-form"><a href="{{path ('app_profil_client')}}" class="a-link-form" title="fermer"><img src="{{asset ('img/icon/xmark-solid-white.svg')}}" alt="fermer" style="width: 20px; height: 20px;"></a></button>
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('form') == 'tel' %}
+                    <div class="card my-5 mx-5" style="width: 18rem; height: 16rem;">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{form(telForm)}}
+                                <button type="button" class="btn btn-primary" id="boutton-form"><a href="{{path ('app_profil_client')}}" class="a-link-form" title="fermer"><img src="{{asset ('img/icon/xmark-solid-white.svg')}}" alt="fermer" style="width: 20px; height: 20px;"></a></button>
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('form') == 'email' %}
+                    <div class="card my-5 mx-5" style="width: 18rem; height: 16rem;">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{form(emailForm)}}
+                                <button type="button" class="btn btn-primary" id="boutton-form"><a href="{{path ('app_profil_client')}}" class="a-link-form" title="fermer"><img src="{{asset ('img/icon/xmark-solid-white.svg')}}" alt="fermer" style="width: 20px; height: 20px;"></a></button>
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('form') == 'password' %}
+                    <div class="card my-5 mx-5" style="width: 18rem; height: 21rem;">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{form(passwordForm)}}
+                                <button type="button" class="btn btn-primary" id="boutton-form"><a href="{{path ('app_profil_client')}}" class="a-link-form" title="fermer"><img src="{{asset ('img/icon/xmark-solid-white.svg')}}" alt="fermer" style="width: 20px; height: 20px;"></a></button>
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if app.request.query.get('form') == 'adresse' %}
+                    <div class="card my-5 mx-5" style="width: 18rem; height: 24.5rem;">
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{form(adresseForm)}}
+                                <button type="button" class="btn btn-primary" id="boutton-form"><a href="{{path ('app_profil_client')}}" class="a-link-form" title="fermer"><img src="{{asset ('img/icon/xmark-solid-white.svg')}}" alt="fermer" style="width: 20px; height: 20px;"></a></button>
+                            </p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% if commandeUser.0.commande_id is not null %}
+                <div class="d-flex justify-content-center">
+                    <h1>Vos commandes</h1>
+                </div>
+                <div class="d-flex justify-content-center" id="info_commande">
+                {# TODO:overflow-y:auto; pour plus de 3 commandes (test) #}
+                    {% for commande in commandeUser %}
+                        <div class="card my-5 mx-5" style="width: 25rem;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="margin-top: 0.5rem; margin-left: 1rem;">Commande du {{commande['date_commande']|date('d-m-Y')}}</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        {% if commande.etat == 0 %}Enregistré{% endif %}
+                                        {% if commande.etat == 1 %}En préparation{% endif %}
+                                        {% if commande.etat == 2 %}En cours de livraison{% endif %}
+                                        {% if commande.etat == 3 %}Livrée{% endif %}
+                                        {% if commande.etat == 4 %}Annulée{% endif %}
+                                    </li>
+                                    <li class="list-group-item">{{commande.total}} €</li>
+                                </ul>
+                                <h5 class="card-title" style="margin-top: 0.5rem; margin-left: 1rem;">Détails</h5>
+                                <ul class="list-group list-group-flush">
+                                {% for details in detailsCommande %}
+                                    {% if commande.commande_id == details.commande_id %}
+                                        <li class="list-group-item">{{details.titre}}<br>Quantité : {{details.quantite}}</li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                                {% if commande.etat == 0 or commande.etat == 1 %}
+                                <p class="card-text" style="margin-top: 1rem;">
+                                    <a href="{{ path('app_profil_client', {'action':'annuler','commande_id':commande.commande_id}) }}" class="a-link-profil" style="margin-left: 1rem;" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette commande ?');">Annuler la commande</a>
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    {% endif %}
+{% endblock %}

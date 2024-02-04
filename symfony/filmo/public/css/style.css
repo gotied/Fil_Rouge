@@ -107,20 +107,20 @@ h1 {
     list-style: none;
     text-align: center;
 }
-.link-cat {
+.link-cat, .a-link-form {
     text-decoration: none;
     color: #ffffff;
 }
-#contact_form_email, #contact_form_objet, #contact_form_message, #inputEmail, #inputPassword, #registration_form_email, #registration_form_plainPassword, #reset_password_request_form_email, #change_password_form_plainPassword_first, #change_password_form_plainPassword_second {
+#contact_form_email, #contact_form_objet, #contact_form_message, #inputEmail, #inputPassword, #registration_form_email, #registration_form_plainPassword, #reset_password_request_form_email, #change_password_form_plainPassword_first, #change_password_form_plainPassword_second, #user_name_Nom, #user_name_Prenom, #user_tel_telephone, #user_email_email, #user_password_plainPassword_first, #user_password_plainPassword_second, #user_adresse_livraison, #user_adresse_facturation {
     background-color: #D9D9D9;
     border-color: #000000;
 }
-#contact_form_email:focus, #contact_form_objet:focus, #contact_form_message:focus, #inputEmail:focus, #inputPassword:focus, #registration_form_email:focus, #registration_form_plainPassword:focus, #reset_password_request_form_email:focus, #change_password_form_plainPassword_first:focus, #change_password_form_plainPassword_second:focus {
+#contact_form_email:focus, #contact_form_objet:focus, #contact_form_message:focus, #inputEmail:focus, #inputPassword:focus, #registration_form_email:focus, #registration_form_plainPassword:focus, #reset_password_request_form_email:focus, #change_password_form_plainPassword_first:focus, #change_password_form_plainPassword_second:focus, #user_name_Nom:focus, #user_name_Prenom:focus, #user_tel_telephone:hover, #user_email_email:focus, #user_password_plainPassword_first:focus, #user_password_plainPassword_second:focus, #user_adresse_livraison:focus, #user_adresse_facturation:focus {
     box-shadow: 0 0 4px 0 #D03A3B; 
     outline: 3px solid #D03A3B;
     border-color: #D03A3B;
 }
-#contact_form_save, #submit_login, #registration_form_agreeTerms, #checkbox_login, #submit_reset, #submit_reset_new {
+#contact_form_save, #submit_login, #registration_form_agreeTerms, #checkbox_login, #submit_reset, #submit_reset_new, #boutton-form, #user_name_Enregistrer, #user_tel_Enregistrer, #user_email_Enregistrer, #user_password_Enregistrer, #user_adresse_checkbox, #user_adresse_Enregistrer {
     background-color: #D03A3B;
     border-color: #D03A3B;
 }
@@ -129,15 +129,34 @@ h1 {
     border-color: #D03A3B;
     color: #ffffff;
 }
-#registration_form_agreeTerms:focus, #checkbox_login:focus {
+#registration_form_agreeTerms:focus, #checkbox_login:focus, #user_adresse_checkbox {
     outline: none;
     box-shadow: none;
 }
-#a-link-login, #a-link-login-mdp, #a-link-mdp {
+#a-link-login, #a-link-login-mdp, #a-link-mdp, .a-link-profil {
     color: inherit;
 }
-#a-link-login:hover, #a-link-login-mdp:hover, #a-link-mdp:hover {
+#a-link-login:hover, #a-link-login-mdp:hover, #a-link-mdp:hover, .a-link-profil:hover {
     color: #D03A3B;
+}
+.email-overlay {
+    position: relative;
+    display: inline-block;
+}
+.overlay-text-email {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #d03a3ad0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2
 }
 /* .active-link {
     border-style: solid;
@@ -148,6 +167,22 @@ h1 {
     box-shadow: 0 0 4px 0 #FFF559; 
     outline: 2px solid #FFF559;
 } */
+.tr_profil_active {
+    border: 2px solid #D03A3B;
+    /* border-radius: 10px; */
+}
+@media screen and (max-width: 1000px) {
+    #card-syno {
+        margin-left: 10rem !important;
+        margin-right: 10rem !important;
+    }
+    #info_commande {
+        flex-wrap: wrap;
+    }
+    #info_commercial {
+        justify-content: center;
+    }
+}
 @media screen and (max-width: 905px) {
 	.h1-promo {
         font-size: 25px;
@@ -160,18 +195,20 @@ h1 {
     #div-pro {
         margin-left: 120px !important;
     }
-    #card-syno {
-        width: 20rem !important;
-        margin-top: 1rem !important;
-        margin-bottom: 1rem !important;
-    }
     #card-contact {
         width: auto !important;
+    }
+    #card-syno {
+        margin-left: 5rem !important;
+        margin-right: 5rem !important;
     }
 }
 @media screen and (max-width: 768px) {
     #card-pro, #card-pro-acc, #card-pro-g {
         width: 18rem;
+    }
+    #card-pro-title, #card-pro-text {
+        display: none;
     }
 }
 @media screen and (max-width: 620px) {
@@ -187,6 +224,11 @@ h1 {
     .div-promo {
         margin-left: 115px;
     }
+    #card-syno {
+        width: 20rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
 }
 @media screen and (max-width: 575px) {
     .div-promo {
@@ -201,14 +243,17 @@ h1 {
 	#div-accueil {
         padding: 10px;
     }
-    .h1-promo {
+    /* .h1-promo {
         font-size: 17px;
-    }
+    } */
     .div-promo {
         margin-left: 65px;
     }
     #div-pro {
         margin-left: 80px !important;
+    }
+    #card-pro, #card-pro-acc, #card-pro-g {
+        width: 15rem;
     }
 }
 @media screen and (max-width: 460px) {
@@ -227,9 +272,6 @@ h1 {
     }
     .div-promo {
         margin-left: 30px;
-    }
-    #card-pro, #card-pro-acc, #card-pro-g {
-        width: 15rem;
     }
     #div-pro {
         margin-left: 70px !important;
@@ -257,5 +299,8 @@ h1 {
     }
     #checkbox_login {
         margin-left: 0rem !important;
+    }
+    #card-pro, #card-pro-acc, #card-pro-g {
+        width: 13rem;
     }
 }

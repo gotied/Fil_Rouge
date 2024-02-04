@@ -39,6 +39,71 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         $this->getEntityManager()->flush();
     }
 
+    public function userCommande($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('c.id AS commande_id, c.date_commande, c.total, c.etat')
+            ->leftJoin('u.commandes', 'c')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+    public function detailsCommande($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('c.id AS commande_id, dc.quantite, p.titre')
+            ->leftJoin('u.commandes', 'c')
+            ->leftJoin('c.detailsCommandes', 'dc')
+            ->leftJoin('dc.produit', 'p')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function userAdresse($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('a.id AS adresse_id, a.livraison, a.facturation')
+            ->leftJoin('u.adresses', 'a')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Client pro
+    public function CPcommande($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('u.id AS user_id, c.id AS commande_id, c.date_commande, c.total, c.etat, f.mode_de_paiement, f.date_limite, f.payer, l.date_livraison')
+            ->leftJoin('u.commandes', 'c')
+            ->leftJoin('c.facture', 'f')
+            ->leftJoin('c.livraison', 'l')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function CPcommandeDetails($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('c.id AS commande_id, dc.quantite, p.titre')
+            ->leftJoin('u.commandes', 'c')
+            ->leftJoin('c.detailsCommandes', 'dc')
+            ->leftJoin('dc.produit', 'p')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function CPresponsable($id): array {
+        return $this->createQueryBuilder('u')
+            ->select('u.email, u.telephone, CONCAT(u.nom, \' \', u.prenom) AS commercial')
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects
 //     */

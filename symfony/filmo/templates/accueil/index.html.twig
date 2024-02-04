@@ -8,6 +8,11 @@
             {{ message }}
         </div>
     {% endfor %}
+    {% for error in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% endfor %}
     {% if sf %}
         <div class="text-center" style="color: white;">
             {{sf|raw}}
@@ -62,8 +67,8 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title"><a href="{{path ('app_produit', {'film':pro.id})}}" class="a-link-pro">{{pro.titre}}</a></h5>
-                                                <p class="card-text">{{pro.date_sortie|date('d-m-Y')}}</p>
+                                                <h5 class="card-title" id="card-pro-title"><a href="{{path ('app_produit', {'film':pro.id})}}" class="a-link-pro">{{pro.titre}}</a></h5>
+                                                <p class="card-text" id="card-pro-text">{{pro.date_sortie|date('d-m-Y')}}</p>
                                                 <p class="card-text">{{pro.prix_ttc}} €</p>
                                                 <p class="card-text"><a href="#"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a></p>
                                             </div>

@@ -1,0 +1,80 @@
+{% extends "profil/index.html.twig" %}
+
+{% block body %}
+    <div class="d-flex justify-content-left" id="info_commercial">
+        <div class="card my-5 mx-5" style="width: 20rem;">
+            <div class="card-body">
+            <h4 class="card-title" style="margin-bottom: 1.5rem;">Votre commercial</h4>
+            {% for co in commercial %}
+                <p class="card-text">{{co.commercial}}</p>
+                <p class="card-text">{{co.email}}</p>
+                <p class="card-text">{{co.telephone}}</p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="card my-5 mx-5">
+            <div class="card-body">
+            <h4 class="card-title" style="margin-bottom: 1.5rem;">Vos commandes</h4>
+                <p class="card-text">
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                <th style="padding-right: 1rem;">numero commande</th>
+                                <th style="padding-right: 1rem;">date commande</th>
+                                <th style="padding-right: 1rem;">produit</th>
+                                <th style="padding-right: 1rem;">quantité</th>
+                                <th style="padding-right: 1rem;">total</th>
+                                <th style="padding-right: 1rem;">etat</th>
+                                <th style="padding-right: 1rem;">mode de paiement</th>
+                                <th style="padding-right: 1rem;">date limite de paiement</th>
+                                <th style="padding-right: 1rem;">commande payer</th>
+                                <th style="padding-right: 1rem;">date livraison</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for commande in commandeUser %}
+                                <tr>
+                                    <td style="padding-right: 1rem;">{{commande.commande_id}}</td>
+                                    <td style="padding-right: 1rem;">{{commande['date_commande']|date('d-m-Y')}}</td>
+                                    <td style="padding-right: 1rem;">
+                                        {% for details in commandeDetails %}
+                                            {% if commande.commande_id == details.commande_id %}
+                                                {{details.titre}}<br>
+                                            {% endif %}                 
+                                        {% endfor %}
+                                    </td>
+                                    <td style="padding-right: 1rem;">
+                                        {% for details in commandeDetails %}
+                                            {% if commande.commande_id == details.commande_id %}
+                                                {{details.quantite}}<br>
+                                            {% endif %}                 
+                                        {% endfor %}
+                                    </td>
+                                    <td style="padding-right: 1rem;">{{commande.total}}€</td>
+                                    <td style="padding-right: 1rem;">
+                                        {% if commande.etat == 0 %}Enregistré{% endif %}
+                                        {% if commande.etat == 1 %}En préparation{% endif %}
+                                        {% if commande.etat == 2 %}En cours de livraison{% endif %}
+                                        {% if commande.etat == 3 %}Livrée{% endif %}
+                                        {% if commande.etat == 4 %}Annulée{% endif %}
+                                    </td>
+                                    <td style="padding-right: 1rem;">{{commande.mode_de_paiement}}</td>
+                                    <td style="padding-right: 1rem;">{{commande['date_limite']|date('d-m-Y')}}</td>
+                                    <td style="padding-right: 1rem;">
+                                        {% if commande.payer == true %}payer{% endif %}
+                                        {% if commande.payer == false %}non payer{% endif %}
+                                    </td>
+                                    <td style="padding-right: 1rem;">{{commande['date_livraison']|date('d-m-Y')}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
