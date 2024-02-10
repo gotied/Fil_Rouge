@@ -22,59 +22,88 @@
             <nav id="navbar-header" class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{path ('app_accueil')}}" title="Accueil"><img src="{{asset ('img/icon/FIL-logo-white2.png')}}" id="logo-filmo" alt="logo filmo" style="width: 100px;"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{path ('app_produit')}}" style="color: white;">Film</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">Catégorie</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" id="" href="{{path ('app_categorie', {'categorie':'genre'})}}">Genre</a></li>
-                                        <li><a class="dropdown-item" href="{{path ('app_categorie', {'categorie':'role'})}}">Rôle</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                            <form method="get" class="d-flex" role="search" action="{{path ('app_accueil')}}">
-                                <input class="form-control me-2" type="search" placeholder="rechercher" aria-label="Search" name="search-bar" id="input-search" style="width: 420px;">
-                                <button class="btn" type="submit"><img src="{{asset ('img/icon/magnifying-glass-solid.svg')}}" alt="bouton rechercher"></button>
-                            </form>
-                        </div>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#" title="Panier"><img src="{{asset ('img/icon/cart-shopping-solid.svg')}}" class="nav-link-icon" alt="panier" style="width: 22px;"></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{path ('app_contact')}}" title="Contact"><img src="{{asset ('img/icon/envelope-solid.svg')}}" alt="contact" style="width: 20px;"></a>
-                                </li>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{path ('app_produit')}}" style="color: white;">Film</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">Catégorie</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" id="" href="{{path ('app_categorie', {'categorie':'genre'})}}">Genre</a></li>
+                                    <li><a class="dropdown-item" href="{{path ('app_categorie', {'categorie':'role'})}}">Rôle</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <form method="get" class="d-flex" role="search" action="{{path ('app_accueil')}}">
+                            <input class="form-control me-2" type="search" placeholder="rechercher" aria-label="Search" name="search-bar" id="input-search" style="width: 420px;">
+                            <button class="btn" type="submit"><img src="{{asset ('img/icon/magnifying-glass-solid.svg')}}" alt="bouton rechercher"></button>
+                        </form>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#panierModal" href="#" title="Panier" style="position: relative; display: inline-block;">
+                                    <img src="{{asset ('img/icon/cart-shopping-solid.svg')}}" class="nav-link-icon" alt="panier" style="width: 22px; position: relative; z-index: 1;">
+                                    <span class="badge" style="position: absolute; top: -5px; left: 10px; z-index: 2;">{% if app.session.get('quantite') %}{{ app.session.get('quantite') }}{% else %}0{% endif %}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{path ('app_contact')}}" title="Contact"><img src="{{asset ('img/icon/envelope-solid.svg')}}" alt="contact" style="width: 20px;"></a>
+                            </li>
+                            {% if app.user %}
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{path ('app_profil')}}" title="Profil"><img src="{{asset ('img/icon/user-solid-white.svg')}}" alt="profil" style="width: 18px; height: 18px;"></a>
                                 </li>
-                                {% if app.user %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{path ('app_logout')}}" title="Déconnexion" style="padding-left: 0px;"><img src="{{asset ('img/icon/arrow-left-to-bracket-2.svg')}}" alt="déconnexion" style="width: 27px; height: auto;"></a>
+                                </li>
+                                {% else %}
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{path ('app_logout')}}" title="Déconnexion" style="padding-left: 0px;"><img src="{{asset ('img/icon/arrow-left-to-bracket-2.svg')}}" alt="déconnexion" style="width: 27px; height: auto;"></a>
+                                        <a class="nav-link active" aria-current="page" href="{{path ('app_login')}}" title="Connexion" style="padding-left: 0px;"><img src="{{asset ('img/icon/arrow-right-to-bracket-1.svg')}}" alt="connexion" style="width: 27px; height: auto;"></a>
                                     </li>
-                                {% endif %}
-                            </ul>
-                        </div>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
-        {% block body %}
+        {% block panier %}{% include 'panier/index.html.twig' %}{% endblock %}
+        {% block flashMessage %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success alert-div">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('info') %}
+                <div class="alert alert-info alert-div">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for error in app.flashes('error') %}
+                <div class="alert alert-danger alert-div">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            <script>
+                $(document).ready(function() {
+                    setTimeout(function(){
+                        $('.alert-div').attr("hidden",true);
+                    }, 3000);
+                });
+            </script>
         {% endblock %}
+        {% block body %}{% endblock %}
         <footer>
             <div id="navbar-footer" class="container-fluid">
                 <div class="d-flex justify-content-center justify-content-evenly">
-                    <a href="https://youtu.be/dQw4w9WgXcQ"><img src="{{asset ('img/icon/facebook.svg')}}" alt="facebook"></a>
-                    <a href="https://youtu.be/dQw4w9WgXcQ"><img src="{{asset ('img/icon/instagram.svg')}}" alt="instagram"></a>
-                    <a href="https://youtu.be/dQw4w9WgXcQ"><img src="{{asset ('img/icon/twitter.svg')}}" alt="twitter"></a>
-                    <a href="https://github.com/gotied"><img src="{{asset ('img/icon/github.svg')}}" alt="github"></a>
+                    <a href="https://youtu.be/dQw4w9WgXcQ"><img src="{{asset ('img/icon/facebook.svg')}}" title="facebook" alt="facebook"></a>
+                    <a href="https://youtu.be/dQw4w9WgXcQ"><img src="{{asset ('img/icon/instagram.svg')}}" title="instagram" alt="instagram"></a>
+                    <a href="https://youtu.be/dQw4w9WgXcQ"><img src="{{asset ('img/icon/twitter.svg')}}" title="twitter (x n'a jamais existé)" alt="twitter"></a>
+                    <a href="https://github.com/gotied"><img src="{{asset ('img/icon/github.svg')}}" title="github" alt="github"></a>
                 </div>
                 <div class="d-flex justify-content-center" id="div-2-footer" style="margin-top: 25px; margin-right: 40px;">
                     <a class="a-link-footer mx-5" href="{{path ('app_accueil', {'pdc':'pdc'})}}">Politique de confidentialité</a>

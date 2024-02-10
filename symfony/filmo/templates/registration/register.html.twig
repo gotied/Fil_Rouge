@@ -6,12 +6,6 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-
     {{ form_errors(registrationForm) }}
     <div class="d-flex justify-content-center">
         <div class="card my-5 mx-5" id="card-register" style="width: 30rem;">
