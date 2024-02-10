@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    {% set panier = app.request.session.get('detailsPanier') %}
+    {% set total = app.request.session.get('total') %}
+    {# <pre>
+        {{ dump(panier, total) }}
+    </pre> #}
+    <div class="d-flex justify-content-center">
+        <table class="table my-5 mx-5" style="max-width: 50rem;">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th></th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for details in panier %}
+                    <tr>
+                        <td><img src="{{asset ('img/affiche/' ~ details.product.image)}}" class="img-fluid rounded" alt="affiche {{details.product.titre}}" style="width: 7rem; height: 9rem;"></td>
+                        <td>{{details.product.titre}}</td>
+                        <td>{{details.product.getPrixTtc}}€</td>
+                        <td>{{details.quantity}}</td>
+                        <td>{{details.quantity * details.product.getPrixTtc}}€</td>
+                        <td><a href="{{path ('remove_product', {'id':details.product.id})}}"><img src="{{asset ('img/icon/trash-can-regular.svg')}}" title="supprimer" alt="supprimer" style="margin-left: 11px;"></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Total :</strong></td>
+                    <td></td>
+                    <td>{{total}}€</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="card my-5">
+            <div class="card-body">
+                This is some text within a card body.
+            </div>
+        </div>
+    </div>
+{% endblock %}
