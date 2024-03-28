@@ -30,6 +30,9 @@ class PanierController extends AbstractController
         $request->getSession()->set('detailsPanier', $this->panier->getPanier());
         $request->getSession()->set('total', $this->panier->getTotal());
         $request->getSession()->set('quantite', $this->panier->getQuantite());
+        if ($request->getSession()->get('totalApresReduction')) {
+            $request->getSession()->set('totalApresReduction', $this->calculateTotalAfterDiscount());
+        }
         $this->addFlash('success', 'Film ajouté au panier.');
         return $this->redirect($request->headers->get('referer'));
     }
@@ -40,12 +43,17 @@ class PanierController extends AbstractController
         $this->panier->remove_product($id);
         if (empty($this->panier->getPanier())) {
             $this->panier->dropPanier();
+            $request->getSession()->remove('totalApresReduction');
+            $request->getSession()->remove('discount_applied');
         }
         else {
             $request->getSession()->set('detailsPanier', $this->panier->getPanier());
             $request->getSession()->set('total', $this->panier->getTotal());
             $request->getSession()->set('quantite', $this->panier->getQuantite());
             $request->getSession()->set('modal', true);
+            if ($request->getSession()->get('totalApresReduction')) {
+                $request->getSession()->set('totalApresReduction', $this->calculateTotalAfterDiscount());
+            }
         }
         $this->addFlash('success', 'Film supprimé du panier.');
         return $this->redirect($request->headers->get('referer'));
@@ -55,7 +63,18 @@ class PanierController extends AbstractController
     public function drop_panier(Request $request)
     {
         $this->panier->dropPanier();
+        $request->getSession()->remove('totalApresReduction');
+        $request->getSession()->remove('discount_applied');
         $this->addFlash('success', 'Le panier a été vidé.');
         return $this->redirect($request->headers->get('referer'));
+    }
+
+    public function calculateTotalAfterDiscount()
+    {
+        $total = $this->panier->getTotal();
+        $discountPercentage = 1;
+        $totalAfterDiscount = $total - ($total * ($discountPercentage / 100));
+
+        return $totalAfterDiscount;
     }
 }

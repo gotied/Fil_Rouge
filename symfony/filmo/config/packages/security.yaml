@@ -1,11 +1,9 @@
 security:
     role_hierarchy:
-        # ROLE_ADMIN:       ROLE_USER
-        # ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         ROLE_CLIENT: ROLE_USER
         ROLE_CLIENT_PRO: ROLE_USER
         ROLE_COMMERCIAL: ROLE_USER
-        ROLE_COMMERCIAL_PRO: [ROLE_USER, ROLE_COMMERCIAL]
+        ROLE_COMMERCIAL_PRO: ROLE_COMMERCIAL
         ROLE_GERANT: [ROLE_ADMIN, ROLE_COMMERCIAL_PRO]
         ROLE_SUPER_USER: [ROLE_CLIENT, ROLE_CLIENT_PRO, ROLE_GERANT]
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
@@ -32,10 +30,10 @@ security:
                 # where to redirect after logout
                 # target: app_any_route
 
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 604800
-                path: /
+            # remember_me:
+            #     secret: '%kernel.secret%'
+            #     lifetime: 604800
+            #     path: /
                 # always_remember_me: true
 
             # activate different ways to authenticate

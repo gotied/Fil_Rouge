@@ -6,39 +6,53 @@
     {% if detailsPro %}
         <div class="d-flex row justify-content-center">
             {% for produit in detailsPro %}
-                <div class="card my-5 mx-3" id="card-pro" style="width: 18rem;">
-                    <img src="{{asset ('img/affiche/' ~ produit.image)}}" class="card-img-top img-fluid" alt="affiche {{produit.titre}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{produit.titre}}</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{produit.duree}}</li>
-                        <li class="list-group-item">{{produit.date_sortie|date('d-m-Y')}}</li>
-                        <li class="list-group-item">{{produit.prix_ttc}} €</li>
-                    </ul>
-                    <div class="card-body">
-                        <img src="{{asset ('img/icon/logo-dvd.png')}}" alt="logo dvd" title="comme on est encore en 2005" style="width: 25px; height: 25px;">
-                        <a href="{{path ('add_product', {'id':produit.id})}}" style="margin-left: 8rem;" class="card-link"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a>
+                <div class="container" style="max-width: 18rem; margin-right: 1rem; margin-left: 1.5rem; margin-top: 3rem; margin-bottom: 3rem;">
+                    <div class="card" id="card-pro" style="width: 18rem;">
+                        <img src="{{asset ('img/affiche/' ~ produit.image)}}" class="card-img-top img-fluid" alt="affiche {{produit.titre}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{produit.titre}}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{produit.duree}}</li>
+                            <li class="list-group-item">{{produit.date_sortie|date('d-m-Y')}}</li>
+                            <li class="list-group-item">{{produit.prix_ttc}} €</li>
+                        </ul>
+                        <div class="card-body">
+                            <img src="{{asset ('img/icon/logo-dvd.png')}}" alt="logo dvd" title="comme on est encore en 2005" style="width: 25px; height: 25px;">
+                            <a href="{{path ('add_product', {'id':produit.id})}}" style="margin-left: 8rem;" class="card-link"><img src="{{asset ('img/icon/cart-shopping-solid-black.svg')}}" alt="panier"></a>
+                        </div>
                     </div>
                 </div>
-                <div class="card my-5 mx-3" id="card-syno" style="width: 30rem;">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Synopsis</h6>
-                        <p class="card-text">{{produit.synopsis}}</p>
+                <div class="col-3" style="width: 30rem; margin-right: 2rem; margin-left: 2rem; margin-top: 3rem; margin-bottom: 3rem;">
+                    <div class="card" id="card-syno" style="width: 30rem; min-height: 11rem; max-height: 16rem; margin-bottom: 1.5rem;">
+                        <div class="card-body" style="padding-bottom: 0rem;">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Synopsis</h6>
+                            <hr style="margin-bottom: 0rem;">
+                        </div>
+                        <div class="card-body" style="overflow-y:auto;">
+                            <p class="card-text">{{produit.synopsis}}</p>
+                        </div>
+                    </div>
+                    <div class="card" id="card-syno" style="width: 30rem; height: 21rem; margin-top: 1.5rem;">
+                        <div class="card-body">
+                        <iframe width="449" height="305" src="{{produit.bande_annonce}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
-            <div class="card my-5 mx-3" style="width: 18rem;">
-                <div class="card-body">
-                    {% for produit in detailsPro %}
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Genre</h6>
-                        <p class="card-text">{{produit.genre}}</p>
-                    {% endfor %}
-                    <hr>
-                    {% for cast in detailsCast %}
-                        <h6 class="card-subtitle mb-2 text-body-secondary">{{cast.role}}</h6>
-                        <p class="card-text">{{cast.cast}}</p>
-                    {% endfor %}
+            <div class="container" style="max-width: 18rem; margin-right: 1.5rem; margin-left: 1rem; margin-top: 3rem; margin-bottom: 3rem;">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        {% for produit in detailsPro %}
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Genre</h6>
+                            <p class="card-text">{{produit.genre}}</p>
+                        {% endfor %}
+                        <hr>
+                        {% for cast in detailsCast %}
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{cast.role}}</h6>
+                            <p class="card-text">{{cast.cast}}</p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

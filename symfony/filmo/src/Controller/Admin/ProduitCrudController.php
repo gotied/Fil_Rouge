@@ -39,6 +39,7 @@ class ProduitCrudController extends AbstractCrudController
         yield ImageField::new('image')
             ->setBasePath('img/affiche/')
             ->setUploadDir('public/img/affiche/');
+        yield TextField::new('bande_annonce');
         yield NumberField::new('prix_ttc')
             ->setNumDecimals(2)
             ->setFormTypeOption('grouping', true);

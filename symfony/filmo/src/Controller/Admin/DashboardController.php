@@ -37,7 +37,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToRoute('Accueil', 'fa fa-home', 'app_accueil');
+        yield MenuItem::linkToRoute('Retour Accueil', 'fa fa-home', 'app_accueil');
         
         if ($this->isGranted('ROLE_GERANT')) {
             yield MenuItem::section('Film');

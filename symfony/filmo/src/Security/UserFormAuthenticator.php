@@ -57,6 +57,7 @@ class UserFormAuthenticator extends AbstractLoginFormAuthenticator
         } elseif (in_array('ROLE_COMMERCIAL', $roles)) {
             return new RedirectResponse($this->urlGenerator->generate('app_profil'));
         } else {
+            // TODO: redirection vers la page précédente impossible, si route app_login (redirection vers app_accueil ?)
             return new RedirectResponse($request->getSession()->get('previousRoute'));
         }
         

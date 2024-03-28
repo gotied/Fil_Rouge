@@ -63,7 +63,7 @@ class ProduitRepository extends ServiceEntityRepository
     // WI = Where id
     public function WIproduit($id): array {
         return $this->createQueryBuilder('p')
-            ->select('p.id, p.titre, p.synopsis, p.date_sortie, p.duree, p.image, p.prix_ttc, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre')
+            ->select('p.id, p.titre, p.synopsis, p.date_sortie, p.duree, p.image, p.bande_annonce, p.prix_ttc, GROUP_CONCAT(DISTINCT g.nom SEPARATOR \', \') AS genre')
             ->leftJoin('p.genres', 'g')
             ->where('p.id = :id')
             ->setParameter('id', $id)

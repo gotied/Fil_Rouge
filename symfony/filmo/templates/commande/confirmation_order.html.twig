@@ -1,0 +1,38 @@
+{% apply inline_css %}
+    <style>
+        body {
+            background-color: #D03A3B;
+        }
+        h4, p {
+            color: #ffffff;
+            margin-left: 5rem;
+            margin-right: 5rem;
+        }
+        #link-contact {
+            color: #ffffff;
+        } 
+        #div-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #logo-img {
+            width: 8rem;
+            height: 8rem;
+        }
+    </style>
+    <body>
+        <div id="div-content">
+            <h4>Nous sommes ravis de vous confirmer que votre commande du {{date_commande|date('d-m-Y')}} a bien été enregistrée.</h4>
+            <br>
+            <p>Nous vous remercions d'avoir passé commande.</p>
+            <p>Votre commande sera traitée dans les plus brefs délais. Nous vous enverrons un autre email dès que votre commande sera expédiée. Si vous avez des questions concernant votre commande ou si vous avez besoin d'assistance, n'hésitez pas à nous contacter en cliquant <a href="{{absolute_url (path ('app_contact'))}}" id="link-contact">ici</a>.</p>
+            <p>De plus, veuillez noter qu'un email contenant la facture détaillée de votre commande sera envoyé à la même adresse email utilisée pour cette commande.</p>
+            <br>
+            <p>Nous vous remercions encore pour votre confiance et votre soutien. Nous espérons que vous apprécierez vos achats chez Filmo.</p><br>
+            <p>Cordialement.</p>
+            <img src="{{email.image ('@images/icon/FIL-logo-white2.png')}}" alt="logo" id="logo-img">
+        </div>
+    </body>
+{% endapply %}

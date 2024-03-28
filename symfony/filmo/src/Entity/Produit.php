@@ -2,13 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[ApiResource]
+#[ApiFilter(SearchFilter::class, 
+  properties: [ "genres.id" => "exact"]  
+)]
 class Produit
 {
     #[ORM\Id]
@@ -30,6 +38,9 @@ class Produit
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $image = null;
+    
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $bande_annonce = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2, nullable: true)]
     private ?string $prix_ttc = null;
@@ -53,10 +64,13 @@ class Produit
     private Collection $genres;
 
     #[ORM\ManyToMany(targetEntity: Fournisseur::class, mappedBy: 'produit')]
+    #[ApiProperty(readable: false)]
     private Collection $fournisseurs;
 
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: DetailsCommande::class)]
+    #[ApiProperty(readable: false)]
     private Collection $detailsCommandes;
+
 
     public function __construct()
     {
@@ -140,10 +154,22 @@ class Produit
     public function setImage(?string $image): static
     {
         $this->image = $image;
+        
+        return $this;
+    }
+    
+    public function getBandeAnnonce(): ?string
+    {
+        return $this->bande_annonce;
+    }
+
+    public function setBandeAnnonce(?string $bande_annonce): static
+    {
+        $this->bande_annonce = $bande_annonce;
 
         return $this;
     }
-
+    
     public function getPrixTtc(): ?string
     {
         return $this->prix_ttc;
@@ -334,4 +360,5 @@ class Produit
     {
         return $this->titre;
     }
+
 }

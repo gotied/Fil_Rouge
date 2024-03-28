@@ -48,6 +48,7 @@ class AppFixtures extends Fixture
         ->setDateSortie($pro['date_sortie'])
         ->setDuree($pro['duree'])
         ->setImage($pro['image'])
+        ->setBandeAnnonce($pro['bande_annonce'])
         ->setPrixTtc($pro['prix_ttc'])
         ->setPrixFour($pro['prix_four'])
         ->setStock($pro['stock'])
@@ -227,6 +228,9 @@ class AppFixtures extends Fixture
             }
             if ($user_id === 15){
                 $u->setRoles(['ROLE_GERANT']);
+            }
+            if ($user_id === 16){
+                $u->setRoles(['ROLE_SUPER_USER']);
             }
         }
         

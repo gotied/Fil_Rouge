@@ -1,7 +1,7 @@
 {% block body %}
     {% set panier = app.request.session.get('detailsPanier') %}
     {% set total = app.request.session.get('total') %}
-    <div class="modal fade{% if app.request.session.get('modal') %}{% if panier %} auto-show{% else %}{% endif %}{% endif %}" id="panierModal" tabindex="-1" aria-labelledby="panierModalLabel" aria-hidden="true">
+    <div class="modal fade{% if app.request.session.get('modal') %}{% if panier %} auto-show{% endif %}{% endif %}" id="panierModal" tabindex="-1" aria-labelledby="panierModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content" style="background-color: #D03A3B;">
                 <div class="modal-header">
@@ -10,35 +10,39 @@
                 </div>
                 {% if panier is not empty %}
                     <div class="modal-body" style="overflow-x:auto;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Produit</th>
-                                    <th>Prix</th>
-                                    <th>Quantité</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for details in panier %}
-                                    <tr>
-                                        <td><img src="{{asset ('img/affiche/' ~ details.product.image)}}" class="img-fluid rounded" alt="affiche {{details.product.titre}}" style="width: 4rem; height: 5rem;"></td>
-                                        <td>{{details.product.getPrixTtc}}€</td>
-                                        <td>{{details.quantity}}</td>
-                                        <td>{{details.quantity * details.product.getPrixTtc}}€</td>
-                                        <td><a href="{{path ('remove_product', {'id':details.product.id})}}"><img src="{{asset ('img/icon/trash-can-regular.svg')}}" title="supprimer" alt="supprimer" style="margin-left: 11px;"></a></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3"><strong>Total :</strong></td>
-                                    <td>{{total}}€</td>
-                                    <td><button type="button" class="btn"><a href="{{path ('drop_panier')}}" id="a-link-panier-drop"><img src="{{asset ('img/icon/trash-can-regular.svg')}}" title="supprimer" alt="supprimer"></a></button></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="table" id="table-panier">
+                                    <thead>
+                                        <tr>
+                                            <th>Produit</th>
+                                            <th>Prix</th>
+                                            <th>Quantité</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for details in panier %}
+                                            <tr>
+                                                <td><img src="{{asset ('img/affiche/' ~ details.product.image)}}" class="img-fluid rounded" alt="affiche {{details.product.titre}}" style="width: 4rem; height: 5rem;"></td>
+                                                <td>{{details.product.getPrixTtc}}€</td>
+                                                <td>{{details.quantity}}</td>
+                                                <td>{{details.quantity * details.product.getPrixTtc}}€</td>
+                                                <td><a href="{{path ('remove_product', {'id':details.product.id})}}"><img src="{{asset ('img/icon/trash-can-regular.svg')}}" title="supprimer" alt="supprimer" style="margin-left: 11px;"></a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"><strong>Total :</strong></td>
+                                            <td>{{total}}€</td>
+                                            <td><button type="button" class="btn"><a href="{{path ('drop_panier')}}" id="a-link-panier-drop"><img src="{{asset ('img/icon/trash-can-regular.svg')}}" title="supprimer" alt="supprimer"></a></button></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn" id="btn-panier-commande"><a href="{{path ('app_commande')}}" id="btn-panier-commande">Commander</a></button>

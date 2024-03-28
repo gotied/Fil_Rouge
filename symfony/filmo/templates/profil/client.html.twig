@@ -1,5 +1,7 @@
 {% extends "profil/index.html.twig" %}
 
+{# TODO:modifier la structure de la page #}
+
 {% block body %}
     <div class="d-flex justify-content-center"><h1>Profil</h1></div>
     {% if app.user.nom is null and app.user.prenom is null %}
@@ -100,7 +102,7 @@
                     </div>
                 {% endif %}
                 {% if app.request.query.get('form') == 'tel' %}
-                    <div class="card my-5 mx-5" style="width: 18rem; height: 16rem;">
+                    <div class="card my-5 mx-5" style="width: 18rem; height: 18rem;">
                         <div class="card-body">
                             <p class="card-text">
                                 {{form(telForm)}}

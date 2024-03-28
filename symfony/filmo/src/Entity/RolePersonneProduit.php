@@ -2,10 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\RolePersonneProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use App\Repository\RolePersonneProduitRepository;
 
 #[ORM\Entity(repositoryClass: RolePersonneProduitRepository::class)]
+#[ApiResource]
+#[ApiFilter(SearchFilter::class, 
+  properties: [ "produit.id" => "exact"]  
+)]
 class RolePersonneProduit
 {
     #[ORM\Id]

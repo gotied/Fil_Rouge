@@ -21,7 +21,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use \Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
@@ -57,7 +57,7 @@ class ProfilController extends AbstractController
             return $this->redirectToRoute('app_profil_client_pro');
         }
 
-        if ($security->isGranted('ROLE_COMMERCIAL') or $security->isGranted('ROLE_COMMERCIAL_PRO') or $security->isGranted('ROLE_GERANT') ) {
+        if ($security->isGranted('ROLE_COMMERCIAL') ) {
             return $this->redirectToRoute('admin');
         }
         
@@ -155,7 +155,7 @@ class ProfilController extends AbstractController
                         ->setFacturation($livraison)
                         ->setUtilisateur($user);
                 }
-                elseif(!$facturation) {
+                elseif (!$facturation) {
                     $adresse
                         ->setLivraison($livraison)
                         ->setUtilisateur($user);
@@ -176,7 +176,7 @@ class ProfilController extends AbstractController
                             ->setFacturation($livraison)
                             ->setUtilisateur($user);
                     }
-                    elseif(!$facturation) {
+                    elseif (!$facturation) {
                         $adresse
                             ->setLivraison($livraison)
                             ->setUtilisateur($user);
